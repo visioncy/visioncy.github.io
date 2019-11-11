@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="centos turnserver," />
 
 
 
@@ -79,14 +79,15 @@
 
 
 
-<meta name="description" content="&#96; # 设置ssgit config –global http.proxy ‘socks5:&#x2F;&#x2F;127.0.0.1:1080’git config –global https.proxy ‘socks5:&#x2F;&#x2F;127.0.0.1:1080’ 设置代理git config –global https.proxy http:&#x2F;&#x2F;127.0.0.1:1080git config –global https">
+<meta name="description" content="1. 下载turnserver包 wget http:&#x2F;&#x2F;turnserver.open-sys.org&#x2F;downloads&#x2F;v4.5.1.1&#x2F;turnserver-4.5.1.1.tar.gz  sudo tar -zxvf turnserver-4.5.1.1.tar.gz cd turnserver-4.5.1.1 &amp;amp;&amp;amp; sudo .&#x2F;configure2. 配置与编译 su">
+<meta name="keywords" content="centos turnserver">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 代理配置方式">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;gitproxy&#x2F;index.html">
+<meta property="og:title" content="&#39;centOS 安装 nginx&#39;">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;centos_install_turnserver&#x2F;index.html">
 <meta property="og:site_name" content="vision 的空间">
-<meta property="og:description" content="&#96; # 设置ssgit config –global http.proxy ‘socks5:&#x2F;&#x2F;127.0.0.1:1080’git config –global https.proxy ‘socks5:&#x2F;&#x2F;127.0.0.1:1080’ 设置代理git config –global https.proxy http:&#x2F;&#x2F;127.0.0.1:1080git config –global https">
+<meta property="og:description" content="1. 下载turnserver包 wget http:&#x2F;&#x2F;turnserver.open-sys.org&#x2F;downloads&#x2F;v4.5.1.1&#x2F;turnserver-4.5.1.1.tar.gz  sudo tar -zxvf turnserver-4.5.1.1.tar.gz cd turnserver-4.5.1.1 &amp;amp;&amp;amp; sudo .&#x2F;configure2. 配置与编译 su">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-07T11:57:55.808Z">
+<meta property="og:updated_time" content="2019-11-11T11:12:46.091Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/07/gitproxy/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/08/centos_install_turnserver/"/>
 
 
 
 
 
-  <title>git 代理配置方式 | vision 的空间</title>
+  <title>'centOS 安装 nginx' | vision 的空间</title>
   
 
 
@@ -230,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/gitproxy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_turnserver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vision.Yi">
@@ -247,7 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git 代理配置方式</h1>
+          <h1 class="post-title" itemprop="name headline">'centOS 安装 nginx'</h1>
         
 
         <div class="post-meta">
@@ -259,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T17:55:22+08:00">
-                2019-11-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">
+                2019-11-08
               </time>
             
 
@@ -297,10 +298,43 @@
       
 
       
-        <p>` # 设置ss<br>git config –global http.proxy ‘socks5://127.0.0.1:1080’<br>git config –global https.proxy ‘socks5://127.0.0.1:1080’</p>
-<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><p>git config –global https.proxy <a href="http://127.0.0.1:1080" target="_blank" rel="noopener">http://127.0.0.1:1080</a><br>git config –global https.proxy <a href="https://127.0.0.1:1080" target="_blank" rel="noopener">https://127.0.0.1:1080</a></p>
-<h1 id="取消代理"><a href="#取消代理" class="headerlink" title="取消代理"></a>取消代理</h1><p>git config –global –unset http.proxy<br>git config –global –unset https.proxy`</p>
+        <p><strong>1. 下载turnserver包</strong></p>
+<pre><code>wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
+sudo tar -zxvf turnserver-4.5.1.1.tar.gz
+cd turnserver-4.5.1.1 &amp;&amp; sudo ./configure</code></pre><p><strong>2. 配置与编译</strong></p>
+<pre><code>sudo yum install -y make gcc cc gcc-c++ wget
+sudo yum install -y openssl-devel libevent libevent-devel mysql-devel mysql-server
+sudo make &amp;&amp; sudo make install</code></pre><p><strong>3.    修改配置文件</strong></p>
+<pre><code>sudo cp /usr/local/etc/turnserver.conf.default   /usr/local/etc/turnserver.conf
+sudo vim /usr/local/etc/turnserver.conf</code></pre><p>在文件顶部加入如下配置 </p>
+<pre><code>listening-port=3478
+user=mangoturn:cvKuUdaQ
+realm=turn02.imangoim.com</code></pre><p>附：手去启动TURN命令</p>
+<pre><code>turnserver -c /usr/local/etc/turnserver.conf -o –v</code></pre><p><strong>4.设置开机启动</strong></p>
+<pre><code>sudo vim /etc/systemd/system/turnserver.service</code></pre><p>文件内容</p>
+<pre><code>[Unit]
+Description=coturn
+Documentation=man:coturn(1) man:turnadmin(1) man:turnserver(1)
+After=syslog.target network.target
 
+[Service]
+#User=turnserver
+#Group=turnserver
+Type=forking
+#EnvironmentFile=/etc/sysconfig/turnserver
+PIDFile=/var/run/turnserver.pid
+ExecStart=/usr/local/bin/turnserver -o -c /usr/local/etc/turnserver.conf $EXTRA_OPTIONS
+ExecStopPost=/usr/bin/rm -f /var/run/turnserver.pid
+Restart=on-abort
+
+LimitCORE=infinity
+LimitNOFILE=999999
+LimitNPROC=60000
+LimitRTPRIO=infinity
+LimitRTTIME=7000000
+CPUSchedulingPolicy=other
+UMask=0007</code></pre><p>设置自动启动</p>
+<pre><code>sudo systemctl enable turnserver.service</code></pre>
       
     </div>
     
@@ -315,6 +349,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/centos-turnserver/" rel="tag"># centos turnserver</a>
+          
+        </div>
+      
 
       
       
@@ -324,8 +364,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/07/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/11/08/gitsetproxy/" rel="next" title="git 代理配置方式">
+                <i class="fa fa-chevron-left"></i> git 代理配置方式
               </a>
             
           </div>
@@ -333,6 +373,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/08/centos_install_nginx/" rel="prev" title="'centOS 安装 nginx'">
+                'centOS 安装 nginx' <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -384,17 +428,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -418,6 +453,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
 
           </nav>
 
@@ -436,22 +480,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设置代理"><span class="nav-number">1.</span> <span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消代理"><span class="nav-number">2.</span> <span class="nav-text">取消代理</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
