@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="centos mongodb," />
 
 
 
@@ -79,11 +79,15 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="vision 的空间">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;centos-turnserver&#x2F;index.html">
+<meta name="description" content="1. 添加安装源 vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo  [mongodb-org-4.2] name=MongoDB Repository baseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redhat&#x2F;$releasever&#x2F;mongodb-org&#x2F;4.2&#x2F;x86_64&#x2F; gpgcheck=1 enabled=1 gpgke">
+<meta name="keywords" content="centos mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 安装 mongodb">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;11&#x2F;centos_install_mongodb&#x2F;index.html">
 <meta property="og:site_name" content="vision 的空间">
+<meta property="og:description" content="1. 添加安装源 vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo  [mongodb-org-4.2] name=MongoDB Repository baseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redhat&#x2F;$releasever&#x2F;mongodb-org&#x2F;4.2&#x2F;x86_64&#x2F; gpgcheck=1 enabled=1 gpgke">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-11T08:59:42.616Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -114,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/centos-turnserver/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/11/centos_install_mongodb/"/>
 
 
 
 
 
-  <title>标签: centos turnserver | vision 的空间</title>
+  <title>centOS 安装 mongodb | vision 的空间</title>
   
 
 
@@ -139,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,54 +247,198 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>centos turnserver<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/11/centos_install_mongodb/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vision 的空间">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/08/centos_install_turnserver/" itemprop="url">
-              
-                <span itemprop="name">centOS 安装 turnserver</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">centOS 安装 mongodb</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-08T17:26:25+08:00"
-              content="2019-11-08" >
-          11-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T14:18:40+08:00">
+                2020-03-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>1. 添加安装源</strong></p>
+<pre><code>vim /etc/yum.repos.d/mongodb-org-4.2.repo
+
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc</code></pre><p>2.安装mongodb常用包</p>
+<pre><code>sudo yum install -y mongodb-org</code></pre><p>移动数据库</p>
+<pre><code>#复制数据库
+rsync -av /var/lib/mongo /mnt/database/mongodb/
+#备份旧数据库
+sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库是提示没权限，可以进行授权</p>
+<pre><code>#Change owner and group
+sudo chown -R mongod:mongod /home/mongodb/mongo
+#Change context
+sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>添加超级管理员</p>
+<pre><code>mongo
+
+use admin
+db.createUser(
+  {
+    user: &quot;xhadmin&quot;,
+    pwd: &quot;abc123&quot;,
+    roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; }, &quot;readWriteAnyDatabase&quot; ]
+  }
+)
+
+
+use admin
+db.createUser(
+  {
+    user: &quot;xhadmin&quot;,
+    pwd: &quot;abc123&quot;,
+    roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; }, &quot;readWriteAnyDatabase&quot; ]
+  }
+)</code></pre><p>创建数据库用户</p>
+<pre><code>use test
+db.createUser(
+  {
+    user: &quot;myTester&quot;,
+    pwd: &quot;xyz123&quot;,
+    roles: [ { role: &quot;readWrite&quot;, db: &quot;test&quot; },
+             { role: &quot;read&quot;, db: &quot;reporting&quot; } ]
+  }
+)</code></pre><p>安装步骤参考资料：</p>
+<p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos-mongodb/" rel="tag"># centos mongodb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/19/openfireoptimization/" rel="next" title="openfire 优化">
+                <i class="fa fa-chevron-left"></i> openfire 优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/12/openwrt_setting_prerouting/" rel="prev" title="openwrt 配置ip跳转">
+                openwrt 配置ip跳转 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -298,6 +446,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -503,6 +655,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
