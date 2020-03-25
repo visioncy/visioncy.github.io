@@ -1404,161 +1404,6 @@ WantedBy=multi-user.target</code></pre><p>设置自动启动</p>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_turnserver/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="vision 的空间">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/08/centos_install_turnserver/" itemprop="url">centOS 安装 turnserver</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">
-                2019-11-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1. 下载turnserver包</strong></p>
-<pre><code>wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
-sudo tar -zxvf turnserver-4.5.1.1.tar.gz
-cd turnserver-4.5.1.1 &amp;&amp; sudo ./configure</code></pre><p><strong>2. 配置与编译</strong></p>
-<pre><code>sudo yum install -y make gcc cc gcc-c++ wget
-sudo yum install -y openssl-devel libevent libevent-devel mysql-devel mysql-server
-sudo make &amp;&amp; sudo make install</code></pre><p><strong>3.    修改配置文件</strong></p>
-<pre><code>sudo cp /usr/local/etc/turnserver.conf.default   /usr/local/etc/turnserver.conf
-sudo vim /usr/local/etc/turnserver.conf</code></pre><p>在文件顶部加入如下配置 </p>
-<pre><code>listening-port=3478
-user=mangoturn:cvKuUdaQ
-realm=turn02.imangoim.com</code></pre><p>附：手去启动TURN命令</p>
-<pre><code>turnserver -c /usr/local/etc/turnserver.conf -o –v</code></pre><p><strong>4.设置开机启动</strong></p>
-<pre><code>sudo vim /etc/systemd/system/turnserver.service</code></pre><p>文件内容</p>
-<pre><code>[Unit]
-Description=coturn
-Documentation=man:coturn(1) man:turnadmin(1) man:turnserver(1)
-After=syslog.target network.target
-
-[Service]
-#User=turnserver
-#Group=turnserver
-Type=forking
-#EnvironmentFile=/etc/sysconfig/turnserver
-PIDFile=/var/run/turnserver.pid
-ExecStart=/usr/local/bin/turnserver -o -c /usr/local/etc/turnserver.conf $EXTRA_OPTIONS
-ExecStopPost=/usr/bin/rm -f /var/run/turnserver.pid
-Restart=on-abort
-
-LimitCORE=infinity
-LimitNOFILE=999999
-LimitNPROC=60000
-LimitRTPRIO=infinity
-LimitRTTIME=7000000
-CPUSchedulingPolicy=other
-UMask=0007</code></pre><p>设置自动启动</p>
-<pre><code>sudo systemctl enable turnserver.service</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_gitea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1678,6 +1523,161 @@ sudo systemctl enable gitea
 sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
 <pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
 <pre><code>http://YOUR_SERVER_IP:3000/install</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_turnserver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vision 的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/08/centos_install_turnserver/" itemprop="url">centOS 安装 turnserver</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">
+                2019-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>1. 下载turnserver包</strong></p>
+<pre><code>wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
+sudo tar -zxvf turnserver-4.5.1.1.tar.gz
+cd turnserver-4.5.1.1 &amp;&amp; sudo ./configure</code></pre><p><strong>2. 配置与编译</strong></p>
+<pre><code>sudo yum install -y make gcc cc gcc-c++ wget
+sudo yum install -y openssl-devel libevent libevent-devel mysql-devel mysql-server
+sudo make &amp;&amp; sudo make install</code></pre><p><strong>3.    修改配置文件</strong></p>
+<pre><code>sudo cp /usr/local/etc/turnserver.conf.default   /usr/local/etc/turnserver.conf
+sudo vim /usr/local/etc/turnserver.conf</code></pre><p>在文件顶部加入如下配置 </p>
+<pre><code>listening-port=3478
+user=mangoturn:cvKuUdaQ
+realm=turn02.imangoim.com</code></pre><p>附：手去启动TURN命令</p>
+<pre><code>turnserver -c /usr/local/etc/turnserver.conf -o –v</code></pre><p><strong>4.设置开机启动</strong></p>
+<pre><code>sudo vim /etc/systemd/system/turnserver.service</code></pre><p>文件内容</p>
+<pre><code>[Unit]
+Description=coturn
+Documentation=man:coturn(1) man:turnadmin(1) man:turnserver(1)
+After=syslog.target network.target
+
+[Service]
+#User=turnserver
+#Group=turnserver
+Type=forking
+#EnvironmentFile=/etc/sysconfig/turnserver
+PIDFile=/var/run/turnserver.pid
+ExecStart=/usr/local/bin/turnserver -o -c /usr/local/etc/turnserver.conf $EXTRA_OPTIONS
+ExecStopPost=/usr/bin/rm -f /var/run/turnserver.pid
+Restart=on-abort
+
+LimitCORE=infinity
+LimitNOFILE=999999
+LimitNPROC=60000
+LimitRTPRIO=infinity
+LimitRTTIME=7000000
+CPUSchedulingPolicy=other
+UMask=0007</code></pre><p>设置自动启动</p>
+<pre><code>sudo systemctl enable turnserver.service</code></pre>
           
         
       
