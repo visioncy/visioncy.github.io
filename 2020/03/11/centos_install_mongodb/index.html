@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="vision 的空间">
 <meta property="og:description" content="1. 添加安装源 vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo  [mongodb-org-4.2] name=MongoDB Repository baseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redhat&#x2F;$releasever&#x2F;mongodb-org&#x2F;4.2&#x2F;x86_64&#x2F; gpgcheck=1 enabled=1 gpgke">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-11T08:59:42.616Z">
+<meta property="og:updated_time" content="2020-03-16T14:31:26.831Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -345,7 +345,9 @@ sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库�
 <pre><code>#Change owner and group
 sudo chown -R mongod:mongod /home/mongodb/mongo
 #Change context
-sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>添加超级管理员</p>
+sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    /etc/mongod.conf</p>
+<p>初步化数据库<br>mongo –dbpath /path/</p>
+<p>添加超级管理员</p>
 <pre><code>mongo
 
 use admin
@@ -486,7 +488,7 @@ db.createUser(
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -499,7 +501,7 @@ db.createUser(
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

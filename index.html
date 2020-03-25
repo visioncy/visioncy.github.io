@@ -258,6 +258,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vision 的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/centos_install_tools/" itemprop="url">centOS 安装配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>1. 安装常用包</strong></p>
+<pre><code>yum -y install vim
+yum -y install lrzsz
+yum -y install net-tools
+yum -y install git
+yum -y install wget
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+yum -y install  iptables-services
+systemctl status iptables.service
+systemctl start iptables.service</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/openwrt_build_xiaomir3p/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -657,7 +786,9 @@ sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库�
 <pre><code>#Change owner and group
 sudo chown -R mongod:mongod /home/mongodb/mongo
 #Change context
-sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>添加超级管理员</p>
+sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    /etc/mongod.conf</p>
+<p>初步化数据库<br>mongo –dbpath /path/</p>
+<p>添加超级管理员</p>
 <pre><code>mongo
 
 use admin
@@ -1428,7 +1559,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/gitsetproxy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_gitea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vision.Yi">
@@ -1447,7 +1578,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/11/08/gitsetproxy/" itemprop="url">git 代理配置方式</a></h1>
+                <a class="post-title-link" href="/2019/11/08/centos_install_gitea/" itemprop="url">centOS 安装 gitea</a></h1>
         
 
         <div class="post-meta">
@@ -1459,7 +1590,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T17:08:15+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">
                 2019-11-08
               </time>
             
@@ -1499,19 +1630,54 @@ UMask=0007</code></pre><p>设置自动启动</p>
       
         
           
-            <pre><code># 设置ss
-git config --global http.proxy &apos;socks5://127.0.0.1:1080&apos;
-git config --global https.proxy &apos;socks5://127.0.0.1:1080&apos;
+            <p><strong>1. 下载turnserver包</strong></p>
+<pre><code>#sudo wget -O gitea https://dl.gitea.io/gitea/1.11.3/gitea-1.11.3-linux-amd64
+sudo wget -O gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64
+sudo chmod +x gitea
+cp gitea /usr/local/bin/gitea
 
-# 设置代理
-git config --global https.proxy http://127.0.0.1:1080
-git config --global https.proxy https://127.0.0.1:1080
+sudo adduser --system --shell /bin/bash --comment &apos;Git Version Control&apos; --user-group --home-dir /home/git -m git
+sudo mkdir -p /usr/local/gitea/{custom,data,indexers,public,log}
+sudo chown git:git /usr/local/gitea/{data,indexers,log}
+sudo chmod 750 /usr/local/gitea/{data,indexers,log}
+sudo mkdir /home/gitea
+sudo chown root:git /home/gitea
+sudo chmod 770 /home/gitea
 
-# 取消代理
-git config --global --unset http.proxy
-git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks5和socks5h的区别"><a href="#补充说明：socks5和socks5h的区别" class="headerlink" title="补充说明：socks5和socks5h的区别"></a>补充说明：socks5和socks5h的区别</h2><p>socks5：适合本地能够解析目标主机域名(比如github.com)但是访问速度慢,来提高下载速度</p>
-<p>socks5h：用与本地不能解析目标主机域名(比如google),由代理服务器解析目标主机域名</p>
+vim /etc/systemd/system/gitea.service</code></pre><p>Using a text editor of your choice, open this newly create file and populate it with the following.</p>
+<pre><code>[Unit]
+Description=Gitea (Git with a cup of tea)
+After=network.target
+After=mariadb.service
 
+[Service]
+# Modify these two values and uncomment them if you have
+# repos with lots of files and get an HTTP error 500 because
+# of that
+###
+#LimitMEMLOCK=infinity
+#LimitNOFILE=65535
+RestartSec=2s
+Type=simple
+User=git
+Group=git
+WorkingDirectory=/var/lib/gitea/
+ExecStart=/usr/local/bin/gitea web -c /etc/gitea/app.ini
+Restart=always
+Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/var/lib/gitea
+# If you want to bind Gitea to a port below 1024 uncomment
+# the two values below
+###
+#CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+#AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>Enable and start Gitea at boot.</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl enable gitea
+sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
+<pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
+<pre><code>http://YOUR_SERVER_IP:3000/install</code></pre>
           
         
       
@@ -1549,6 +1715,10 @@ git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -1592,7 +1762,7 @@ git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1605,7 +1775,7 @@ git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
