@@ -330,16 +330,31 @@
         
           
             <p><strong>1. 安装常用包</strong></p>
-<pre><code>yum -y install vim
+<pre><code>yum -y install pcre-devel openssl openssl-devel
+yum -y install gcc gcc-c++ kernel-devel
+yum -y install vim
 yum -y install lrzsz
 yum -y install net-tools
 yum -y install git
 yum -y install wget
+
 systemctl stop firewalld.service
 systemctl disable firewalld.service
+
 yum -y install  iptables-services
 systemctl status iptables.service
-systemctl start iptables.service</code></pre>
+systemctl start iptables.service</code></pre><p>1、先备份一下原来的源镜像文件<br>cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</p>
+<p>2、下载新的CentOS-Base.repo，并写入到基础源文件中</p>
+<pre><code>#国内阿里的镜像
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo </code></pre><p>3、YUM缓存生成</p>
+<pre><code>yum clean all //清理yum缓存，使设置生效
+yum makecache //将服务器上的软件包信息缓存到本地,以提高搜索安装软件的速度
+yum -y update //更新本地yum</code></pre><p>查看网卡流量<br>sudo iftop -i eth0</p>
+<p>界面说明:<br>“&lt;=”与”=&gt;”，表示的是流量的方向</p>
+<p>“TX”：从网卡发出的流量<br>“RX”：网卡接收流量<br>“TOTAL”：网卡发送接收总流量<br>“cum”：iftop开始运行到当前时间点的总流量<br>“peak”：网卡流量峰值<br>“rates”：分别表示最近2s、10s、40s 的平均流量</p>
+<p>可以通过键盘的”q”键退出iftop </p>
+
           
         
       
@@ -784,10 +799,12 @@ rsync -av /var/lib/mongo /mnt/database/mongodb/
 #备份旧数据库
 sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库是提示没权限，可以进行授权</p>
 <pre><code>#Change owner and group
-sudo chown -R mongod:mongod /home/mongodb/mongo
+sudo chown -R mongod:mongod /data/mongodb/mongo
 #Change context
 sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    /etc/mongod.conf</p>
-<p>初步化数据库<br>mongo –dbpath /path/</p>
+<pre><code>#启动安全验证
+security:
+    authorization: enabled</code></pre><p>初步化数据库<br>mongod –dbpath /data/mongodb/master</p>
 <p>添加超级管理员</p>
 <pre><code>mongo
 
@@ -817,7 +834,28 @@ db.createUser(
     roles: [ { role: &quot;readWrite&quot;, db: &quot;test&quot; },
              { role: &quot;read&quot;, db: &quot;reporting&quot; } ]
   }
-)</code></pre><p>安装步骤参考资料：</p>
+)</code></pre><p>集群</p>
+<pre><code>replication:
+  oplogSizeMB: 20000
+  replSetName: &quot;flygramway&quot;
+
+config = {
+   &quot;_id&quot;:&quot;flygramway&quot;,
+  &quot;members&quot;:[
+    {&quot;_id&quot;:0,&quot;host&quot;:&quot;10.148.0.51:27017&quot;, arbiterOnly:true},
+    {&quot;_id&quot;:1,&quot;host&quot;:&quot;10.148.0.52:27017&quot;},
+    {&quot;_id&quot;:2,&quot;host&quot;:&quot;10.148.0.53:27017&quot;}
+  ]
+}
+
+rs.initiate(config) //初始化
+rs.status()</code></pre><p>mongod增加keyFile</p>
+<pre><code>openssl rand -base64 756 &gt; /data/key_file
+chmod 400 /data/key_file</code></pre><p>key_file上传到其他mongod服务器上，修改mongod配置，一般是/etc/</p>
+<pre><code>mongodb.conf
+security:
+authorization: enabled
+keyFile: /data/key_file</code></pre><p>db.auth(“xhadmin”,”abc123”);<br>安装步骤参考资料：</p>
 <p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
 
           

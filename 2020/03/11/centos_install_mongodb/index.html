@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="vision 的空间">
 <meta property="og:description" content="1. 添加安装源 vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.2.repo  [mongodb-org-4.2] name=MongoDB Repository baseurl=https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redhat&#x2F;$releasever&#x2F;mongodb-org&#x2F;4.2&#x2F;x86_64&#x2F; gpgcheck=1 enabled=1 gpgke">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-16T14:31:26.831Z">
+<meta property="og:updated_time" content="2020-04-28T14:36:02.400Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -343,10 +343,12 @@ rsync -av /var/lib/mongo /mnt/database/mongodb/
 #备份旧数据库
 sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库是提示没权限，可以进行授权</p>
 <pre><code>#Change owner and group
-sudo chown -R mongod:mongod /home/mongodb/mongo
+sudo chown -R mongod:mongod /data/mongodb/mongo
 #Change context
 sudo chcon -R -u system_u -t mongod_var_lib_t /home/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    /etc/mongod.conf</p>
-<p>初步化数据库<br>mongo –dbpath /path/</p>
+<pre><code>#启动安全验证
+security:
+    authorization: enabled</code></pre><p>初步化数据库<br>mongod –dbpath /data/mongodb/master</p>
 <p>添加超级管理员</p>
 <pre><code>mongo
 
@@ -376,7 +378,28 @@ db.createUser(
     roles: [ { role: &quot;readWrite&quot;, db: &quot;test&quot; },
              { role: &quot;read&quot;, db: &quot;reporting&quot; } ]
   }
-)</code></pre><p>安装步骤参考资料：</p>
+)</code></pre><p>集群</p>
+<pre><code>replication:
+  oplogSizeMB: 20000
+  replSetName: &quot;flygramway&quot;
+
+config = {
+   &quot;_id&quot;:&quot;flygramway&quot;,
+  &quot;members&quot;:[
+    {&quot;_id&quot;:0,&quot;host&quot;:&quot;10.148.0.51:27017&quot;, arbiterOnly:true},
+    {&quot;_id&quot;:1,&quot;host&quot;:&quot;10.148.0.52:27017&quot;},
+    {&quot;_id&quot;:2,&quot;host&quot;:&quot;10.148.0.53:27017&quot;}
+  ]
+}
+
+rs.initiate(config) //初始化
+rs.status()</code></pre><p>mongod增加keyFile</p>
+<pre><code>openssl rand -base64 756 &gt; /data/key_file
+chmod 400 /data/key_file</code></pre><p>key_file上传到其他mongod服务器上，修改mongod配置，一般是/etc/</p>
+<pre><code>mongodb.conf
+security:
+authorization: enabled
+keyFile: /data/key_file</code></pre><p>db.auth(“xhadmin”,”abc123”);<br>安装步骤参考资料：</p>
 <p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
 
       
