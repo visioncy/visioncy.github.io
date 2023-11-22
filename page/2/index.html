@@ -145,102 +145,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/appserver_setting_ssl/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/appserver_setting_ssl/" class="post-title-link" itemprop="url">app server wildfly</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-05 11:20:00" itemprop="dateCreated datePublished" datetime="2020-08-05T11:20:00+08:00">2020-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-20 15:30:37" itemprop="dateModified" datetime="2021-07-20T15:30:37+08:00">2021-07-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>1. Wildfly 限制TLS加密套件</strong></p>
-<p>在standalone.xml的 &lt;https-listener… 加入如下信息：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">https-listener...</span>  <span class="attr">enabled-protocols</span>=<span class="string">&quot;TLSv1.2&quot;</span> <span class="attr">enabled-cipher-suites</span>=<span class="string">&quot;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>2. Wildfly 开启SSL后设置 Cookies 安全标记设置</strong></p>
-<p>在standalone.xml的&lt;servlet-container…  加入</p>
-<p>2021/07/05 暂时发现在wildfly 23.0.2 配置后导致打开应用闪退到登录界面</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-cookie</span> <span class="attr">secure</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>完整片段</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-container</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-encoding</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">jsp-config</span> <span class="attr">development</span>=<span class="string">&quot;true&quot;</span> <span class="attr">trim-spaces</span>=<span class="string">&quot;true&quot;</span> <span class="attr">check-interval</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">session-cookie</span> <span class="attr">secure</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--会导致登录后打开应用闪退--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">websockets</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-container</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>3. Wildfly 开启SSL后加入强制https访问</strong></p>
-<p>在&lt;host name=”default-host”…加入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span>/&gt;</span><span class="comment">&lt;!--会导致工作流无法编辑--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在&lt;filters…加入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Server&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Powered-By&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27;; object-src &#x27;none&#x27;;style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; child-src https:&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-XSS-Protection&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;1; mode=block&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;nosniff&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Strict-Transport-Security&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;max-age=31536000; includeSubDomains;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>完整片段</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">subsystem</span> <span class="attr">xmlns</span>=<span class="string">&quot;urn:jboss:domain:undertow:12.0&quot;</span> <span class="attr">default-server</span>=<span class="string">&quot;default-server&quot;</span> <span class="attr">default-virtual-host</span>=<span class="string">&quot;default-host&quot;</span> <span class="attr">default-servlet-container</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-security-domain</span>=<span class="string">&quot;other&quot;</span> <span class="attr">statistics-enabled</span>=<span class="string">&quot;$&#123;wildfly.undertow.statistics-enabled:$&#123;wildfly.statistics-enabled:false&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">buffer-cache</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">server</span> <span class="attr">name</span>=<span class="string">&quot;default-server&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">http-listener</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">socket-binding</span>=<span class="string">&quot;http&quot;</span> <span class="attr">max-post-size</span>=<span class="string">&quot;209715200&quot;</span> <span class="attr">redirect-socket</span>=<span class="string">&quot;https&quot;</span> <span class="attr">enable-http2</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">https-listener</span> <span class="attr">name</span>=<span class="string">&quot;https&quot;</span> <span class="attr">socket-binding</span>=<span class="string">&quot;https&quot;</span> <span class="attr">security-realm</span>=<span class="string">&quot;ApplicationRealm&quot;</span> <span class="attr">enable-http2</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">host</span> <span class="attr">name</span>=<span class="string">&quot;default-host&quot;</span> <span class="attr">alias</span>=<span class="string">&quot;localhost&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">location</span> <span class="attr">name</span>=<span class="string">&quot;/&quot;</span> <span class="attr">handler</span>=<span class="string">&quot;welcome-content&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">http-invoker</span> <span class="attr">security-realm</span>=<span class="string">&quot;ApplicationRealm&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-container</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-encoding</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jsp-config</span> <span class="attr">development</span>=<span class="string">&quot;true&quot;</span> <span class="attr">trim-spaces</span>=<span class="string">&quot;true&quot;</span> <span class="attr">check-interval</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">websockets</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-container</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">&quot;welcome-content&quot;</span> <span class="attr">path</span>=<span class="string">&quot;$&#123;jboss.home.dir&#125;/welcome-content&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filters</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Server&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Powered-By&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-XSS-Protection&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;1; mode=block&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;nosniff&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Strict-Transport-Security&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;max-age=31536000; includeSubDomains;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filters</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">subsystem</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>4. Nginx</strong></p>
-<p>在配置文件加入如下信息：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssl_ciphers</span> <span class="string">&#x27;AES128+EECDH:AES128+EDH&#x27;</span>; <span class="comment">#首选加密套件</span></span><br><span class="line"><span class="attribute">ssl_protocols</span> TLSv1.<span class="number">2</span>; <span class="comment">#允许的加密协议</span></span><br></pre></td></tr></table></figure>
-
-<p>ddos 与 cc攻击拦截</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># DDoS 和 CC 防御配置，主要是限制链接数，详细：http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line">        <span class="attribute">client_body_buffer_size</span>      <span class="number">128k</span>;</span><br><span class="line">        <span class="attribute">large_client_header_buffers</span>  <span class="number">4</span> <span class="number">32k</span>;</span><br><span class="line">        <span class="attribute">server_names_hash_bucket_size</span> <span class="number">128</span>;</span><br><span class="line">        <span class="attribute">client_header_buffer_size</span> <span class="number">32k</span>;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">50m</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">limit_conn_zone</span> <span class="variable">$binary_remote_addr</span> zone=conn_limit_per_ip:<span class="number">10m</span>;</span><br><span class="line">        <span class="attribute">limit_req_zone</span> <span class="variable">$binary_remote_addr</span> zone=req_limit_per_ip:<span class="number">10m</span> rate=50r/s;</span><br><span class="line">        <span class="attribute">limit_conn</span> conn_limit_per_ip <span class="number">20</span>;</span><br><span class="line">        <span class="attribute">limit_req</span> zone=req_limit_per_ip burst=<span class="number">20</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>【Nginx】</p>
-<p>1、通过调整 <code>$request_method</code> ，配置服务器接受 HTTP 包的操作限制；<br>2、在保证业务不受影响的前提下，调整 client_max_body_size, client_body_buffer_size, client_header_buffer_size,large_client_header_buffersclient_body_timeout, client_header_timeout 的值，必要时可以适当的增加；<br>3、对于会话或者相同的 IP 地址，可以使用 HttpLimitReqModule 与 HttpLimitZoneModule 参数去限制请求量或者并发连接数；<br>4、根据CPU和负载的大小，来配置 worker_processes 和 worker_connections 的值，公式是：max_clients = worker_processes * worker_connections。</p>
-<p>参考文章：<a target="_blank" rel="noopener" href="http://wp.blkstone.me/2019/03/complie-slowhttptest/">http://wp.blkstone.me/2019/03/complie-slowhttptest/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/centos_install_jenkins/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1133,6 +1037,79 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_ssr/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-22 10:32:36" itemprop="dateModified" datetime="2021-06-22T10:32:36+08:00">2021-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装常用包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname hkvpn</span><br><span class="line">bash</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>2. 防火墙</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -s 192.168.80.0/24 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line">-A INPUT -m iprange --src-range 192.168.80.109-192.168.80.121 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line"></span><br><span class="line">sudo systemctl restart iptables.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 安装SSR</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocksR.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/</span><br><span class="line">sudo <span class="built_in">rm</span> /etc/shadowsocks.json</span><br><span class="line">rz</span><br><span class="line"></span><br><span class="line">yum install python2</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/python2.7 /usr/bin/python</span><br><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1202,12 +1179,12 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
