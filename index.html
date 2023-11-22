@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/11/22/Hexo_upgrade/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/11/22/hexo/Hexo_upgrade/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/11/22/Hexo_upgrade/" class="post-title-link" itemprop="url">Hexo升级指南</a>
+            <a href="/2023/11/22/hexo/Hexo_upgrade/" class="post-title-link" itemprop="url">Hexo升级指南</a>
         </h2>
 
         <div class="post-meta">
@@ -187,12 +187,209 @@
           这是一篇加密文章，需要密码才能继续阅读。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/11/22/Hexo_upgrade/#more" rel="contents">
+              <a class="btn" href="/2023/11/22/hexo/Hexo_upgrade/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/11/22/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/22/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/" class="post-title-link" itemprop="url">Hexo博客文章加</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-22 17:08:15 / 修改时间：18:33:11" itemprop="dateCreated datePublished" datetime="2023-11-22T17:08:15+08:00">2023-11-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>平时开发过程中遇到的一些问题，我都会整理到文档中。有些感觉不错的，会二次整理成文章发布到我的博客中。但是有些文章如果存在隐私内容，或者不打算公开的话，就不能放在博客中了。</p>
+<p>我的博客是使用 <code>Hexo</code> 来搭建的，并不能设置某些文章不可见。但如果不在电脑旁或者出门没有带电脑又想要查看一下之前记录的内容，就很不方便了。</p>
+<p>我也尝试在 <code>github</code> 上去找一些可以设置账户的开源的博客框架，但测试过一些后发现并没有符合自己需求的，而自己开发却没有时间。</p>
+<p>思来想去，就想看看有没有插件能够实现 <code>Hexo</code> 博客的加密操作。最终让我找到了一款名为 <code>Hexo-Blog-Encrypt</code> 的插件。</p>
+<p>为了防止以下的修改可能出现版本差异，这里我先声明我使用的 <code>Hexo</code> 版本信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo: 4.2.1</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">next theme version: 7.8.0+a7a948a</span><br><span class="line">hexo-blog-encrypt: &quot;^3.1.6&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
+
+<h4 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h4><p>该插件的使用也很方便，这里我仅作简单介绍，详细的可以查看官方文档。 <a target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt">D0n9X1n/hexo-blog-encrypt: Yet, just another hexo plugin for security.</a></p>
+<p>要为一篇文章添加密码查看功能，只需要在文章信息头部添加 <code>password</code> 字段即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2021-04-13 21:18:02</span><br><span class="line">password: hello</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="全局加密配置"><a href="#全局加密配置" class="headerlink" title="全局加密配置"></a>全局加密配置</h4><p>分别为每篇文章设置密码，虽然很灵活，但是配置或者修改起来非常麻烦。为此，可以通过设置统一配置来实现全局加密。</p>
+<p>通过添加指定 <code>tag</code> 的方式，可以为所有需要加密的文章添加统一加密操作。只需要在需要加密的文章中，添加设置的 <code>tag值</code> 即可。</p>
+<p>在Hexo主配置文件 <code>_config.yml</code> 中添加如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Security</span><br><span class="line">encrypt: # hexo-blog-encrypt</span><br><span class="line">  silent: true</span><br><span class="line">  abstract: 这是一篇加密文章，需要密码才能继续阅读。</span><br><span class="line">  message: 当前文章暂不对外可见，请输入密码后查看！</span><br><span class="line">  tags:</span><br><span class="line">  - &#123;name: private, password: hello&#125;</span><br><span class="line">  wrong_pass_message: 抱歉，您输入的密码错误，请检查后重新输入。</span><br><span class="line">  wrong_hash_message: 抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。</span><br></pre></td></tr></table></figure>
+
+<p>之后，需要清除缓存后重新生成 <code>hexo clean &amp;&amp; hexo s -g</code>。</p>
+<p>其中的 <code>tag</code> 部分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">- &#123;name: private, password: hello&#125;</span><br></pre></td></tr></table></figure>
+
+<p>表示当在文章中指定了 <code>private</code> 这个 <code>tag</code> 后，该文章就会自动加密并使用对应的值 <code>hello</code> 作为密码，输入密码后才可查看。</p>
+<p>相应的文章头部设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Password Test</span><br><span class="line">date: 2019-12-21 11:54:07</span><br><span class="line">tags:</span><br><span class="line">    - private</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h4 id="在全局加密配置下禁用某些文章的加密"><a href="#在全局加密配置下禁用某些文章的加密" class="headerlink" title="在全局加密配置下禁用某些文章的加密"></a>在全局加密配置下禁用某些文章的加密</h4><p>可能有这样的情况，属于 <code>private</code> 标签下的某篇文章在一段时间内想要开放访问。如果在描述中加上密码提示： <code>当前文章密码为xxx，请输入密码后查看</code> ，来让用户每次查看时都要先输入密码后再查看，这样的操作又会给访客带来不便。</p>
+<p>这时可以单独设置允许某篇文章不设置密码。</p>
+<p>只需要在使用 <code>加密tag</code> 的前提下，结合 <code>password</code> 来实现即可。在博客文章的头部添加 <code>password</code> 并设置为 <code>&quot;&quot;</code> 就能取消当前文章的 <code>Tag</code> 加密。</p>
+<p>相应的设置示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: No Password Test</span><br><span class="line">date: 2019-12-21 11:54:07</span><br><span class="line">tags:</span><br><span class="line">    - private</span><br><span class="line">password: &quot;&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h4 id="在全局加密配置下设置非全局密码"><a href="#在全局加密配置下设置非全局密码" class="headerlink" title="在全局加密配置下设置非全局密码"></a>在全局加密配置下设置非全局密码</h4><p>在全局加密配置下，我们可以通过设置多个 <code>加密tag</code> 来为多篇不同类型的文章设置相同的查看密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tags:</span><br><span class="line">- &#123;name: private, password: hello&#125;</span><br><span class="line">- &#123;name: jiami, password: world&#125;</span><br><span class="line">- &#123;name: 加密, password: jiesuo&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么可能有这样的场景：</p>
+<p>属于 <code>private</code> 标签下的某篇文章想要设置成不一样的密码，防止用户恶意通过一个密码来查看同标签下的所有文章。此时，仍可以通过 <code>password</code> 参数来实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Password Test</span><br><span class="line">date: 2019-12-21 11:54:07</span><br><span class="line">tags:</span><br><span class="line">    - private</span><br><span class="line">password: &quot;buyiyang&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<p>该文章通过tag值 <code>private</code> 做了加密，按说密码应该为 <code>hello</code> ，但是又在信息头中设置了 <code>password</code> ，因为配置的优先级是 <code>文章信息头 &gt; 按标签加密</code>，所以最后的密码为 <code>buyiyang</code> 。</p>
+<hr>
+<h4 id="解密后目录不显示"><a href="#解密后目录不显示" class="headerlink" title="解密后目录不显示"></a>解密后目录不显示</h4><p>在为某些文章设置了 <strong>加密后查看</strong> 之后，不经意间发现这些文章的目录在解密后却不显示了。</p>
+<h4 id="探究原因"><a href="#探究原因" class="headerlink" title="探究原因"></a>探究原因</h4><p>从插件的 <code>github issues</code> 中我找到了相关的讨论：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt/issues/16">解密后目录不会更新 · Issue #16 · D0n9X1n/hexo-blog-encrypt</a></li>
+</ul>
+<p>原因：</p>
+<blockquote>
+<p>加密的时候，<code>post.content</code> 会变成加密后的串，所以原来的 <code>TOC</code> 生成逻辑就会针对加密后的内容。<br>所以这边我只能把原来的内容存进 <code>post.origin</code> 字段。</p>
+</blockquote>
+<p>找到文件 <code>themes/next/layout/_macro/sidebar.swig</code> ，编辑如下部分：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165143.png"><img src="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165143.png" alt="20210418165143"></a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165143.png">20210418165143</a></p>
+<p>插件 <code>hexo-blog-encrypt</code> 对文章内容进行加密后，会将原始文章内容保存到字段 <code>origin</code> 中，当生成 <code>TOC</code> 时，我们可以通过 <code>page.origin</code> 来得到原始内容，生成文章目录。</p>
+<p>相应的代码为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;aside class=&quot;sidebar&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;sidebar-inner&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &#123;%- set display_toc = page.toc.enable and display_toc %&#125;</span><br><span class="line">    &#123;%- if display_toc %&#125;</span><br><span class="line"></span><br><span class="line">      &#123;%- if (page.encrypt) %&#125;</span><br><span class="line">        &#123;%- set toc = toc(page.origin, &#123; class: &quot;nav&quot;, list_number: page.toc.number, max_depth: page.toc.max_depth &#125;) %&#125;</span><br><span class="line">      &#123;%- else %&#125;</span><br><span class="line">        &#123;%- set toc = toc(page.content, &#123; class: &quot;nav&quot;, list_number: page.toc.number, max_depth: page.toc.max_depth &#125;) %&#125;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">      &#123;%- set display_toc = toc.length &gt; 1 and display_toc %&#125;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">    &lt;ul class=&quot;sidebar-nav motion-element&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后，执行 <code>hexo clean &amp;&amp; hexo s -g</code> 并重新预览。</p>
+<p>效果如下：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165529.png"><img src="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165529.png" alt="20210418165529"></a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418165529.png">20210418165529</a></p>
+<p>不过，这样的效果貌似不是我想要的。我理想中的效果应该是：</p>
+<ul>
+<li>当文章加密后，访客只能看到侧边栏中的 <code>站点概览</code> 部分，不需要看到 <code>文章目录</code> 部分。</li>
+<li>当文章解密后，访客则可以看到 <code>站点概览</code> 和 <code>文章目录</code> 两部分。</li>
+</ul>
+<p>而现在加密后的文章未解密之前也可以看到 <code>文章目录</code> ，虽然该目录不可点击。</p>
+<p>当然，如果你不是很介意，那么到这里就可以结束了。如果你和我一样有一些 <strong>追求完美的强迫症</strong> 的话，我们继续。</p>
+<h5 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h5><p>查看了 <code>hexo-blog-encrypt</code> 相关的 <code>issues</code> ，我找到了一种 <strong>折中</strong> 的解决方法。</p>
+<p>从 issue <a target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt/issues/67#issuecomment-463893408">Archer主题解密后TOC依旧不显示（已按手册修改）</a> 中我们可以知道：</p>
+<p>我们可以在文章加密的前提下，通过将目录部分加入到一个 <code>不可见的div</code> 中来实现 <code>隐藏目录</code> 的效果。在源码中的 <a target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt/blob/479ccd4cf522adc8f667cfa06290f057a219cb88/lib/hbe.js#L207">hexo-blog-encrypt/lib/hbe.js</a> 部分我们也可以看到，解密后通过设置 <code>id</code> 值为 <code>toc-div</code> 的元素为 <code>display:inline</code> 来控制显示隐藏。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if (page.encrypt) %&#125;</span><br><span class="line">  &lt;div id=&quot;toc-div&quot; style=&quot;display:none&quot;&gt;</span><br><span class="line">&#123;%- else %&#125;</span><br><span class="line">  &lt;div id=&quot;toc-div&quot;&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">xxx这里是目录部分xxx</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对文件 <code>themes/next/layout/_macro/sidebar.swig</code> 修改后的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--noindex--&gt;</span><br><span class="line">&lt;div class=&quot;post-toc-wrap sidebar-panel&quot;&gt;</span><br><span class="line">  &#123;%- if (page.encrypt) %&#125;</span><br><span class="line">    &lt;div id=&quot;toc-div&quot; style=&quot;display:none&quot;&gt;</span><br><span class="line">  &#123;%- else %&#125;</span><br><span class="line">    &lt;div id=&quot;toc-div&quot;&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;%- if display_toc %&#125;</span><br><span class="line">    &lt;div class=&quot;post-toc motion-element&quot;&gt;&#123;&#123; toc &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">  </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!--/noindex--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但这种方法并不是完全的加密，而是采用 <code>障眼法</code> 的方式，通过查看html源文件还是可以看到目录内容的，只是不显示罢了。</p>
+<p>对于这个问题，<code>hexo-blog-encrypt</code> 插件的作者也作了说明：<a target="_blank" rel="noopener" href="https://github.com/D0n9X1n/hexo-blog-encrypt/issues/162">next 主题内没有 article.ejs 文件【TOC 相关】 · Issue #162 · D0n9X1n/hexo-blog-encrypt</a></p>
+<h5 id="只好妥协"><a href="#只好妥协" class="headerlink" title="只好妥协"></a>只好妥协</h5><p>因为该插件中目前只有一个参数 <code>page.encrypt</code> 可以用来判断当前的文章是否进行了 <strong>加密处理</strong> ，而不能获知该文章当前是处于 <strong>加密后的锁定</strong> 状态，还是处于 <strong>加密后的解锁</strong> 状态。如果再有一个参数结合起来一起处理就好了。</p>
+<p>所以，目前只能在解锁前隐藏目录，解锁后再显示目录。但在解锁前目录区域还是会展开，只是没有内容显示罢了。</p>
+<hr>
+<h4 id="让加密文章显示加密提示"><a href="#让加密文章显示加密提示" class="headerlink" title="让加密文章显示加密提示"></a>让加密文章显示加密提示</h4><p>类似于我的博客文章列表中的 <code>文章置顶</code> 的提示效果，考虑在文章列表中对加密的文章增加类似的 <code>加密</code> 提示信息。</p>
+<p>上面对于文章的加密处理，一方面是在 <code>配置文件</code> 中添加的 <code>tag</code> 全局配置，另一方面是在单个 <code>md源文件</code> 中添加的 <code>password</code> 参数。所以我们需要对这两种情况分别做处理。</p>
+<h5 id="对于password参数的情况"><a href="#对于password参数的情况" class="headerlink" title="对于password参数的情况"></a>对于password参数的情况</h5><p>针对于 <code>password</code> 字段，参考获取其他字段的方法，比如获取标题用 <code>post.title</code> ，获取置顶用 <code>post.top</code> ，那么获取 <code>password</code> 就是 <code>post.password</code> 了。</p>
+<p>可以参考我之前添加置顶提示信息的操作，对文件 <code>themes/next/layout/_macro/post.swig</code> 的修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;# 加密文章添加提示信息-for password #&#125;</span><br><span class="line">&#123;%- if post.password %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">          &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">          &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="对于tag标签的情况"><a href="#对于tag标签的情况" class="headerlink" title="对于tag标签的情况"></a>对于tag标签的情况</h5><p>针对于 <code>tag</code> 标签的获取，可以从文件 <code>themes/next/layout/_macro/post.swig</code> 中找到类似的处理方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">    &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">&#123;%- endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>即可以用最简单的 <strong>遍历法</strong> 来处理：</p>
+<p>我们获取到配置文件中设置的所有 <code>加密tag值</code> ，再找到文章中的 <code>tag标签</code> 。二者一对比，有匹配的项则说明该文章设置了 <code>tag值</code> 加密。</p>
+<h5 id="swig文件"><a href="#swig文件" class="headerlink" title="swig文件"></a>swig文件</h5><p>要在 <code>.swig</code> 文件中实现相应的对比逻辑，就需要了解其使用的语法格式。而对于 <code>swig</code> 文件，使用的是 <code>Swig</code> 语法。</p>
+<blockquote>
+<p><code>Swig</code> 是一个非常棒的、类似 <code>Django/jinja</code> 的 <code>node.js</code> 模板引擎。</p>
+</blockquote>
+<p>不过看到这个代码库 <a target="_blank" rel="noopener" href="https://github.com/paularmstrong/swig">paularmstrong/swig: Take a swig of the best template engine for JavaScript.</a> 已经 <code>归档</code> 了。</p>
+<p>但因为 <code>Swig</code> 是类似于 <code>jinja</code> 的模板引擎，那么我们直接去参考 <code>jinja</code> 的语法就可以了。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://docs.jinkan.org/docs/jinja2/templates.html">模板设计者文档 — Jinja2 2.7 documentation</a></li>
+</ul>
+<h5 id="最终实现"><a href="#最终实现" class="headerlink" title="最终实现"></a>最终实现</h5><p>获取全局配置中 <code>encrypt.tags</code> 的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if (config.encrypt) and (config.encrypt.tags) %&#125;</span><br><span class="line">  &#123;%- for ctag in config.encrypt.tags %&#125;</span><br><span class="line">    &lt;span&gt;&#123;&#123; ctag.name &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &#123;%- endfor %&#125;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在文章列表中获取当前文章包含的 <code>tags</code> 列表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if post.tags %&#125;</span><br><span class="line">  &#123;%- for ptag in post.tags.toArray() %&#125;</span><br><span class="line">    &lt;span&gt;&#123;&#123; ptag.name &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &#123;%- endfor %&#125;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于其中展示的文本格式，可以参考已有的 <code>发表于</code> <code>更新于</code> 这些副标题的格式来实现。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">    &lt;i class=&quot;far fa-calendar&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-text&quot;&gt;发表于&lt;/span&gt;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    &lt;time title=&quot;创建时间：2021-02-28 11:18:43 / 修改时间：11:41:19&quot; itemprop=&quot;dateCreated datePublished&quot; datetime=&quot;2021-02-28T11:18:43+08:00&quot;&gt;2021-02-28&lt;/time&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对其进行优化，我们只需要显示提示文字，不需要后面的带下划线部分，最终得到的就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">        &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">        &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<p>整合上面的代码，对于文章中包含 <code>password</code> 的文档，通过如下方式来显示：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170147.png"><img src="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170147.png" alt="20210418170147"></a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170147.png">20210418170147</a></p>
+<p>相应代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;# 加密文章添加提示信息-for password #&#125;</span><br><span class="line">&#123;%- if post.password %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">          &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">          &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于文章中包含指定加密 <code>tags</code> 的文档，通过如下方式来显示：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170209.png"><img src="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170209.png" alt="20210418170209"></a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170209.png">20210418170209</a></p>
+<p>相应代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;# 加密文章添加提示信息-for config tags #&#125;</span><br><span class="line">    // 获取全局配置中的加密tag</span><br><span class="line">    &#123;%- if (config.encrypt) and (config.encrypt.tags) %&#125;</span><br><span class="line">      &#123;%- for ctag in config.encrypt.tags %&#125;</span><br><span class="line">        // 判断当前文章中是否包含tags</span><br><span class="line">        &#123;%- if post.tags %&#125;</span><br><span class="line">          &#123;%- for ptag in post.tags.toArray() %&#125;</span><br><span class="line">            // 如果有相同的tag值</span><br><span class="line">            &#123;%- if (ctag.name == ptag.name) %&#125;</span><br><span class="line">              // 显示加密提示信息</span><br><span class="line">              &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">                  &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">                      &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">                  &lt;/span&gt;</span><br><span class="line">                  &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">                      &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">                  &lt;/span&gt;</span><br><span class="line">              &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">            &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">          &#123;%- endfor %&#125;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于两种都有的文档，我们只需要通过一个 <code>判断</code> 来处理就好了：优先判断文档中的 <code>password</code> 字段。当文档中包含 <code>password</code> 时，就说明是加密文章；否则就去判断配置文件看是否为加密文章。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170330.png"><img src="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170330.png" alt="20210418170330"></a></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leafney/blog-images@main/blog/20210418170330.png">20210418170330</a></p>
+<p>最后的代码为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;# 加密文章添加提示信息-for password #&#125;</span><br><span class="line">&#123;%- if post.password %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">          &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">      &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">          &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">&#123;%- else %&#125;</span><br><span class="line">  &#123;# 加密文章添加提示信息-for config tags #&#125;</span><br><span class="line">  &#123;%- if (config.encrypt) and (config.encrypt.tags) %&#125;</span><br><span class="line">    &#123;%- for ctag in config.encrypt.tags %&#125;</span><br><span class="line">      </span><br><span class="line">      &#123;%- if post.tags %&#125;</span><br><span class="line">        &#123;%- for ptag in post.tags.toArray() %&#125;</span><br><span class="line">          &#123;%- if (ctag.name == ptag.name) %&#125;</span><br><span class="line">            &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">                    &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">                &lt;/span&gt;</span><br><span class="line">                &lt;span class=&quot;post-meta-item-text&quot;&gt;</span><br><span class="line">                    &lt;font color=&#x27;#FD7E13&#x27;&gt;[加密]&lt;/font&gt;</span><br><span class="line">                &lt;/span&gt;</span><br><span class="line">            &lt;/span&gt;</span><br><span class="line">          &#123;%- endif %&#125;</span><br><span class="line">        &#123;%- endfor %&#125;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>稍微不好的一点就是，上面的操作是通过 <code>两个for循环</code> 来处理的，会导致一些性能问题。不过这个操作是在编译过程 <code>hexo g</code> 的时候来处理的，不影响博客浏览，也就可以忽略了。</p>
+<hr>
+<h4 id="更换图标"><a href="#更换图标" class="headerlink" title="更换图标"></a>更换图标</h4><p>对于需要显示的图标，可以从网站 <a target="_blank" rel="noopener" href="https://fontawesome.com/icons">Icons | Font Awesome</a> 中获取。</p>
+<p>例如，我这里选择的是 <code>锁</code> 的icon图标，得到的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1028,96 +1225,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/05/centos_install_mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/05/centos_install_mysql/" class="post-title-link" itemprop="url">centOS 安装 turnserver</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-05 09:39:00" itemprop="dateCreated datePublished" datetime="2020-11-05T09:39:00+08:00">2020-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-27 16:12:10" itemprop="dateModified" datetime="2020-11-27T16:12:10+08:00">2020-11-27</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>1. Mysql yum包</strong></p>
-<pre><code>wget http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
-
-
-
-
-#忽略
-wget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.31-1.el7.x86_64.rpm-bundle.tar
-tar -xvf mysql-5.7.31-1.el7.x86_64.rpm-bundle.tar
-
-rpm -ivh mysql-community-common-5.7.31-1.el7.x86_64.rpm
-rpm -ivh mysql-community-libs-5.7.31-1.el7.x86_64.rpm
-rpm -ivh mysql-community-client-5.7.31-1.el7.x86_64.rpm
-rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</code></pre><p>**2. 安转软件源</p>
-<pre><code>sudo rpm -Uvh mysql57-community-release-el7-10.noarch.rpm</code></pre><h4 id="3-安装mysql服务端"><a href="#3-安装mysql服务端" class="headerlink" title="3.    安装mysql服务端"></a><strong>3.    安装mysql服务端</strong></h4><pre><code>yum install  -y  mysql-community-server</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /data/mysql/&#123;data,logs,binlogs,relaylogs,filedir,slowlogs,genelogs,tmp&#125;</span><br><span class="line"><span class="built_in">mkdir</span> -p /usr/local/mysql/&#123;etc,run&#125;</span><br><span class="line"><span class="built_in">chown</span> -R mysql:mysql /data/mysql</span><br><span class="line"><span class="built_in">chown</span> -R mysql:mysql /usr/local/mysql</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/mysqld --defaults-file=/etc/my.cnf --initialize --user=mysql --basedir=/data/mysql --datadir=/data/mysql/data --explicit_defaults_for_timestamp</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /data/mysql/logs/error.log | grep -i password</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf /etc/my.cnf</span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/my.cnf &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[client]</span></span><br><span class="line"><span class="string">port = 3306</span></span><br><span class="line"><span class="string">socket = /data/mysql/tmp/mysql3306.sock</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string">prompt = &quot;\u@\h[\d]&gt;&quot;</span></span><br><span class="line"><span class="string">no-auto-rehash</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="string">lower_case_table_names =  1 </span></span><br><span class="line"><span class="string">user = mysql </span></span><br><span class="line"><span class="string">server_id =  1 </span></span><br><span class="line"><span class="string">port =  3306 </span></span><br><span class="line"><span class="string"># default-time-zone =  &#x27;+08:00&#x27; </span></span><br><span class="line"><span class="string">enforce_gtid_consistency = ON </span></span><br><span class="line"><span class="string">gtid_mode = ON</span></span><br><span class="line"><span class="string"># binlog_checksum = none </span></span><br><span class="line"><span class="string">default_authentication_plugin = mysql_native_password </span></span><br><span class="line"><span class="string">datadir =  /data/mysql/data </span></span><br><span class="line"><span class="string">pid-file =  /data/mysql/tmp/mysqld.pid </span></span><br><span class="line"><span class="string">socket =  /data/mysql/tmp/mysqld.sock</span></span><br><span class="line"><span class="string">tmpdir =  /data/mysql/tmp/ </span></span><br><span class="line"><span class="string"># skip-name-resolve = ON </span></span><br><span class="line"><span class="string">open_files_limit =  65535 </span></span><br><span class="line"><span class="string">table_open_cache =  2000</span></span><br><span class="line"><span class="string">################# innodb ######################## </span></span><br><span class="line"><span class="string"># innodb_data_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="string"># innodb_data_file_path = ibdata1:512M;ibdata2:512M:autoextend </span></span><br><span class="line"><span class="string"># innodb_buffer_pool_size = 12000M </span></span><br><span class="line"><span class="string">innodb_flush_log_at_trx_commit =  1 </span></span><br><span class="line"><span class="string">innodb_io_capacity =  600 </span></span><br><span class="line"><span class="string">innodb_lock_wait_timeout =  120 </span></span><br><span class="line"><span class="string">innodb_log_buffer_size = 8M </span></span><br><span class="line"><span class="string">innodb_log_file_size = 200M </span></span><br><span class="line"><span class="string">innodb_log_files_in_group =  3 </span></span><br><span class="line"><span class="string">innodb_max_dirty_pages_pct =  85 </span></span><br><span class="line"><span class="string">innodb_read_io_threads =  8 </span></span><br><span class="line"><span class="string">innodb_write_io_threads =  8 </span></span><br><span class="line"><span class="string">innodb_thread_concurrency =  32 </span></span><br><span class="line"><span class="string">innodb_file_per_table </span></span><br><span class="line"><span class="string">innodb_rollback_on_timeout </span></span><br><span class="line"><span class="string"># innodb_undo_directory =  /data/mysql/data </span></span><br><span class="line"><span class="string"># innodb_log_group_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="string">################### session ########################### </span></span><br><span class="line"><span class="string">join_buffer_size = 8M </span></span><br><span class="line"><span class="string">key_buffer_size = 256M </span></span><br><span class="line"><span class="string">bulk_insert_buffer_size = 8M </span></span><br><span class="line"><span class="string">max_heap_table_size = 96M </span></span><br><span class="line"><span class="string">tmp_table_size = 96M </span></span><br><span class="line"><span class="string">read_buffer_size = 8M </span></span><br><span class="line"><span class="string">sort_buffer_size = 2M </span></span><br><span class="line"><span class="string">max_allowed_packet = 64M </span></span><br><span class="line"><span class="string">read_rnd_buffer_size = 32M </span></span><br><span class="line"><span class="string">############ log set ################### </span></span><br><span class="line"><span class="string"># log-error =  /data/mysql/log/mysqld.err </span></span><br><span class="line"><span class="string"># log-bin =  /data/mysql/binlog/binlog </span></span><br><span class="line"><span class="string"># log_bin_index =  /data/mysql/binlog/binlog.index </span></span><br><span class="line"><span class="string">max_binlog_size = 500M </span></span><br><span class="line"><span class="string">slow_query_log_file =  /data/mysql/slowlogs/slow.log </span></span><br><span class="line"><span class="string">slow_query_log =  1 </span></span><br><span class="line"><span class="string">long_query_time =  10 </span></span><br><span class="line"><span class="string"># log_queries_not_using_indexes = ON </span></span><br><span class="line"><span class="string"># log_throttle_queries_not_using_indexes =  10 </span></span><br><span class="line"><span class="string">log_slow_admin_statements = ON </span></span><br><span class="line"><span class="string"># log_output = FILE,TABLE </span></span><br><span class="line"><span class="string"># master_info_file =  /data/mysql/binlog/master.info</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>4.获取MySQL的临时密码</p>
-<pre><code>grep &apos;temporary password&apos; /var/log/mysqld.log</code></pre><h4 id="5-授权"><a href="#5-授权" class="headerlink" title="5.授权"></a>5.授权</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/mysql -uroot -p</span><br><span class="line"></span><br><span class="line">#修改初始密码</span><br><span class="line">alter user user() identified by &quot;root&quot;;</span><br><span class="line">#授权外网访问</span><br><span class="line">use mysql;</span><br><span class="line">update user set host = &#x27;%&#x27; where user =&#x27;root&#x27;;</span><br><span class="line">select host, user from user;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line">#授权用户,你想root使用密码从任何主机连接到mysql服务器</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;root&#x27;@&#x27;%&#x27;  IDENTIFIED BY &#x27;admin123&#x27;  WITH GRANT OPTION;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">skip-grant-tables</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1187,7 +1294,7 @@ rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</code></pre><p>**2. 安�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

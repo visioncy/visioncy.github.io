@@ -145,6 +145,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/centos_install_ddosim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/29/centos_install_ddosim/" class="post-title-link" itemprop="url">centOS 安装 ddosim</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-29 22:18:29" itemprop="dateCreated datePublished" datetime="2019-11-29T22:18:29+08:00">2019-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-03 19:54:55" itemprop="dateModified" datetime="2021-06-03T19:54:55+08:00">2021-06-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>DDOSIM源码下载</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://downloads.sourceforge.net/project/ddosim/ddosim-0.2.tar.gz</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>源码包编译</li>
+</ol>
+<p>顺次执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf ddosim-0.2.tar.gz</span><br><span class="line">cd ddosim</span><br><span class="line">yum groupinstall &#x27;Development Tools&#x27; //安装gcc等</span><br><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p> 通常会遇到问题1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libpcap (dev) is required for this program</span><br></pre></td></tr></table></figure>
+
+<p> 执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libpcap-devel -y</span><br></pre></td></tr></table></figure>
+
+<p> 问题2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libnet0 (dev) is required for this program</span><br></pre></td></tr></table></figure>
+
+<p> 执行： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://linuxscriptshub.com/wp-content/uploads/file/libnet0-dev-1.0.2a-6.x86_64.rpm</span><br><span class="line">rpm -ivh --force libnet0-dev-1.0.2a-6.x86_64.rpm  </span><br><span class="line">//force是必须，否则报：conflicts with file from filesystem-3.2-21.el7.x86-64</span><br></pre></td></tr></table></figure>
+
+<p>再次执行 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 10 -r HTTP_INVALID -i ens33</span><br><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 0 -w 0 -t 10 -r HTTP_VALID -i ens33</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/centos_install_hping3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1045,86 +1138,6 @@ WantedBy=multi-user.target</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_openssl/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/08/centos_install_openssl/" class="post-title-link" itemprop="url">centOS 安装 gitea</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-08 17:26:25" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">2019-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-21 14:52:01" itemprop="dateModified" datetime="2021-05-21T14:52:01+08:00">2021-05-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>**1. 下载安装openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz</span><br><span class="line">tar -xzf openssl-1.1.1k.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1k</span><br><span class="line">./config shared --openssldir=/usr/local/openssl --prefix=/usr/local/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<p>移除老版本openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/openssl /tmp/</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/bin/openssl /usr/bin/openssl</span><br></pre></td></tr></table></figure>
-
-<p>配置lib库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/usr/local/openssl/lib/&quot;</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig</span><br></pre></td></tr></table></figure>
-
-<p>查看版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@c7 ~]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.1.1i  22 Sep 2020</span><br></pre></td></tr></table></figure>
-
-<p>如果运行openssl version出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
-
-<p>是因为openssl库的位置不正确造成的，参考配置lib库即可解决；<br>至此，已升级完毕·</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1194,7 +1207,7 @@ WantedBy=multi-user.target</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -145,6 +145,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_rabbitmq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_rabbitmq/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-01 16:09:26" itemprop="dateModified" datetime="2020-07-01T16:09:26+08:00">2020-07-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装erlang的依赖</strong></p>
+<pre><code>sudo yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel</code></pre><p><strong>2.下载安装erlang rpm包</strong></p>
+<pre><code>sudo wget https://packages.erlang-solutions.com/erlang/rpm/centos/7/x86_64/esl-erlang_23.0.2-2~centos~7_amd64.rpm
+sudo yum install esl-erlang_23.0.2-2~centos~7_amd64.rpm</code></pre><p><strong>验证安装</strong></p>
+<pre><code>erl
+1+1.
+halt().</code></pre><p><strong>下载和安装rabbitmq</strong></p>
+<pre><code>sudo wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.5/rabbitmq-server-3.8.5-1.el7.noarch.rpm
+sudo rpm -import https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.5/rabbitmq-server-3.8.5-1.el7.noarch.rpm.asc
+
+sudo yum install rabbitmq-server-3.8.5-1.el7.noarch.rpm</code></pre><p><strong>设置开启自动启动和启动</strong></p>
+<pre><code>sudo chkconfig rabbitmq-server on
+sudo systemctl start rabbitmq-server
+sudo rabbitmqctl status</code></pre><p><strong>开启web管理界面</strong></p>
+<pre><code>sudo rabbitmq-plugins enable rabbitmq_management</code></pre><p><strong>开放外部端口</strong></p>
+<pre><code>5672和15672端口， 15672为web 管理端口</code></pre><p><strong>添加用户和外网访问</strong></p>
+<pre><code>sudo rabbitmqctl add_user admin 123456
+sudo rabbitmqctl set_user_tags admin administrator
+
+sudo rabbitmqctl set_permissions -p &quot;/&quot; admin &apos;.*&apos; &apos;.*&apos; &apos;.*&apos;
+sudo rabbitmqctl list_user_permissions admin</code></pre><p><strong>安装delay插件（默认目录）</strong></p>
+<pre><code>sudo wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.8.0/rabbitmq_delayed_message_exchange-3.8.0.ez
+
+sudo cp rabbitmq_delayed_message_exchange-3.8.0.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.8.5/plugins/
+
+sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>附：rabbitmq常见命令，非root用户请使用sudo</p>
+<h1 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h1><p>rabbitmqctl add_user <username> <password></p>
+<h1 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h1><p>rabbitmqctl delete_user <username></p>
+<h1 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h1><p>rabbitmqctl change_password <username> <newpassword></p>
+<h1 id="清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）"><a href="#清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）" class="headerlink" title="清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）"></a>清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）</h1><p>rabbitmqctl clear_password <username></p>
+<h1 id="设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）"><a href="#设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）" class="headerlink" title="设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）"></a>设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）</h1><p>rabbitmqctl set_user_tags <username> <tag></p>
+<h1 id="列出所有用户"><a href="#列出所有用户" class="headerlink" title="列出所有用户"></a>列出所有用户</h1><p>rabbitmqctl list_users</p>
+<h1 id="创建一个vhosts"><a href="#创建一个vhosts" class="headerlink" title="创建一个vhosts"></a>创建一个vhosts</h1><p>rabbitmqctl add_vhost <vhostpath></p>
+<h1 id="删除一个vhosts"><a href="#删除一个vhosts" class="headerlink" title="删除一个vhosts"></a>删除一个vhosts</h1><p>rabbitmqctl delete_vhost <vhostpath></p>
+<h1 id="列出vhosts"><a href="#列出vhosts" class="headerlink" title="列出vhosts"></a>列出vhosts</h1><p>rabbitmqctl list_vhosts [<vhostinfoitem> …]</p>
+<h1 id="针对一个vhosts给用户赋予相关权限；"><a href="#针对一个vhosts给用户赋予相关权限；" class="headerlink" title="针对一个vhosts给用户赋予相关权限；"></a>针对一个vhosts给用户赋予相关权限；</h1><p>rabbitmqctl set_permissions [-p <vhostpath>] <user> <conf> <write> <read></p>
+<h1 id="清除一个用户对vhosts的权限；"><a href="#清除一个用户对vhosts的权限；" class="headerlink" title="清除一个用户对vhosts的权限；"></a>清除一个用户对vhosts的权限；</h1><p>rabbitmqctl clear_permissions [-p <vhostpath>] <username></p>
+<h1 id="列出哪些用户可以访问该vhosts；"><a href="#列出哪些用户可以访问该vhosts；" class="headerlink" title="列出哪些用户可以访问该vhosts；"></a>列出哪些用户可以访问该vhosts；</h1><p>rabbitmqctl list_permissions [-p <vhostpath>]</p>
+<h1 id="列出用户访问权限；"><a href="#列出用户访问权限；" class="headerlink" title="列出用户访问权限；"></a>列出用户访问权限；</h1><p>rabbitmqctl list_user_permissions <username></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_ssr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1079,99 +1182,6 @@ keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/centos_install_ddosim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/29/centos_install_ddosim/" class="post-title-link" itemprop="url">centOS 安装 ddosim</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-29 22:18:29" itemprop="dateCreated datePublished" datetime="2019-11-29T22:18:29+08:00">2019-11-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-03 19:54:55" itemprop="dateModified" datetime="2021-06-03T19:54:55+08:00">2021-06-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>DDOSIM源码下载</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://downloads.sourceforge.net/project/ddosim/ddosim-0.2.tar.gz</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>源码包编译</li>
-</ol>
-<p>顺次执行如下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf ddosim-0.2.tar.gz</span><br><span class="line">cd ddosim</span><br><span class="line">yum groupinstall &#x27;Development Tools&#x27; //安装gcc等</span><br><span class="line">./configure</span><br></pre></td></tr></table></figure>
-
-<p> 通常会遇到问题1：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libpcap (dev) is required for this program</span><br></pre></td></tr></table></figure>
-
-<p> 执行命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libpcap-devel -y</span><br></pre></td></tr></table></figure>
-
-<p> 问题2：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libnet0 (dev) is required for this program</span><br></pre></td></tr></table></figure>
-
-<p> 执行： </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://linuxscriptshub.com/wp-content/uploads/file/libnet0-dev-1.0.2a-6.x86_64.rpm</span><br><span class="line">rpm -ivh --force libnet0-dev-1.0.2a-6.x86_64.rpm  </span><br><span class="line">//force是必须，否则报：conflicts with file from filesystem-3.2-21.el7.x86-64</span><br></pre></td></tr></table></figure>
-
-<p>再次执行 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<p>测试</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 10 -r HTTP_INVALID -i ens33</span><br><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 0 -w 0 -t 10 -r HTTP_VALID -i ens33</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1241,7 +1251,7 @@ keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
