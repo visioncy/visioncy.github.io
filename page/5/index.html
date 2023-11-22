@@ -742,72 +742,6 @@ pause</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/jvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/08/jvm/" class="post-title-link" itemprop="url">jvm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-08 17:08:15" itemprop="dateCreated datePublished" datetime="2019-11-08T17:08:15+08:00">2019-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-20 15:03:31" itemprop="dateModified" datetime="2023-02-20T15:03:31+08:00">2023-02-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#heap dump</span></span><br><span class="line">jmap -dump:live,format=b,file=d:/dump.hprof  &lt;PID&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#把线程导出</span></span><br><span class="line">jstack -F &lt;PID&gt; &gt; D:\soft\threads.txt</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/gitsetproxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -865,6 +799,72 @@ git config --global https.proxy https://127.0.0.1:1080
 git config --global --unset http.proxy
 git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks5和socks5h的区别"><a href="#补充说明：socks5和socks5h的区别" class="headerlink" title="补充说明：socks5和socks5h的区别"></a>补充说明：socks5和socks5h的区别</h2><p>socks5：适合本地能够解析目标主机域名(比如github.com)但是访问速度慢,来提高下载速度</p>
 <p>socks5h：用与本地不能解析目标主机域名(比如google),由代理服务器解析目标主机域名</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/jvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/08/jvm/" class="post-title-link" itemprop="url">jvm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-08 17:08:15" itemprop="dateCreated datePublished" datetime="2019-11-08T17:08:15+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-20 15:03:31" itemprop="dateModified" datetime="2023-02-20T15:03:31+08:00">2023-02-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#heap dump</span></span><br><span class="line">jmap -dump:live,format=b,file=d:/dump.hprof  &lt;PID&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#把线程导出</span></span><br><span class="line">jstack -F &lt;PID&gt; &gt; D:\soft\threads.txt</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
