@@ -641,6 +641,75 @@ UMask=0007</code></pre><p>设置自动启动</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/windows_vpn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/08/windows_vpn/" class="post-title-link" itemprop="url">centOS 安装 turnserver</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-08 17:26:25" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-05 15:12:46" itemprop="dateModified" datetime="2020-08-05T15:12:46+08:00">2020-08-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Windows    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、route delete 0.0.0.0</span><br><span class="line">//删除所有默认路由</span><br><span class="line"></span><br><span class="line">2、route -p add 0.0.0.0 mask 0.0.0.0 10.120.1.1</span><br><span class="line">//10.120.1.1当前电脑所使用网络的网关地址,#去互联网.</span><br><span class="line"></span><br><span class="line">3、route -p add 192.168.0.0 mask 255.255.0.0 10.1.0.2</span><br><span class="line">//10.1.0.2拨VPN本机获取到的IP地址，192.168.10.0是拨了VPN之后需要访问的地址段；#去vpn</span><br><span class="line"></span><br><span class="line">route PRINT -4</span><br></pre></td></tr></table></figure>
+
+<p>OpenWRT</p>
+<pre><code>iptables -A forwarding_rule -s 192.168.125.0/24 -j ACCEPT
+其中192.168.125.0/24是你vpn拨进来的网段。</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/windows_kms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -790,75 +859,6 @@ echo.
 echo Retail to Volume License conversion finished.
 echo.
 pause</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/windows_vpn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/08/windows_vpn/" class="post-title-link" itemprop="url">centOS 安装 turnserver</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-08 17:26:25" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">2019-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-05 15:12:46" itemprop="dateModified" datetime="2020-08-05T15:12:46+08:00">2020-08-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Windows    </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、route delete 0.0.0.0</span><br><span class="line">//删除所有默认路由</span><br><span class="line"></span><br><span class="line">2、route -p add 0.0.0.0 mask 0.0.0.0 10.120.1.1</span><br><span class="line">//10.120.1.1当前电脑所使用网络的网关地址,#去互联网.</span><br><span class="line"></span><br><span class="line">3、route -p add 192.168.0.0 mask 255.255.0.0 10.1.0.2</span><br><span class="line">//10.1.0.2拨VPN本机获取到的IP地址，192.168.10.0是拨了VPN之后需要访问的地址段；#去vpn</span><br><span class="line"></span><br><span class="line">route PRINT -4</span><br></pre></td></tr></table></figure>
-
-<p>OpenWRT</p>
-<pre><code>iptables -A forwarding_rule -s 192.168.125.0/24 -j ACCEPT
-其中192.168.125.0/24是你vpn拨进来的网段。</code></pre>
       
     </div>
 
