@@ -1,23 +1,1337 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vision 的空间">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Vision 的空间">
+<meta property="og:locale">
+<meta property="article:author" content="Vision.Yi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Vision 的空间</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vision 的空间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_ssr/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-22 10:32:36" itemprop="dateModified" datetime="2021-06-22T10:32:36+08:00">2021-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装常用包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname hkvpn</span><br><span class="line">bash</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>2. 防火墙</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -s 192.168.80.0/24 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line">-A INPUT -m iprange --src-range 192.168.80.109-192.168.80.121 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line"></span><br><span class="line">sudo systemctl restart iptables.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 安装SSR</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocksR.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/</span><br><span class="line">sudo <span class="built_in">rm</span> /etc/shadowsocks.json</span><br><span class="line">rz</span><br><span class="line"></span><br><span class="line">yum install python2</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/python2.7 /usr/bin/python</span><br><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_tools/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2022-10-14 17:58:22" itemprop="dateModified" datetime="2022-10-14T17:58:22+08:00">2022-10-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1、安装常用包与优化配置"><a href="#1、安装常用包与优化配置" class="headerlink" title="1、安装常用包与优化配置"></a>1、安装常用包与优化配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本地优化</span></span><br><span class="line"><span class="built_in">ulimit</span> -n 65535</span><br><span class="line"><span class="built_in">ulimit</span> -u 7270</span><br><span class="line"><span class="built_in">ulimit</span> -i 7270</span><br><span class="line"></span><br><span class="line"><span class="comment">#加大打开文件数的限制（open files）</span></span><br><span class="line">vim /etc/security/limits.conf</span><br><span class="line"><span class="comment">#加入</span></span><br><span class="line">root soft nofile 65535</span><br><span class="line">root hard nofile 65535</span><br><span class="line">* soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br><span class="line"><span class="comment">#或</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;root soft nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;root hard nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;* soft nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;* hard nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#用户进程限制</span></span><br><span class="line">vi /etc/security/limits.d/20-nproc.conf</span><br><span class="line"><span class="comment">#加大普通用户限制  也可以改为unlimited （阿里没修改）</span></span><br><span class="line">*          soft    <span class="built_in">nproc</span>     40960</span><br><span class="line">root       soft    <span class="built_in">nproc</span>     unlimited</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装常用包</span></span><br><span class="line"><span class="comment">#git 最新版本源</span></span><br><span class="line">sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm</span><br><span class="line">sudo yum -y install https://packages.endpointdev.com/rhel/8/main/x86_64/endpoint-repo.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum -y install pcre-devel openssl openssl-devel</span><br><span class="line">sudo yum -y install gcc gcc-c++ kernel-devel</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<p>​    修改防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line"><span class="comment">#防火墙内容</span></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m multiport --dports 80,443,8080,8001 -j ACCEPT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、设置默认SSH端口"><a href="#2、设置默认SSH端口" class="headerlink" title="2、设置默认SSH端口"></a>2、设置默认SSH端口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config </span><br><span class="line">Port 55888</span><br><span class="line">systemctl restart sshd.service</span><br><span class="line"></span><br><span class="line">ListenAddress 0.0.0.0:22</span><br><span class="line">ListenAddress 0.0.0.0:55888</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、设置安装源"><a href="#3、设置安装源" class="headerlink" title="3、设置安装源"></a>3、设置安装源</h2><p>先备份一下原来的源镜像文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<p>下载新的CentOS-Base.repo，并写入到基础源文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#国内阿里的镜像</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo </span><br></pre></td></tr></table></figure>
+
+<p>YUM缓存生成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all <span class="comment">#清理yum缓存，使设置生效</span></span><br><span class="line">yum makecache <span class="comment">#将服务器上的软件包信息缓存到本地,以提高搜索安装软件的速度</span></span><br><span class="line">yum -y update <span class="comment">#更新本地yum</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、查看网卡流量"><a href="#4、查看网卡流量" class="headerlink" title="4、查看网卡流量"></a>4、查看网卡流量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iftop -i eth0</span><br></pre></td></tr></table></figure>
+
+<p>界面说明:<br>“&lt;=”与”=&gt;”，表示的是流量的方向</p>
+<p>“TX”：从网卡发出的流量<br>“RX”：网卡接收流量<br>“TOTAL”：网卡发送接收总流量<br>“cum”：iftop开始运行到当前时间点的总流量<br>“peak”：网卡流量峰值<br>“rates”：分别表示最近2s、10s、40s 的平均流量</p>
+<p>可以通过键盘的”q”键退出iftop </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat | grep -i <span class="string">&quot;5222&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo| grep <span class="string">&quot;processor&quot;</span>| <span class="built_in">wc</span> -l</span><br><span class="line"><span class="built_in">cat</span> /proc/meminfo| grep <span class="string">&quot;MemTotal&quot;</span></span><br><span class="line"></span><br><span class="line">yum install -y privoxy</span><br><span class="line">vim /etc/privoxy/config</span><br><span class="line">forward-socks5t / 192.168.0.254:1080</span><br><span class="line">systemctl start privoxy</span><br></pre></td></tr></table></figure>
+
+<p>查找 文件</p>
+<p>find / -name xxxxx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line">sudo fdisk /dev/sdb</span><br><span class="line">n (NEW)</span><br><span class="line">p (主分区)</span><br><span class="line">w (写入)</span><br><span class="line">mkfs -t ext4 /dev/sda3</span><br><span class="line">mount /dev/sdb1 /mnt</span><br><span class="line">用df -TH</span><br><span class="line">vim /etc/fstab</span><br><span class="line">最后加入：</span><br><span class="line">/dev/sdb1 /mnt ext3 defaults 1 2 </span><br><span class="line"> (格式说明：/dev/sdb1 代表哪个分区， /mnt是挂载目录， ext3是该分区的格式，defaults 是挂载时所要设定的参数(只读，读写，启用quota等)，输入defaults包括的参数有(rw、dev、exec、auto、nouser、async) ，1是使用dump是否要记录，0是不要。 2是开机时检查的顺序，是boot系统文件就为1，其他文件系统都为2，如不要检查就为0)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、SSR客户端"><a href="#5、SSR客户端" class="headerlink" title="5、SSR客户端"></a>5、SSR客户端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/the0demiurge/CharlesScripts/master/charles/bin/ssr</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x ssr</span><br><span class="line"><span class="built_in">cp</span> ssr /usr/local/bin/ssr</span><br><span class="line">yum install jq</span><br><span class="line"><span class="comment"># 安装ssr客户端</span></span><br><span class="line">ssr install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令行输入ssr可以弹出帮助</span></span><br><span class="line"><span class="comment"># 配置并启动</span></span><br><span class="line"><span class="comment"># （ 配置文件在 安装目录下/.local/share/shadowsocksr/config.json ）</span></span><br><span class="line">ssr config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">ssr uninstall</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、SS客户端"><a href="#6、SS客户端" class="headerlink" title="6、SS客户端"></a>6、SS客户端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br><span class="line">yum -y install python-pip</span><br><span class="line">yum -y install libsodium</span><br><span class="line">pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U</span><br><span class="line">vim /etc/shadowsocks.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;server&quot;</span>: <span class="string">&quot;srv01.gohomevs.xyz&quot;</span>,</span><br><span class="line">      <span class="string">&quot;server_port&quot;</span>: 50012,</span><br><span class="line">      <span class="string">&quot;password&quot;</span>: <span class="string">&quot;mzjeCj8gVu&quot;</span>,</span><br><span class="line">      <span class="string">&quot;method&quot;</span>: <span class="string">&quot;chacha20-ietf-poly1305&quot;</span>,</span><br><span class="line">    <span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line">    <span class="string">&quot;timeout&quot;</span>:600</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#Start the ShadowSocks Client Daemon</span></span><br><span class="line"></span><br><span class="line">sudo sslocal -c /etc/shadowsocks.json -d start</span><br><span class="line"></span><br><span class="line"><span class="comment">#Make sure everything is working so far</span></span><br><span class="line">curl --socks5-hostname 127.0.0.1:1080 http://wtfismyip.com/json</span><br><span class="line"></span><br><span class="line"><span class="comment">#Now you can set your current Terminal session to proxy everything through ShadowSocks:</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=socks5://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://192.168.12.251:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=socks5://192.168.12.251:1080</span><br><span class="line"></span><br><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://192.168.12.251:1080&#x27;</span></span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://192.168.12.251:1080&#x27;</span></span><br><span class="line"></span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.io/shadowsocks/sslocal-rust:latest</span><br><span class="line">docker run --name sslocal-rust \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 1080:1080/tcp \</span><br><span class="line">  -v /data/shadowsocks-rust:/etc/shadowsocks-rust \</span><br><span class="line">  -dit ghcr.io/shadowsocks/sslocal-rust:latest</span><br><span class="line">  </span><br><span class="line">docker run --name sslocal-rust \</span><br><span class="line">  -p 1080:1080/tcp \</span><br><span class="line">  -v /data/shadowsocks-rust:/etc/shadowsocks-rust \</span><br><span class="line">  -dit ghcr.io/shadowsocks/sslocal-rust:latest</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7、Privoxy配置"><a href="#7、Privoxy配置" class="headerlink" title="7、Privoxy配置"></a>7、Privoxy配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Amazon 安装epel库的命令是：</span></span><br><span class="line"><span class="comment"># emmm，我忘了，cli会提示你</span></span><br><span class="line">sudo amazon-linux-extras install epel</span><br><span class="line"> </span><br><span class="line">yum install privoxy</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、全局代理方式"><a href="#7、全局代理方式" class="headerlink" title="7、全局代理方式"></a>7、全局代理方式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以全局模式运行代理</span></span><br><span class="line"><span class="comment"># 代理模式同其他平台上方式，将所有http/https请求走代理服务，如果需要全局代理的话按照如下操作即可，如果要使用PAC模式，请跳过此部分。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加本地ssr服务到配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># Privoxy 默认监听端口是是8118</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># no_proxy是不经过privoxy代理的地址</span></span><br><span class="line"><span class="comment"># 只能填写具体的ip、域名后缀，多个条目之间使用&#x27;,&#x27;逗号隔开</span></span><br><span class="line"><span class="comment"># 比如: export no_proxy=&quot;localhost, 192.168.1.1, ip.cn, chinaz.com&quot;</span></span><br><span class="line"><span class="comment"># 访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久生效的话就要写入/etc/profile，非当前用户登陆才生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">systemctl start privoxy.service</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h2 id="6、代理测试"><a href="#6、代理测试" class="headerlink" title="6、代理测试"></a>6、代理测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 访问各大网站，如果都有网页源码输出说明代理没问题</span></span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br><span class="line">curl -sL www.google.com.hk</span><br><span class="line">curl -sL www.google.co.jp</span><br><span class="line">curl -sL www.youtube.com</span><br><span class="line">curl -sL mail.google.com</span><br><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL twitter.com</span><br><span class="line">curl -sL www.wikipedia.org</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、用户管理"><a href="#7、用户管理" class="headerlink" title="7、用户管理"></a>7、用户管理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#wheel默认有sudo权限，不过需要输入本帐号密码</span><br><span class="line">adduser samex           //添加一个新用户，名字叫Sirius</span><br><span class="line">passwd samex            //设置用户密码</span><br><span class="line">gpasswd -a samex wheel  //把用户添加到wheel组</span><br><span class="line">lid -g wheel             //查询组里所有用户</span><br><span class="line">userdel -r samex        //删除用户和相应的目录</span><br><span class="line">gpasswd -d samex wheel  //把用户移出wheel组</span><br><span class="line"></span><br><span class="line">#或者直接定义帐号有sudo权限，并且可以NOPASSWD</span><br><span class="line">chmod 755 /etc/sudoers</span><br><span class="line">vim /etc/sudoer</span><br><span class="line">#加入</span><br><span class="line">samex ALL=(ALL) NOPASSWD: ALL</span><br><span class="line"></span><br><span class="line">chmod 440 /etc/sudoers</span><br><span class="line"></span><br><span class="line">#查看所有群组</span><br><span class="line">cat /etc/group</span><br><span class="line"></span><br><span class="line">#查看所有用户</span><br><span class="line">cat /etc/shadow</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、创建公钥私钥"><a href="#8、创建公钥私钥" class="headerlink" title="8、创建公钥私钥"></a>8、创建公钥私钥</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br><span class="line"></span><br><span class="line">mkdir .ssh</span><br><span class="line">touch ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>如果出现无法登录可检查权限 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 .ssh/</span><br><span class="line">chmod 644 .ssh/authorized_keys</span><br><span class="line">chmod 600 .ssh/rsa_id</span><br><span class="line">chmod 644 .ssh/rsa_id.pub</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9、翻墙"><a href="#9、翻墙" class="headerlink" title="9、翻墙"></a>9、翻墙</h2><p>如果你的服务器能够访问外网，就可以用来翻墙，这里面我们用到的是<a target="_blank" rel="noopener" href="https://www.bitvise.com/port-forwarding">ssh port forwarding</a>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NCD 0.0.0.0:10024 用户名@服务器地址</span><br></pre></td></tr></table></figure>
+
+<p>这样你就有了一个socket proxy 地址:127.0.0.1 端口:10024</p>
+<h2 id="10、上传下载代码"><a href="#10、上传下载代码" class="headerlink" title="10、上传下载代码"></a>10、上传下载代码</h2><p>只要你会用cp就应该会scp<br>语法: scp 用户名@地址:{from} {to}</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp sirius@54.174.51.64:/home/sirius/articles.csv .</span><br><span class="line">scp ./articles.csv sirius@54.174.51.64:/home/sirius/</span><br></pre></td></tr></table></figure>
+
+<h2 id="11、网卡常用操作命令"><a href="#11、网卡常用操作命令" class="headerlink" title="11、网卡常用操作命令"></a>11、网卡常用操作命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmcli c show <span class="comment">#查看所有网络的连接信息</span></span><br><span class="line">nmcli d  <span class="comment">#网卡信息</span></span><br><span class="line">nmcli con del eno33554960</span><br><span class="line">nmcli con reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="12、关闭SWAP"><a href="#12、关闭SWAP" class="headerlink" title="12、关闭SWAP"></a>12、关闭SWAP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab </span><br><span class="line"></span><br><span class="line"><span class="comment"># 把swap分区的那行记录注释掉即可</span></span><br><span class="line"><span class="comment"># /dev/mapper/centos-swap  swap  swap  defaults  0 0</span></span><br></pre></td></tr></table></figure>
+
+<p>设置swappiness参数（默认:30）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/sys/vm/swappiness</span><br><span class="line">sudo sysctl -w vm.swappiness=0</span><br></pre></td></tr></table></figure>
+
+<h2 id="13、配置SELinux"><a href="#13、配置SELinux" class="headerlink" title="13、配置SELinux"></a>13、配置SELinux</h2><p>这个是Linux安全模块，在云服务器都关闭了，作用不大可以关。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#永久关闭</span></span><br><span class="line">sed -i <span class="string">&#x27;s/SELINUX=enforcing/SELINUX=disabled/g&#x27;</span> /etc/selinux/config</span><br><span class="line"><span class="comment">#临时关闭，不需重启</span></span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="14、设置时区"><a href="#14、设置时区" class="headerlink" title="14、设置时区"></a>14、设置时区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<h2 id="15、设置服务器名称"><a href="#15、设置服务器名称" class="headerlink" title="15、设置服务器名称"></a>15、设置服务器名称</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname srv04-clouddisk</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="16、设置vim显示行号和高亮"><a href="#16、设置vim显示行号和高亮" class="headerlink" title="16、设置vim显示行号和高亮"></a>16、设置vim显示行号和高亮</h2><h3 id="设置所有用户"><a href="#设置所有用户" class="headerlink" title="设置所有用户"></a>设置所有用户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/vimrc</span><br></pre></td></tr></table></figure>
+
+<p>在最后加上两行</p>
+<p><code>syntac on</code>：设置高亮<br><code>set nu</code>：设置行号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syntax on</span><br><span class="line">set nu</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置nignx-conf文件高亮"><a href="#设置nignx-conf文件高亮" class="headerlink" title="设置nignx conf文件高亮"></a>设置nignx conf文件高亮</h3><ul>
+<li><p>第一步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.vim/syntax/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.vim.org/scripts/download_script.php?src_id=19394 -O ~/.vim/syntax/nginx.vim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步<br>下面代码有几行，复制一起执行吧</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; ~/.vim/filetype.vim &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">au BufRead,BufNewFile /etc/nginx/*,/etc/nginx/conf.d/*,/usr/local/nginx/conf/* if &amp;ft == &#x27;&#x27; | setfiletype nginx | endif</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果上面设置了还不行，<code>reboot</code>重启linux看看</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/ubuntu_install_ss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/ubuntu_install_ss/" class="post-title-link" itemprop="url">ubuntu 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2023-05-06 10:22:13" itemprop="dateModified" datetime="2023-05-06T10:22:13+08:00">2023-05-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装常用包</strong></p>
+<pre><code>sudo apt-get update
+sudo apt-get -y install gcc make
+sudo apt-get -y install vim
+sudo apt-get -y install lrzsz
+sudo apt-get -y install net-tools
+sudo apt-get -y install git
+sudo apt-get -y install wget
+sudo apt-get -y install bash-completion
+
+sudo systemctl stop firewalld.service
+sudo systemctl disable firewalld.service
+
+sudo apt-get -y install  iptables-services
+sudo systemctl status iptables.service
+sudo systemctl start iptables.service</code></pre><p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config </span><br><span class="line">Port 55888</span><br><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
+
+<p>1、先备份一下原来的源镜像文件<br>cp /etc/apt-get.repos.d/CentOS-Base.repo /etc/apt-get.repos.d/CentOS-Base.repo.backup</p>
+<p>2、下载新的CentOS-Base.repo，并写入到基础源文件中</p>
+<pre><code>#国内阿里的镜像
+
+wget -O /etc/apt-get.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo </code></pre><p>3、apt-get缓存生成</p>
+<pre><code>apt-get clean all //清理apt-get缓存，使设置生效
+apt-get makecache //将服务器上的软件包信息缓存到本地,以提高搜索安装软件的速度
+apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sudo iftop -i eth0</p>
+<p>界面说明:<br>“&lt;=”与”=&gt;”，表示的是流量的方向</p>
+<p>“TX”：从网卡发出的流量<br>“RX”：网卡接收流量<br>“TOTAL”：网卡发送接收总流量<br>“cum”：iftop开始运行到当前时间点的总流量<br>“peak”：网卡流量峰值<br>“rates”：分别表示最近2s、10s、40s 的平均流量</p>
+<p>可以通过键盘的”q”键退出iftop </p>
+<p>netstat -nat | grep -i “5222” | wc -l</p>
+<p>cat /proc/cpuinfo| grep “processor”| wc -l<br>cat /proc/meminfo| grep “MemTotal”</p>
+<p>apt-get install -y privoxy<br>vim /etc/privoxy/config<br>forward-socks5t / 192.168.0.254:1080<br>systemctl start privoxy</p>
+<p>查找 文件</p>
+<p>find / -name xxxxx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line">sudo fdisk /dev/sdb</span><br><span class="line">n (NEW)</span><br><span class="line">p (主分区)</span><br><span class="line">w (写入)</span><br><span class="line">mkfs -t ext4 /dev/sda3</span><br><span class="line">mount /dev/sdb1 /mnt</span><br><span class="line">用df -TH</span><br><span class="line">vim /etc/fstab</span><br><span class="line">最后加入：</span><br><span class="line">/dev/sdb1 /mnt ext3 defaults 1 2 </span><br><span class="line"> (格式说明：/dev/sdb1 代表哪个分区， /mnt是挂载目录， ext3是该分区的格式，defaults 是挂载时所要设定的参数(只读，读写，启用quota等)，输入defaults包括的参数有(rw、dev、exec、auto、nouser、async) ，1是使用dump是否要记录，0是不要。 2是开机时检查的顺序，是boot系统文件就为1，其他文件系统都为2，如不要检查就为0)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname srv04-clouddisk</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>4、SSR客户端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/the0demiurge/CharlesScripts/master/charles/bin/ssr</span><br><span class="line"><span class="built_in">chmod</span> +x ssr</span><br><span class="line"><span class="built_in">cp</span> ssr /usr/local/bin/ssr</span><br><span class="line">apt-get install jq</span><br><span class="line"><span class="comment"># 安装ssr客户端</span></span><br><span class="line">ssr install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令行输入ssr可以弹出帮助</span></span><br><span class="line"><span class="comment"># 配置并启动</span></span><br><span class="line"><span class="comment"># （ 配置文件在 安装目录下/.local/share/shadowsocksr/config.json ）</span></span><br><span class="line">ssr config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">ssr uninstall</span><br></pre></td></tr></table></figure>
+
+<h5 id="1、Privoxy配置"><a href="#1、Privoxy配置" class="headerlink" title="1、Privoxy配置"></a>1、Privoxy配置</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install epel-release</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Amazon 安装epel库的命令是：</span></span><br><span class="line"><span class="comment"># emmm，我忘了，cli会提示你</span></span><br><span class="line">sudo amazon-linux-extras install epel</span><br><span class="line"> </span><br><span class="line">apt-get install privoxy</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、全局代理方式"><a href="#2、全局代理方式" class="headerlink" title="2、全局代理方式"></a>2、全局代理方式</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以全局模式运行代理</span></span><br><span class="line"><span class="comment"># 代理模式同其他平台上方式，将所有http/https请求走代理服务，如果需要全局代理的话按照如下操作即可，如果要使用PAC模式，请跳过此部分。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加本地ssr服务到配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># Privoxy 默认监听端口是是8118</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># no_proxy是不经过privoxy代理的地址</span></span><br><span class="line"><span class="comment"># 只能填写具体的ip、域名后缀，多个条目之间使用&#x27;,&#x27;逗号隔开</span></span><br><span class="line"><span class="comment"># 比如: export no_proxy=&quot;localhost, 192.168.1.1, ip.cn, chinaz.com&quot;</span></span><br><span class="line"><span class="comment"># 访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久生效的话就要写入/etc/profile，非当前用户登陆才生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">systemctl start privoxy.service</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h5 id="3、代理测试"><a href="#3、代理测试" class="headerlink" title="3、代理测试"></a>3、代理测试</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 访问各大网站，如果都有网页源码输出说明代理没问题</span></span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br><span class="line">curl -sL www.google.com.hk</span><br><span class="line">curl -sL www.google.co.jp</span><br><span class="line">curl -sL www.youtube.com</span><br><span class="line">curl -sL mail.google.com</span><br><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL twitter.com</span><br><span class="line">curl -sL www.wikipedia.org</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、Install-SS"><a href="#4、Install-SS" class="headerlink" title="4、Install SS"></a>4、Install SS</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#如果centos8需要把</span></span><br><span class="line"><span class="comment">#python python-devel python-setuptools</span></span><br><span class="line"><span class="comment">#改为</span></span><br><span class="line"><span class="comment">#python3 python3-devel python3-setuptools</span></span><br><span class="line">sudo wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">sudo <span class="built_in">chmod</span> +x shadowsocks-all.sh</span><br><span class="line">sudo ./shadowsocks-all.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks-all.log </span><br><span class="line"></span><br><span class="line">CentOS：</span><br><span class="line">yum -y install wget</span><br><span class="line">Ubuntu/Debian：</span><br><span class="line">apt-get -y install wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shadowsocks-libev 版：</span></span><br><span class="line">/etc/init.d/shadowsocks-libev start</span><br><span class="line">/etc/init.d/shadowsocks-libev stop</span><br><span class="line">/etc/init.d/shadowsocks-libev restart</span><br><span class="line">/etc/init.d/shadowsocks-libev status</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shadowsocks-Python 版：</span></span><br><span class="line">/etc/init.d/shadowsocks-python start</span><br><span class="line">/etc/init.d/shadowsocks-python stop</span><br><span class="line">/etc/init.d/shadowsocks-python restart</span><br><span class="line">/etc/init.d/shadowsocks-python status</span><br><span class="line"></span><br><span class="line"><span class="comment"># ShadowsocksR 版：</span></span><br><span class="line">/etc/init.d/shadowsocks-r start</span><br><span class="line">/etc/init.d/shadowsocks-r stop</span><br><span class="line">/etc/init.d/shadowsocks-r restart</span><br><span class="line">/etc/init.d/shadowsocks-r status</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shadowsocks-Go 版：</span></span><br><span class="line">/etc/init.d/shadowsocks-go start</span><br><span class="line">/etc/init.d/shadowsocks-go stop</span><br><span class="line">/etc/init.d/shadowsocks-go restart</span><br><span class="line">/etc/init.d/shadowsocks-go status</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">netstat -na|grep ESTABLISHED|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">netstat -na|grep 8388|grep ESTABLISHED|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#去除重复</span></span><br><span class="line">netstat -na| grep 8388 | grep -v <span class="string">&#x27;0.0.0.0&#x27;</span>|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|<span class="built_in">sort</span> -n <span class="variable">$file</span> | awk <span class="string">&#x27;&#123;if($0!=line)print; line=$0&#125;&#x27;</span></span><br><span class="line"><span class="comment">#统计行数</span></span><br><span class="line">netstat -na| grep 8388 | grep -v <span class="string">&#x27;0.0.0.0&#x27;</span>|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|<span class="built_in">sort</span> -n <span class="variable">$file</span> | awk <span class="string">&#x27;&#123;if($0!=line)print; line=$0&#125;&#x27;</span>|<span class="built_in">wc</span> -l</span><br><span class="line"></span><br><span class="line">ip.t086.com/?ip=<span class="variable">$i</span></span><br><span class="line">cip.cc/<span class="variable">$i</span></span><br><span class="line">ip.cn</span><br><span class="line">ipinfo.io</span><br><span class="line">cip.cc</span><br><span class="line">ifconfig.me</span><br><span class="line">myip.ipip.net</span><br><span class="line">|awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(netstat -na| grep 8388 | grep -v <span class="string">&#x27;0.0.0.0&#x27;</span>|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|<span class="built_in">sort</span> -n <span class="variable">$file</span>| awk <span class="string">&#x27;&#123;if($0!=line)print; line=$0&#125;&#x27;</span>);<span class="keyword">do</span> curl cip.cc/<span class="variable">$i</span> | <span class="built_in">tee</span> -a output.txt &amp; <span class="built_in">sleep</span> 3.5;<span class="keyword">done</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(netstat -na| grep 8388 | grep -v <span class="string">&#x27;0.0.0.0&#x27;</span>|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|<span class="built_in">sort</span> -n <span class="variable">$file</span>| awk <span class="string">&#x27;&#123;if($0!=line)print; line=$0&#125;&#x27;</span>);</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;curl -s &quot;https://www.ip138.com/iplookup.asp?ip=ip&amp;action=2&quot; -H &quot;Host: www.ip138.com&quot; -H &quot;Connection: keep-alive&quot; -H &quot;Upgrade-Insecure-Requests: 1&quot; -H &quot;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36&quot; -H &quot;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&quot; -H &quot;Accept-Encoding: gzip, deflate&quot; -H &quot;Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7&quot;  -H &quot;Cookie: Hm_lvt_7254fb0edf3ade4dbb48f0262d9deb63=1608791174&quot; --compressed |iconv -fgb2312 -t utf-8 |grep &#x27;</span>ASN<span class="string">&#x27; |head -n1 |awk -F \&quot; &#x27;</span>&#123; <span class="built_in">print</span> 4&#125;<span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$ip</span>&quot;</span> <span class="string">&quot;<span class="variable">$IP_LOCATION</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> $(netstat -na| grep 8388 | grep -v <span class="string">&#x27;0.0.0.0&#x27;</span>|awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|<span class="built_in">sort</span> -n <span class="variable">$file</span>| awk <span class="string">&#x27;&#123;if($0!=line)print; line=$0&#125;&#x27;</span>);</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">url=<span class="string">&quot;http://opendata.baidu.com/api.php?query=<span class="variable">$&#123;ip&#125;</span>&amp;co=&amp;resource_id=6006&amp;t=1412300361645&amp;ie=utf8&amp;oe=gbk&amp;cb=op_aladdin_callback&amp;format=json&amp;tn=baidu&amp;cb=jQuery1102026811896078288555_1412299994977&amp;_=1412299994981&quot;</span></span><br><span class="line">path=`curl -s <span class="variable">$url</span> |iconv -fgb2312 -t utf-8 |awk -F: <span class="string">&#x27;&#123; print $6&#125;&#x27;</span> |awk -F[\&quot;] <span class="string">&#x27;&#123; print $2&#125;&#x27;</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;ip&#125;</span>#<span class="variable">$&#123;path&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">curl http://opendata.baidu.com/api.php?query=223.104.72.118&amp;co=&amp;resource_id=6006&amp;t=1412300361645&amp;ie=utf8&amp;oe=gbk&amp;cb=op_aladdin_callback&amp;format=json&amp;tn=baidu&amp;cb=jQuery1102026811896078288555_1412299994977&amp;_=1412299994981</span><br></pre></td></tr></table></figure>
+
+<h5 id="5、Install-SS-manager-centos"><a href="#5、Install-SS-manager-centos" class="headerlink" title="5、Install SS-manager  (centos)"></a>5、Install SS-manager  (centos)</h5><p>安裝前需要安裝SS,因為使用到ss-server 命令</p>
+<p>centos 7.9+</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install npm</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/shadowsocks/shadowsocks-manager.git</span><br><span class="line"><span class="built_in">cd</span> shadowsocks-manager</span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#npm安装</span></span><br><span class="line">npm i -g shadowsocks-manager</span><br><span class="line"><span class="comment">#若出现权限相关的错误提示，则需要尝试：</span></span><br><span class="line">sudo npm i -g shadowsocks-manager --unsafe-perm</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行ssmgr与ss-manager</span></span><br><span class="line"><span class="built_in">nohup</span> ssmgr -c /data/ssmgr/server.yml -r libev:chacha20-ietf-poly1305</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行webgui</span></span><br><span class="line"><span class="built_in">nohup</span> ssmgr -c /data/ssmgr/webgui.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行ss-manager</span></span><br><span class="line"><span class="built_in">nohup</span> ss-manager -m chacha20-ietf-poly1305 -u --manager-address 127.0.0.1:6001 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#開機運行</span></span><br><span class="line"><span class="built_in">chmod</span> +x /etc/rc.d/rc.local</span><br><span class="line">sudo vim /etc/rc.d/rc.local</span><br><span class="line"></span><br><span class="line"><span class="comment">#開機運行(ubuntu)</span></span><br><span class="line">sudo vim /etc/rc.local</span><br><span class="line"><span class="built_in">chmod</span> +x /etc/rc.local</span><br><span class="line"></span><br><span class="line"><span class="comment">#需要先安装shadowsocks-libev</span></span><br><span class="line"><span class="comment"># https://www.24kplus.com/linux/264.html</span></span><br><span class="line"><span class="built_in">nohup</span> ssmgr -c /data/ssmgr/server.yml -r libev:chacha20-ietf-poly1305 &amp;</span><br><span class="line"><span class="built_in">nohup</span> ssmgr -c /data/ssmgr/webgui.yml &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#ssmgr</span></span><br><span class="line">ssmgr -c /data/ssmgr/server.yml</span><br><span class="line"></span><br><span class="line">ssmgr -c /data/ssmgr/webgui.yml</span><br><span class="line"></span><br><span class="line"><span class="comment">#node</span></span><br><span class="line">node server.js -c /data/ssmgr/server.yml</span><br><span class="line">node server.js -c /data/ssmgr/webgui.yml</span><br><span class="line"></span><br><span class="line"><span class="built_in">nohup</span> node server.js -c /data/ssmgr/server.yml  &amp; </span><br><span class="line"><span class="built_in">nohup</span> node server.js -c /data/ssmgr/webgui.yml  &amp; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install iptables</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">#防火墙内容</span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -s 64.27.6.173 -p tcp --dport 6002 -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 50000:60000 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m multiport --dports 80,443,8080,8001 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /data/ssmgr</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &gt; /data/ssmgr/server.yml &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">type: s</span></span><br><span class="line"><span class="string">shadowsocks:</span></span><br><span class="line"><span class="string">  address: 127.0.0.1:6001</span></span><br><span class="line"><span class="string">manager:</span></span><br><span class="line"><span class="string">  address: 0.0.0.0:49999</span></span><br><span class="line"><span class="string">  password: &#x27;123456&#x27;</span></span><br><span class="line"><span class="string">db: &#x27;db.sqlite&#x27;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#需要先安装shadowsocks-libev</span></span><br><span class="line"><span class="comment"># https://www.24kplus.com/linux/264.html</span></span><br><span class="line"><span class="built_in">nohup</span> ssmgr -c /data/ssmgr/server.yml -r libev:chacha20-ietf-poly1305 &amp;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cat</span> <span class="string">&gt;</span> <span class="string">/data/ssmgr/webgui.yml</span> <span class="string">&lt;&lt;</span> <span class="string">EOF</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">m</span></span><br><span class="line"><span class="attr">manager:</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:6002</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">&#x27;123456&#x27;</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="attr">flowSaver:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">user:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">account:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">email:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">&#x27;smtp&#x27;</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">&#x27;username&#x27;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&#x27;password&#x27;</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">&#x27;smtp.your-email.com&#x27;</span></span><br><span class="line">  <span class="attr">webgui:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">&#x27;0.0.0.0&#x27;</span></span><br><span class="line">    <span class="attr">port:</span> <span class="string">&#x27;8080&#x27;</span></span><br><span class="line">    <span class="attr">site:</span> <span class="string">&#x27;http://admin.info&#x27;</span></span><br><span class="line">    <span class="attr">admin_username:</span> <span class="string">&#x27;admin@gmail.com&#x27;</span></span><br><span class="line">    <span class="attr">admin_password:</span> <span class="string">&#x27;BxEeqFoFFx2jwFMc&#x27;</span></span><br><span class="line"><span class="attr">db:</span> <span class="string">&#x27;webgui.sqlite&#x27;</span></span><br><span class="line"><span class="attr">redis:</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">&#x27;192.168.12.6&#x27;</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">&#x27;pqjmaieprBjuLk9j&#x27;</span></span><br><span class="line">  <span class="attr">db:</span> <span class="number">15</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">nohup</span> <span class="string">ssmgr</span> <span class="string">-c</span> <span class="string">/data/ssmgr/webgui.yml</span> <span class="string">&amp;</span></span><br></pre></td></tr></table></figure>
+
+<p>5、Install SS-manager  (ubuntu)</p>
+<h5 id="6-Install-trojan-client"><a href="#6-Install-trojan-client" class="headerlink" title="6.Install trojan client"></a>6.Install trojan client</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g ssmgr-trojan-client@1.5.2</span><br><span class="line">ssmgr-trojan-client -k 123456 --db-password YrQCYSzfoN7tXXYF</span><br><span class="line">ssmgr-trojan-client -k 123456 --db-type mysql --db-address srv00.gohomevs.xyz:6630 --db-name trojanhk --db-user root --db-password trojan</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/windows_cmd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/windows_cmd/" class="post-title-link" itemprop="url">windows 常用command</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-17 12:28:44" itemprop="dateModified" datetime="2021-06-17T12:28:44+08:00">2021-06-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 常用command</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">netstat -nao | find /i <span class="string">&quot;estab&quot;</span></span><br><span class="line">netstat -nao | find /i <span class="string">&quot;estab&quot;</span> /c</span><br><span class="line">netstat -nao | findstr 443 | find /v /c <span class="string">&quot;&quot;</span> </span><br><span class="line"><span class="comment">#linux</span></span><br><span class="line">netstat -ant | grep ESTABLISHED | <span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipocnfig /displaydns | find /i <span class="string">&quot;name&quot;</span> /c</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TYPE C:\Windows\Schedlgu.txt | find /i <span class="string">&quot;task failure&quot;</span> /c</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-10-19 10:17:18" itemprop="dateModified" datetime="2020-10-19T10:17:18+08:00">2020-10-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装常用包</strong></p>
+<p> 客户端相关操作<br>4.1、生成客户端证书库<br>keytool -validity 36500 -genkeypair -v -alias client -keyalg RSA -storetype PKCS12 -keystore client.p12 -dname “CN=clients.itjoyee.com,OU=jiajianfa,O=jiajianfa,L=Wuhan,ST=HuBei,c=cn” -storepass 123456 -keypass 123456</p>
+<p>4.2、从客户端证书库中导出客户端证书<br>keytool -export -v -alias client -keystore client.p12 -storetype PKCS12 -storepass 123456 -rfc -file client.cer</p>
+<p>注:客户端证书可以产生多个.</p>
+<p>4.3、将客户端证书导入到服务器证书库(使得服务器信任客户端证书,服务器端用此验证客户端的合法性)<br>keytool -import -v -alias client -file client.cer -keystore server.keystore -storepass 123456</p>
+<p>4.4、查看服务端证书中信任的客户端证书<br>keytool -list -keystore server.keystore -storepass 123456</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/12/openwrt_build_xiaomir3p/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/12/openwrt_build_xiaomir3p/" class="post-title-link" itemprop="url">在centos 自行编译 R3P openwrt</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-12 16:04:56" itemprop="dateCreated datePublished" datetime="2020-03-12T16:04:56+08:00">2020-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-12-27 21:38:14" itemprop="dateModified" datetime="2020-12-27T21:38:14+08:00">2020-12-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装组件</strong></p>
+<pre><code>yum -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler</code></pre><p><strong>2. 下载源码</strong></p>
+<pre><code>git clone https://github.com/coolsnowwolf/lede
+cd lede</code></pre><p><strong>可选：添加passwall安装源</strong></p>
+<pre><code>vim feeds.conf.default
+#passwall源
+src-git lienol https://github.com/Lienol/openwrt-package</code></pre><p><strong>3.build设定</strong></p>
+<pre><code>make menuconfig 
+
+#设置必要选项
+Target System (MediaTecRalink MIPS)
+Subtarget (MT7621based board)
+Target Profile (XiaomiMi Router 3 Pro)
+
+LuCI---&gt;  
+    1.Collections  ---&gt;
+        &lt;*&gt;luci................... LuCIinterface with Uhttpd as Webserver (default)
+LuCI ---&gt;
+    Modules---&gt;
+        Translations  ---&gt;
+            &lt;*&gt;Chinese (zh-cn)
+#其他部分配置选项，请选择：
+#添加luci应用
+LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-aria2……………………………… LuCI Support for aria2
+LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-ddns……………………… Dynamic DNS configuration module
+LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-samba……………….. Network Shares – Samba SMB/CIFSmodule
+LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-transmission…………………. LuCI Support forTransmission
+#添加USB挂载
+Base system —&gt; &lt;*&gt;block-mount   
+
+#添加硬盘格式支持
+Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-ext4 (移动硬盘EXT4格式选择)
+Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-vfat(FAT16 / FAT32 格式 选择)
+Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-ntfs (NTFS 格式 选择)
+
+#添加USB相关支持
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-core.
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-ohci.
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-storage.
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-storage-extras.
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb2.
+Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb3.
+
+#添加自动挂载工具
+Utilities —&gt; Filesystem —&gt; &lt;*&gt; badblocks</code></pre><p><strong>3.开始编译</strong></p>
+<pre><code>#先同步软件包(启动20个线程，加快下载，这样就不用等10个小时了，我用了50分钟下载完毕)：
+make download  V=s -j20  
+#开始编译(第一次编译，不启用多线程。二次编译时可以选-j4,这个考虑你的CPU支持的线程数)
+make -j1 V=s</code></pre><p>错误：</p>
+<pre><code>configure: error: you should not run configure as root (set FORCE_UNSAFE_CONFIGURE=1 in environment to bypass this check)</code></pre><p>解决方法A：</p>
+<pre><code>sudo make FORCE_UNSAFE_CONFIGURE=1 -j1 V=s</code></pre><p>解决方法B：</p>
+<pre><code>export FORCE_UNSAFE_CONFIGURE=1
+source /etc/profile
+然后：
+su –root  # 切换到root账号
+make V=99 # 编译</code></pre><p>错误：</p>
+<pre><code>tar: This does not look like a tar archive</code></pre><p>解决方法：（删除不能解压的包重新运行make）</p>
+<p><strong>4.刷机</strong></p>
+<pre><code>#编译后的目录
+/home/lede/bin/targets/ramips/mt7621</code></pre><h2 id="最终结果：变砖"><a href="#最终结果：变砖" class="headerlink" title="最终结果：变砖"></a><strong>最终结果：变砖</strong></h2><h1 id="ubuntu-build"><a href="#ubuntu-build" class="headerlink" title="ubuntu build"></a>ubuntu build</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils</span><br><span class="line"></span><br><span class="line"><span class="comment">#/usr/include/c++/7/utility:68: error: bits/c++config.h</span></span><br><span class="line">sudo apt-get install gcc-multilib g++ -multilib</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/11/centos_install_mongodb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/11/centos_install_mongodb/" class="post-title-link" itemprop="url">centOS 安装 mongodb</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-11 14:18:40" itemprop="dateCreated datePublished" datetime="2020-03-11T14:18:40+08:00">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-11-06 10:53:02" itemprop="dateModified" datetime="2020-11-06T10:53:02+08:00">2020-11-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 添加安装源</strong></p>
+<pre><code>sudo vim /etc/yum.repos.d/mongodb-org-4.2.repo
+
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc</code></pre><p>2.安装mongodb常用包</p>
+<pre><code>sudo yum install -y mongodb-org</code></pre><p>移动数据库</p>
+<pre><code>#复制数据库
+rsync -av /var/lib/mongo /data/database/mongodb/
+#备份旧数据库
+sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库是提示没权限，可以进行授权</p>
+<pre><code>#Change owner and group
+sudo chown -R mongod:mongod /data/mongodb/mongo
+#Change context
+sudo chcon -R -u system_u -t mongod_var_lib_t /data/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    vim /etc/mongod.conf</p>
+<pre><code>#启动安全验证
+security:
+    authorization: enabled</code></pre><p>初步化数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath /data/mongodb/master</span><br></pre></td></tr></table></figure>
+
+
+
+<p>添加超级管理员</p>
+<pre><code>mongo
+
+use admin
+db.createUser(
+  &#123;
+    user: &quot;xhadmin&quot;,
+    pwd: &quot;abc123&quot;,
+    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125;, &quot;readWriteAnyDatabase&quot; ]
+  &#125;
+)
+
+
+use admin
+db.createUser(
+  &#123;
+    user: &quot;xhadmin&quot;,
+    pwd: &quot;abc123&quot;,
+    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125;, &quot;readWriteAnyDatabase&quot; ]
+  &#125;
+)</code></pre><p>创建数据库用户</p>
+<pre><code>use test
+db.createUser(
+  &#123;
+    user: &quot;myTester&quot;,
+    pwd: &quot;xyz123&quot;,
+    roles: [ &#123; role: &quot;readWrite&quot;, db: &quot;test&quot; &#125;,
+             &#123; role: &quot;read&quot;, db: &quot;reporting&quot; &#125; ]
+  &#125;
+)</code></pre><p>集群</p>
+<pre><code>replication:
+  oplogSizeMB: 20000
+  replSetName: &quot;flygramway&quot;
+
+config = &#123;
+   &quot;_id&quot;:&quot;flygramway&quot;,
+  &quot;members&quot;:[
+    &#123;&quot;_id&quot;:0,&quot;host&quot;:&quot;10.148.0.51:27017&quot;, arbiterOnly:true&#125;,
+    &#123;&quot;_id&quot;:1,&quot;host&quot;:&quot;10.148.0.52:27017&quot;&#125;,
+    &#123;&quot;_id&quot;:2,&quot;host&quot;:&quot;10.148.0.53:27017&quot;&#125;
+  ]
+&#125;
+
+rs.initiate(config) //初始化
+rs.status()</code></pre><p>mongod增加keyFile</p>
+<pre><code>openssl rand -base64 756 &gt; /data/key_file
+chmod 400 /data/key_file</code></pre><p>key_file上传到其他mongod服务器上，修改mongod配置，一般是/etc/</p>
+<pre><code>mongodb.conf
+security:
+  authorization: enabled
+keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&quot;xhadmin&quot;,&quot;abc123&quot;);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wiredTiger:</span><br><span class="line">  engineConfig:</span><br><span class="line">    configString : cache_size=1024M</span><br></pre></td></tr></table></figure>
+
+<p>安装步骤参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/openfireoptimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/openfireoptimization/" class="post-title-link" itemprop="url">openfire 优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+              
+
+              <time title="أُنشأ: 2020-02-19 17:08:15 / عُدل: 20:17:30" itemprop="dateCreated datePublished" datetime="2020-02-19T17:08:15+08:00">2020-02-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原来连接与登录共收发20条信息<br>修改后连接与登录共收发8条信息</p>
+<p>1.[Server Settings]-&gt;[Registration &amp; Login]-&gt;[SASL Mechanisms]只保留[SCRAM-SHA-1]（暂时测试不确认是否有优化）<br>并且xmpp.client.tls.policy改为:disabled</p>
+<ul>
+<li>required 必需</li>
+<li>optional 可选</li>
+<li>disabled 关闭</li>
+<li>legacyMode 一种要求连接立即加密的策略（与“必需”策略相反，它允许最初未加密的连接通过StartTLS加密。</li>
+</ul>
+<p>这样可以减少一次接收信息</p>
+<pre><code>16:19:20 RECV (0): &lt;stream:features&gt;&lt;starttls xmlns=&quot;urn:ietf:params:xml:ns:xmpp-tls&quot;&gt;&lt;/starttls&gt;&lt;mechanisms xmlns=&quot;urn:ietf:params:xml:ns:xmpp-sasl&quot;&gt;&lt;mechanism&gt;PLAIN&lt;/mechanism&gt;&lt;mechanism&gt;SCRAM-SHA-1&lt;/mechanism&gt;&lt;mechanism&gt;CRAM-MD5&lt;/mechanism&gt;&lt;mechanism&gt;DIGEST-MD5&lt;/mechanism&gt;&lt;/mechanisms&gt;&lt;compression xmlns=&quot;http://jabber.org/features/compress&quot;&gt;&lt;method&gt;zlib&lt;/method&gt;&lt;/compression&gt;&lt;ver xmlns=&quot;urn:xmpp:features:rosterver&quot;/&gt;&lt;register xmlns=&quot;http://jabber.org/features/iq-register&quot;/&gt;&lt;c xmlns=&quot;http://jabber.org/protocol/caps&quot; hash=&quot;sha-1&quot; node=&quot;https://www.igniterealtime.org/projects/openfire/&quot; ver=&quot;RoQdsUcljslH4bMYE/tqetK2DQU=&quot;/&gt;&lt;/stream:features&gt;</code></pre><p>2.文本已经加密，禁用TLS</p>
+<p>3.SaslMechanism使用”PLAIN”</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/openfireerror/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/17/openfireerror/" class="post-title-link" itemprop="url">openfire 常见错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+              
+
+              <time title="أُنشأ: 2020-01-17 17:08:15 / عُدل: 20:37:34" itemprop="dateCreated datePublished" datetime="2020-01-17T17:08:15+08:00">2020-01-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>错误1:Closing session that seems to be stalled. Preventing OOM<br>作用：防止通道出现OOM<br>配置：session.stalled.cap 默认 5242880  改为 10485760</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/centos_install_ddosim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/29/centos_install_ddosim/" class="post-title-link" itemprop="url">centOS 安装 ddosim</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2019-11-29 22:18:29" itemprop="dateCreated datePublished" datetime="2019-11-29T22:18:29+08:00">2019-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-06-03 19:54:55" itemprop="dateModified" datetime="2021-06-03T19:54:55+08:00">2021-06-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>DDOSIM源码下载</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://downloads.sourceforge.net/project/ddosim/ddosim-0.2.tar.gz</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>源码包编译</li>
+</ol>
+<p>顺次执行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf ddosim-0.2.tar.gz</span><br><span class="line">cd ddosim</span><br><span class="line">yum groupinstall &#x27;Development Tools&#x27; //安装gcc等</span><br><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p> 通常会遇到问题1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libpcap (dev) is required for this program</span><br></pre></td></tr></table></figure>
+
+<p> 执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libpcap-devel -y</span><br></pre></td></tr></table></figure>
+
+<p> 问题2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: libnet0 (dev) is required for this program</span><br></pre></td></tr></table></figure>
+
+<p> 执行： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://linuxscriptshub.com/wp-content/uploads/file/libnet0-dev-1.0.2a-6.x86_64.rpm</span><br><span class="line">rpm -ivh --force libnet0-dev-1.0.2a-6.x86_64.rpm  </span><br><span class="line">//force是必须，否则报：conflicts with file from filesystem-3.2-21.el7.x86-64</span><br></pre></td></tr></table></figure>
+
+<p>再次执行 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 10 -r HTTP_INVALID -i ens33</span><br><span class="line">./ddosim -d 10.120.1.53 -p 8080 -c 0 -w 0 -t 10 -r HTTP_VALID -i ens33</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="الصفحة السابقة"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="الصفحة التالية"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vision.Yi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">الوسوم</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vision.Yi</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

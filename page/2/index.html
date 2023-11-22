@@ -1,23 +1,1298 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vision 的空间">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Vision 的空间">
+<meta property="og:locale">
+<meta property="article:author" content="Vision.Yi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Vision 的空间</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vision 的空间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/appserver_setting_ssl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/appserver_setting_ssl/" class="post-title-link" itemprop="url">app server wildfly</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-08-05 11:20:00" itemprop="dateCreated datePublished" datetime="2020-08-05T11:20:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-07-20 15:30:37" itemprop="dateModified" datetime="2021-07-20T15:30:37+08:00">2021-07-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. Wildfly 限制TLS加密套件</strong></p>
+<p>在standalone.xml的 &lt;https-listener… 加入如下信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">https-listener...</span>  <span class="attr">enabled-protocols</span>=<span class="string">&quot;TLSv1.2&quot;</span> <span class="attr">enabled-cipher-suites</span>=<span class="string">&quot;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Wildfly 开启SSL后设置 Cookies 安全标记设置</strong></p>
+<p>在standalone.xml的&lt;servlet-container…  加入</p>
+<p>2021/07/05 暂时发现在wildfly 23.0.2 配置后导致打开应用闪退到登录界面</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-cookie</span> <span class="attr">secure</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>完整片段</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-container</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-encoding</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">jsp-config</span> <span class="attr">development</span>=<span class="string">&quot;true&quot;</span> <span class="attr">trim-spaces</span>=<span class="string">&quot;true&quot;</span> <span class="attr">check-interval</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">session-cookie</span> <span class="attr">secure</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--会导致登录后打开应用闪退--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">websockets</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-container</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. Wildfly 开启SSL后加入强制https访问</strong></p>
+<p>在&lt;host name=”default-host”…加入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span>/&gt;</span><span class="comment">&lt;!--会导致工作流无法编辑--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在&lt;filters…加入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Server&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Powered-By&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Content-Security-Policy&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27;; object-src &#x27;none&#x27;;style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; child-src https:&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-XSS-Protection&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;1; mode=block&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;nosniff&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Strict-Transport-Security&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;max-age=31536000; includeSubDomains;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>完整片段</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">subsystem</span> <span class="attr">xmlns</span>=<span class="string">&quot;urn:jboss:domain:undertow:12.0&quot;</span> <span class="attr">default-server</span>=<span class="string">&quot;default-server&quot;</span> <span class="attr">default-virtual-host</span>=<span class="string">&quot;default-host&quot;</span> <span class="attr">default-servlet-container</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-security-domain</span>=<span class="string">&quot;other&quot;</span> <span class="attr">statistics-enabled</span>=<span class="string">&quot;$&#123;wildfly.undertow.statistics-enabled:$&#123;wildfly.statistics-enabled:false&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">buffer-cache</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">server</span> <span class="attr">name</span>=<span class="string">&quot;default-server&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">http-listener</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">socket-binding</span>=<span class="string">&quot;http&quot;</span> <span class="attr">max-post-size</span>=<span class="string">&quot;209715200&quot;</span> <span class="attr">redirect-socket</span>=<span class="string">&quot;https&quot;</span> <span class="attr">enable-http2</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">https-listener</span> <span class="attr">name</span>=<span class="string">&quot;https&quot;</span> <span class="attr">socket-binding</span>=<span class="string">&quot;https&quot;</span> <span class="attr">security-realm</span>=<span class="string">&quot;ApplicationRealm&quot;</span> <span class="attr">enable-http2</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">host</span> <span class="attr">name</span>=<span class="string">&quot;default-host&quot;</span> <span class="attr">alias</span>=<span class="string">&quot;localhost&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">location</span> <span class="attr">name</span>=<span class="string">&quot;/&quot;</span> <span class="attr">handler</span>=<span class="string">&quot;welcome-content&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filter-ref</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">http-invoker</span> <span class="attr">security-realm</span>=<span class="string">&quot;ApplicationRealm&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-container</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span> <span class="attr">default-encoding</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jsp-config</span> <span class="attr">development</span>=<span class="string">&quot;true&quot;</span> <span class="attr">trim-spaces</span>=<span class="string">&quot;true&quot;</span> <span class="attr">check-interval</span>=<span class="string">&quot;10&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">websockets</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-container</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">handlers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span> <span class="attr">name</span>=<span class="string">&quot;welcome-content&quot;</span> <span class="attr">path</span>=<span class="string">&quot;$&#123;jboss.home.dir&#125;/welcome-content&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">handlers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filters</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;server-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Server&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-powered-by-header&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Powered-By&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;unknow&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-frame-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Frame-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;SAMEORIGIN&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-xss-protection&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-XSS-Protection&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;1; mode=block&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;x-content-type-options&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;X-Content-Type-Options&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;nosniff&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">response-header</span> <span class="attr">name</span>=<span class="string">&quot;strict-transport-security&quot;</span> <span class="attr">header-name</span>=<span class="string">&quot;Strict-Transport-Security&quot;</span> <span class="attr">header-value</span>=<span class="string">&quot;max-age=31536000; includeSubDomains;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filters</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">subsystem</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>4. Nginx</strong></p>
+<p>在配置文件加入如下信息：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssl_ciphers</span> <span class="string">&#x27;AES128+EECDH:AES128+EDH&#x27;</span>; <span class="comment">#首选加密套件</span></span><br><span class="line"><span class="attribute">ssl_protocols</span> TLSv1.<span class="number">2</span>; <span class="comment">#允许的加密协议</span></span><br></pre></td></tr></table></figure>
+
+<p>ddos 与 cc攻击拦截</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># DDoS 和 CC 防御配置，主要是限制链接数，详细：http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line">        <span class="attribute">client_body_buffer_size</span>      <span class="number">128k</span>;</span><br><span class="line">        <span class="attribute">large_client_header_buffers</span>  <span class="number">4</span> <span class="number">32k</span>;</span><br><span class="line">        <span class="attribute">server_names_hash_bucket_size</span> <span class="number">128</span>;</span><br><span class="line">        <span class="attribute">client_header_buffer_size</span> <span class="number">32k</span>;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">50m</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">limit_conn_zone</span> <span class="variable">$binary_remote_addr</span> zone=conn_limit_per_ip:<span class="number">10m</span>;</span><br><span class="line">        <span class="attribute">limit_req_zone</span> <span class="variable">$binary_remote_addr</span> zone=req_limit_per_ip:<span class="number">10m</span> rate=50r/s;</span><br><span class="line">        <span class="attribute">limit_conn</span> conn_limit_per_ip <span class="number">20</span>;</span><br><span class="line">        <span class="attribute">limit_req</span> zone=req_limit_per_ip burst=<span class="number">20</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>【Nginx】</p>
+<p>1、通过调整 <code>$request_method</code> ，配置服务器接受 HTTP 包的操作限制；<br>2、在保证业务不受影响的前提下，调整 client_max_body_size, client_body_buffer_size, client_header_buffer_size,large_client_header_buffersclient_body_timeout, client_header_timeout 的值，必要时可以适当的增加；<br>3、对于会话或者相同的 IP 地址，可以使用 HttpLimitReqModule 与 HttpLimitZoneModule 参数去限制请求量或者并发连接数；<br>4、根据CPU和负载的大小，来配置 worker_processes 和 worker_connections 的值，公式是：max_clients = worker_processes * worker_connections。</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="http://wp.blkstone.me/2019/03/complie-slowhttptest/">http://wp.blkstone.me/2019/03/complie-slowhttptest/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/centos_install_jenkins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/centos_install_jenkins/" class="post-title-link" itemprop="url">centOS redis 备份</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-08-05 11:20:00" itemprop="dateCreated datePublished" datetime="2020-08-05T11:20:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-11-02 11:40:08" itemprop="dateModified" datetime="2020-11-02T11:40:08+08:00">2020-11-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 下载 redis 包</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">安装yum源</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line">yum clean all &amp;&amp; yum makecache   </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">###解压拷贝jdk</span><br><span class="line">tar xf jdk-8u261-linux-x64.tar.gz -C /usr/local/</span><br><span class="line">ln -s /usr/local/jdk1.8.0_261/ /usr/local/jdk</span><br><span class="line">ln -s /usr/local/jdk/bin/java /usr/bin/java</span><br><span class="line"></span><br><span class="line">###设置环境变量</span><br><span class="line">vim /etc/profile</span><br><span class="line">export JAVA_HOME=/usr/local/jdk</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source  /etc/profile</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget  -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo</span><br><span class="line">rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key</span><br><span class="line">yum install jenkins -y</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start jenkins</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">service jenkins stop</span><br><span class="line">yum clean all</span><br><span class="line">yum -y remove jenkins</span><br><span class="line">rm -rf /var/cache/jenkins</span><br><span class="line">rm -rf /var/lib/jenkins/</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/centos_install_redis_ha/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/centos_install_redis_ha/" class="post-title-link" itemprop="url">centOS 安装 redis</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-08-05 11:20:00" itemprop="dateCreated datePublished" datetime="2020-08-05T11:20:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-11-05 15:13:46" itemprop="dateModified" datetime="2020-11-05T15:13:46+08:00">2020-11-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 下载 redis 包</strong></p>
+<pre><code>sudo wget -c http://download.redis.io/releases/redis-5.0.8.tar.gz
+sudo tar -zxvf redis-5.0.8.tar.gz
+cd redis-5.0.8</code></pre><p><strong>2. 编译与安装</strong></p>
+<pre><code>sudo make PREFIX=/usr/local/redis install</code></pre><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#chown -R redis:redis /usr/local/redis</span><br><span class="line"></span><br><span class="line">useradd redis</span><br><span class="line">#建立文件夹</span><br><span class="line">mkdir -p /data/redis6380 &amp;&amp; chown -R redis:redis /data/redis6380</span><br><span class="line">mkdir -p /data/redis6381 &amp;&amp; chown -R redis:redis /data/redis6381</span><br><span class="line"></span><br><span class="line">#批量建</span><br><span class="line">mkdir -p /data/&#123;redis6380,redis6381&#125; &amp;&amp; chown -R redis:redis /data/&#123;redis6380,redis6381&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 修改配置文件：</strong></p>
+<pre><code>sudo vim /data/redis6380/redis6380.conf
+
+bind 0.0.0.0
+protected-mode yes
+port 6380
+tcp-backlog 511
+timeout 0
+tcp-keepalive 0
+daemonize yes
+supervised no
+pidfile &quot;/data/redis6380/redis6380.pid&quot;
+loglevel notice
+logfile &quot;/data/redis6380/redis6380.log&quot;
+databases 16
+always-show-logo yes
+requirepass 123456
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+dbfilename &quot;dump.rdb&quot;
+dir &quot;/data/redis6380/&quot;
+save 900 1 
+save 300 10 
+save 60 10000 
+masterauth 123456
+slave-serve-stale-data yes
+slave-read-only yes
+repl-diskless-sync no
+repl-diskless-sync-delay 5
+repl-disable-tcp-nodelay no
+slave-priority 100
+maxclients 100000
+maxmemory-policy allkeys-lfu
+lazyfree-lazy-eviction no
+lazyfree-lazy-expire no
+lazyfree-lazy-server-del no
+slave-lazy-flush no
+appendonly no
+#appendonly yes
+appendfilename &quot;appendonly.aof&quot;
+appendfsync no
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+aof-load-truncated yes
+aof-use-rdb-preamble no
+lua-time-limit 5000
+slowlog-log-slower-than 10000
+slowlog-max-len 128
+latency-monitor-threshold 0
+notify-keyspace-events &quot;&quot;
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
+set-max-intset-entries 512
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+hll-sparse-max-bytes 3000
+activerehashing yes
+client-output-buffer-limit normal 0 0 0
+#client-output-buffer-limit slave 2048mb 1500mb 60
+client-output-buffer-limit slave 0 0 0
+client-output-buffer-limit pubsub 32mb 8mb 60
+hz 10
+
+#####cluster#####
+cluster-enabled yes
+cluster-config-file nodes_6380.conf
+cluster-node-timeout 15000</code></pre><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">port 8001</span><br><span class="line">bind 0.0.0.0</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file /data/redis8001/redis_nodes.conf</span><br><span class="line">cluster-node-timeout 15000</span><br><span class="line">appendonly yes</span><br><span class="line">maxclients 100000</span><br><span class="line">maxmemory 0</span><br><span class="line">dir /data/redis8001</span><br><span class="line">repl-backlog-size 200m</span><br><span class="line">tcp-backlog 1024</span><br><span class="line">logfile /data/redis8001/redis_server_8001.log</span><br><span class="line">pidfile /data/redis8001/redis_8001.pid</span><br><span class="line">daemonize yes</span><br><span class="line">rename-command FLUSHALL &quot;9P3j2qjXKyJ4CetDL3J9&quot;</span><br><span class="line">rename-command FLUSHDB  &quot;61Dfiqap0f5kGSuyv9DT&quot;</span><br><span class="line">rename-command CONFIG   &quot;ksVQc4LTXSXXyBY5iIsb&quot;</span><br><span class="line">#rename-command KEYS     &quot;9awnURhBJ0blTb3xgffX&quot;</span><br><span class="line">rename-command SHUTDOWN &quot;19tp2XZPy2IizFYxinZc&quot;</span><br><span class="line">#rename-command EVAL &quot;YWXBiickGeQ62xCXZG61&quot;</span><br><span class="line"></span><br><span class="line">client-output-buffer-limit normal 0 0 0</span><br><span class="line">client-output-buffer-limit slave  0 0 0</span><br><span class="line">client-output-buffer-limit pubsub 32mb 8mb 60</span><br><span class="line">masterauth ScXKma1p7bxQ</span><br><span class="line">requirepass ScXKma1p7bxQ</span><br></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/redis6380.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Redis persistent key-value database</span><br><span class="line">After=network.target</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/local/redis/bin/redis-server /data/redis6380/redis6380.conf --supervised systemd</span><br><span class="line">ExecStop=/usr/local/redis/bin/redis-cli -h 127.0.0.1 -p 6380 -a 123456 shutdown</span><br><span class="line"></span><br><span class="line">Type=notify</span><br><span class="line">User=redis</span><br><span class="line">Group=redis</span><br><span class="line">LimitNOFILE=163840</span><br><span class="line">LimitNPROC=163840</span><br><span class="line">RuntimeDirectory=redis</span><br><span class="line">RuntimeDirectoryMode=0755</span><br><span class="line">StandardOutput=journal</span><br><span class="line">StandardError=inherit</span><br><span class="line">TimeoutStopSec=0</span><br><span class="line">KillSignal=SIGTERM</span><br><span class="line">SendSIGKILL=no</span><br><span class="line">SuccessExitStatus=0</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl disable redis6380.service</span><br><span class="line">sudo systemctl enable redis6380.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start redis6380.service</span><br><span class="line">sudo systemctl status redis6380.service</span><br><span class="line">sudo journalctl -xe -l</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/redis8001.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Redis persistent key-value database</span><br><span class="line">After=network.target</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/local/redis/bin/redis-server /data/redis8001/redis8001.conf --supervised systemd</span><br><span class="line">ExecStop=/usr/local/redis/bin/redis-cli -h 127.0.0.1 -p 8001 -a guess_guess_101 shutdown</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Type=notify</span><br><span class="line">User=redis</span><br><span class="line">Group=redis</span><br><span class="line">RuntimeDirectory=redis</span><br><span class="line">RuntimeDirectoryMode=0755</span><br><span class="line">StandardOutput=journal</span><br><span class="line">StandardError=inherit</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line">LimitNPROC=65536</span><br><span class="line">TimeoutStopSec=0</span><br><span class="line">KillSignal=SIGTERM</span><br><span class="line">SendSIGKILL=no</span><br><span class="line">SuccessExitStatus=0</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/bin/redis-cli -a 123456 --cluster create 192.168.0.236:7001 192.168.0.236:7002 192.168.0.237:7003 192.168.0.237:7004 192.168.0.238:7005 192.168.0.238:7006 --cluster-replicas 1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /data/redis6380/nodes-6380.conf </span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -c -h 192.168.0.236 -p 7001 -a 123456    </span><br><span class="line">CLUSTER INFO </span><br><span class="line">CLUSTER NODES </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>4.槽点迁移到一个节点</strong></p>
+<p>槽点迁移到一个节点（复制数据前必需要处理）</p>
+<pre><code>./redis-cli -a 123456 --cluster reshard 172.31.43.6:6380
+./redis-cli -a 123456 --cluster rebalance --cluster-use-empty-masters 172.31.43.6:6380</code></pre><p>三、    错误处理<br>编译错误zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory<br>make MALLOC=libc</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/centos_redis_dump_aof/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/centos_redis_dump_aof/" class="post-title-link" itemprop="url">centOS redis 备份</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-08-05 11:20:00" itemprop="dateCreated datePublished" datetime="2020-08-05T11:20:00+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-09-23 16:23:52" itemprop="dateModified" datetime="2020-09-23T16:23:52+08:00">2020-09-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 下载 redis 包</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/redis-cli -h 10.148.0.48 -p 6379 -a 123456 BGREWRITEAOF</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/centos_install_minio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/28/centos_install_minio/" class="post-title-link" itemprop="url">centOS 安装 minio</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-06-28 08:49:57" itemprop="dateCreated datePublished" datetime="2020-06-28T08:49:57+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-10-28 17:10:08" itemprop="dateModified" datetime="2020-10-28T17:10:08+08:00">2020-10-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>每个MinIO服务器执行</p>
+<pre><code>wget https://dl.min.io/server/minio/release/linux-amd64/minio
+chmod +x minio
+sudo cp minio /usr/local/bin/</code></pre><h1 id="Create-work-directories"><a href="#Create-work-directories" class="headerlink" title="Create work directories"></a>Create work directories</h1><p>每个MinIO服务器执行</p>
+<pre><code>sudo mkdir -p /data/minio/
+sudo adduser minio-user
+sudo mkdir -p /data/minio/data/disk_&#123;1001..1004&#125;
+sudo mkdir -p /data/minio/config
+sudo chown -R minio-user:minio-user /data/minio</code></pre><p>分区绑定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs -t ext4 /dev/sdb1</span><br><span class="line">sudo mount /dev/sdb1 /data/minio/data/disk_1001</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sdc1</span><br><span class="line">sudo mount /dev/sdc1 /data/minio/data/disk_1002</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sdd1</span><br><span class="line">sudo mount /dev/sdd1 /data/minio/data/disk_1003</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sde1</span><br><span class="line">sudo mount /dev/sde1 /data/minio/data/disk_1004</span><br></pre></td></tr></table></figure>
+
+<p>添加重启自动加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br><span class="line"></span><br><span class="line">/dev/sdb1        /data/minio/data/disk_1001     ext4    defaults        0 0</span><br><span class="line">/dev/sdc1        /data/minio/data/disk_1002     ext4    defaults        0 0</span><br><span class="line">/dev/sdd1        /data/minio/data/disk_1003     ext4    defaults        0 0</span><br><span class="line">/dev/sde1        /data/minio/data/disk_1004     ext4    defaults        0 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h1><pre><code>sudo vim /data/minio/config/minio.conf</code></pre><p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MINIO_ACCESS_KEY=admin</span><br><span class="line">MINIO_SECRET_KEY=12345678</span><br><span class="line">MINIO_VOLUMES=&quot;/data/minio/data/disk_&#123;1001...1016&#125;&quot;</span><br><span class="line">MINIO_OPTS=&quot;--address :9000&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>​<br>​    </p>
+<h1 id="添加配置HA"><a href="#添加配置HA" class="headerlink" title="添加配置HA"></a>添加配置HA</h1><pre><code>sudo vim /data/minio/config/minio.conf
+
+MINIO_ACCESS_KEY=admin
+MINIO_SECRET_KEY=12345678
+MINIO_VOLUMES=&quot;http://192.168.0.&#123;198...201&#125;:9000/data/minio/data/disk_&#123;1001...1004&#125;&quot;
+MINIO_OPTS=&quot;--address :9000&quot;</code></pre><h1 id="添加服务"><a href="#添加服务" class="headerlink" title="添加服务"></a>添加服务</h1><pre><code>sudo vim /etc/systemd/system/minio.service
+sudo vim /usr/lib/systemd/system/minio.service 
+
+[Unit]
+Description=Minio
+Documentation=https://docs.minio.io
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/minio
+
+[Service]
+WorkingDirectory=/usr/local/
+
+User=minio-user
+Group=minio-user
+
+PermissionsStartOnly=true
+
+EnvironmentFile=-/data/minio/config/minio.conf
+ExecStartPre=/bin/bash -c &quot;[ -n \&quot;$&#123;MINIO_VOLUMES&#125;\&quot; ] || echo \&quot;Variable MINIO_VOLUMES not set in /data/minio/config/minio.conf\&quot;&quot;
+
+ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES
+
+StandardOutput=journal
+StandardError=inherit
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop Minio
+KillSignal=SIGTERM
+
+SendSIGKILL=no
+
+SuccessExitStatus=0
+
+[Install]
+WantedBy=multi-user.target</code></pre><h1 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h1><pre><code>sudo systemctl disable minio.service
+sudo systemctl enable minio.service
+sudo systemctl daemon-reload
+sudo systemctl start minio
+sudo systemctl status minio.service
+sudo journalctl -xe -l</code></pre><h1 id="安装反向代理服务器"><a href="#安装反向代理服务器" class="headerlink" title="安装反向代理服务器"></a>安装反向代理服务器</h1><p>反向代理服务器上使用默认轮询方式即可，代理到每个节点的IP地址上。</p>
+<h1 id="Install-Linux-minio-client"><a href="#Install-Linux-minio-client" class="headerlink" title="Install Linux minio client"></a>Install Linux minio client</h1><p>客户端可以在任意一个能连接代理服务器的电脑上安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.min.io/client/mc/release/linux-amd64/mc</span><br><span class="line">chmod +x mc</span><br><span class="line">sudo cp mc /usr/local/bin/</span><br><span class="line">mc --help</span><br><span class="line"></span><br><span class="line">配置服务客户端连接：</span><br><span class="line">mc config host add xinhoo http://192.168.0.226:9000 admin 12345678 --api S3v4</span><br></pre></td></tr></table></figure>
+
+<h1 id="Install-Windows-minio-client"><a href="#Install-Windows-minio-client" class="headerlink" title="Install Windows minio client"></a>Install Windows minio client</h1><p><a target="_blank" rel="noopener" href="https://dl.min.io/client/mc/release/windows-amd64/mc.exe">https://dl.min.io/client/mc/release/windows-amd64/mc.exe</a></p>
+<pre><code>mc config host add xinhoo http://192.168.0.230:9000 admin 12345678 --api S3v4 
+mc mirror --overwrite ./XhAttachments_Home xinhoohost/default
+
+mc policy set public xinhoohost/biaotest
+
+mc rb --force xinhoo/biaotest
+mc mb xinhoo/biaotest
+mc policy set public xinhoo/biaotest
+
+
+mc config host add xinhoo http://172.31.43.4:9000 admin 12345678 --api S3v4 
+mc mirror --overwrite D:/Attachments_XinhooIM xinhoo/default
+
+修复数据的命令
+mc admin heal -r nodeName</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/ubuntu_install_squid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/01/ubuntu_install_squid/" class="post-title-link" itemprop="url">ubuntu 安装 squid</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-06-01 20:10:03" itemprop="dateCreated datePublished" datetime="2020-06-01T20:10:03+08:00">2020-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-11-25 11:49:06" itemprop="dateModified" datetime="2020-11-25T11:49:06+08:00">2020-11-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks-all.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/shadowsocks-r/config.json</span><br><span class="line"></span><br><span class="line">systemctl restart shadowsocks-r.service</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;server&quot;</span>:<span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;server_ipv6&quot;</span>:<span class="string">&quot;::&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_address&quot;</span>:<span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line"><span class="string">&quot;port_password&quot;</span>:&#123;</span><br><span class="line"><span class="string">&quot;18001&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18002&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18003&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18004&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18005&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;444&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;timeout&quot;</span>:120,</span><br><span class="line"><span class="string">&quot;method&quot;</span>:<span class="string">&quot;aes-256-cfb&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol&quot;</span>:<span class="string">&quot;auth_aes128_md5&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs&quot;</span>:<span class="string">&quot;tls1.2_ticket_fastauth&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;redirect&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;dns_ipv6&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;fast_open&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;workers&quot;</span>:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装squid</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install squid</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成密码文件</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;xhusr:<span class="subst">$(openssl passwd -crypt &#x27;qS03v8Sw&#x27;)</span>\n&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/squid/htpasswd</span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sudo apt-get install apache2-utils</span><br><span class="line">htpasswd -c /etc/squid/htpasswd xhusr</span><br><span class="line"></span><br><span class="line">qS03v8Swstn2xU7e</span><br></pre></td></tr></table></figure>
+
+
+<p>​    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#备份配置</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/squid/squid.conf&#123;,.orginal&#125;</span><br><span class="line"><span class="comment">#编辑配置</span></span><br><span class="line">sudo nano /etc/squid/squid.conf</span><br><span class="line"><span class="comment">#or</span></span><br><span class="line">sudo vim /etc/squid/squid.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#加入验证配置文件（注：要放在文件前面，不然会提示密码错误）</span></span><br><span class="line">auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd</span><br><span class="line">auth_param basic realm proxy</span><br><span class="line">acl authenticated proxy_auth REQUIRED</span><br><span class="line"><span class="comment">#http_access allow localnet</span></span><br><span class="line">http_access allow localhost</span><br><span class="line">http_access allow authenticated</span><br><span class="line"><span class="comment"># And finally deny all other access to this proxy</span></span><br><span class="line">http_access deny all</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启</span></span><br><span class="line">sudo systemctl restart squid</span><br></pre></td></tr></table></figure>
+
+
+
+<p>安装socks5</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/anonymous-test/p/13809348.html">https://www.cnblogs.com/anonymous-test/p/13809348.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dante-server</span><br><span class="line"></span><br><span class="line">#生成密码</span><br><span class="line">sudo useradd -s /sbin/nologin test -g proxy</span><br><span class="line">passwd test</span><br><span class="line"></span><br><span class="line">wHaQ8NRAUMEniIKZ</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#指定日志文件保存的绝对路径</span><br><span class="line">logoutput: /var/log/socks5.log</span><br><span class="line">#进口IP或网卡</span><br><span class="line">internal: eth0 port = 8888</span><br><span class="line">#进口网卡及端口</span><br><span class="line">internal: eth0 port = 9999</span><br><span class="line">#出口网卡</span><br><span class="line">external: eth0</span><br><span class="line">#设置代理方式（rfc931）</span><br><span class="line">socksmethod: username none</span><br><span class="line">#设置客户端规则</span><br><span class="line">clientmethod: none</span><br><span class="line">#设置用户权限</span><br><span class="line">user.privileged: root</span><br><span class="line">#非特权用户</span><br><span class="line">user.notprivileged: nobody</span><br><span class="line">#如果编译时支持 libwrap，使用的用户 ID（ libwrap：服务程序安全增强工具，对有状态连接的特定服务进行安全检测并实现访问控制）</span><br><span class="line">user.libwrap: nobody</span><br><span class="line">#设置访问规则</span><br><span class="line">client pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">#记录连接、断开、报错信息</span><br><span class="line">log: connect disconnect error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socks pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">protocol: tcp udp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/11/centos_install_keepalived_lvs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/11/centos_install_keepalived_lvs/" class="post-title-link" itemprop="url">keepalived lvs</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-05-11 13:40:57" itemprop="dateCreated datePublished" datetime="2020-05-11T13:40:57+08:00">2020-05-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-05-12 11:37:28" itemprop="dateModified" datetime="2020-05-12T11:37:28+08:00">2020-05-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 命令配置（重启后失效）</strong></p>
+<pre><code>yum install ipvsadm -y
+ipvsadm   （执行ipvsadm（modprobe ip_vs）把ip_vs模块加载到内核）
+lsmod |grep ip_vs   #查看IPVS加载到内核没有</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/action_curl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/action_curl/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-10-21 16:39:30" itemprop="dateModified" datetime="2020-10-21T16:39:30+08:00">2020-10-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 命令</strong> COD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//上传文件     </span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://cod.xinhoo.com:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0a16a87ad9a4012a304ee30d7643f51&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP0&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2 -H &quot;Authorization:eXwdrXrvrjsHDs7F&quot; -H &quot;Content-Type:application/json;charset=UTF-8&quot; -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
+
+curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/updateservice/checkversion -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: eXwdrXrvrjsHDs7F&quot; --data-raw &quot;&#123;&apos;resource&apos;: &apos;ANDROID&apos;,&apos;appVersion&apos;: &apos;1.0.0&apos;&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
+
+curl --location --request GET &quot;https://im.imangoim.com:9001/file/openfire/v1/download/a8c9e562b99847b0a7af0017c668c296?storeType=MESSAGE&quot; ^
+--header &quot;xh-user-token: 466826d3c1d144b482f38d8b440feab0&quot; ^
+--header &quot;xh-user-name: cod_60000001&quot; ^
+--header &quot;xh-user-resource: DESKTOP&quot; ^
+--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^
+--output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;
+
+curl --location --request  POST -g \
+       &quot;https://imapi.rezffb.com/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot; \
+        --header &apos;Authorization: eXwdrXrvrjsHDs7F&apos; \
+        --header &apos;Content-Type: application/json; charset=UTF-8&apos; \
+        -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;</code></pre><p>​<br>    curl –location –request  POST -g <br>           “<a target="_blank" rel="noopener" href="https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;">https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;</a> <br>            –header ‘Authorization: eXwdrXrvrjsHDs7F’ <br>            –header ‘Content-Type: application/json; charset=UTF-8’ <br>            -d “{‘targetname’:’codm_1080005491’,’text’:’Hi,\nIm test robot.’,’chatType’:2,’model’:1}”</p>
+<p>​<br>​    </p>
+<p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//下载文件</span><br><span class="line">curl --location --request GET &quot;https://file.rezffb.com/file/openfire/v1/download/[fileid]?storeType=MESSAGE&quot; ^</span><br><span class="line">--header &quot;xh-user-token: 123123123123123123&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^</span><br><span class="line">--output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上传文件</span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br><span class="line"></span><br><span class="line">curl --resolve im.flygram.im:443:35.247.162.93 --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_esxi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_esxi/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2021-11-29 10:29:06" itemprop="dateModified" datetime="2021-11-29T10:29:06+08:00">2021-11-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a><strong>1. 常用命令</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#扩展空间</span></span><br><span class="line">vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk</span><br><span class="line"><span class="comment">#复制</span></span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_01/centos8disk1.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_02/centos8disk2.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_03/centos8disk3.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line"></span><br><span class="line">vmkfstools --server 10.21.49.14 -i <span class="string">&#x27;[Datastore] examplevm/examplevm.vmdk&#x27;</span> <span class="string">&#x27;[Datastore 2] newexamplevm/newexamplevm.vmdk&#x27;</span> -d thin -a buslogic</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看磁盘健康状态"><a href="#2-查看磁盘健康状态" class="headerlink" title="2.查看磁盘健康状态"></a>2.查看磁盘健康状态</h3><p>列出硬盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device list</span><br><span class="line">或</span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br></pre></td></tr></table></figure>
+
+<p>查看硬盘smart信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device smart get -d &lt;disk&gt; </span><br><span class="line"></span><br><span class="line">eg.</span><br><span class="line">esxcli storage core device smart get -d t10.ATA_____WDC_WD10EZEX2D08WN4A0_________________________WD2DWCC6Y4JZLP3E</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-挂载物理硬盘到虚拟机"><a href="#3-挂载物理硬盘到虚拟机" class="headerlink" title="3.挂载物理硬盘到虚拟机"></a>3.挂载物理硬盘到虚拟机</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示硬盘信息</span></span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br><span class="line"><span class="comment">#影响硬盘到vmdk</span></span><br><span class="line">vmkfstools -z /vmfs/devices/disks/t10.ATA_____WDC_WD1003FBYX2D01Y7B1________________________WD2DWCAW35647184 /vmfs/volumes/datastore1_esxipc/WD1TB.vmdk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_rabbitmq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/centos_install_rabbitmq/" class="post-title-link" itemprop="url">centOS 安装配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2020-07-01 16:09:26" itemprop="dateModified" datetime="2020-07-01T16:09:26+08:00">2020-07-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>1. 安装erlang的依赖</strong></p>
+<pre><code>sudo yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel</code></pre><p><strong>2.下载安装erlang rpm包</strong></p>
+<pre><code>sudo wget https://packages.erlang-solutions.com/erlang/rpm/centos/7/x86_64/esl-erlang_23.0.2-2~centos~7_amd64.rpm
+sudo yum install esl-erlang_23.0.2-2~centos~7_amd64.rpm</code></pre><p><strong>验证安装</strong></p>
+<pre><code>erl
+1+1.
+halt().</code></pre><p><strong>下载和安装rabbitmq</strong></p>
+<pre><code>sudo wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.5/rabbitmq-server-3.8.5-1.el7.noarch.rpm
+sudo rpm -import https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.5/rabbitmq-server-3.8.5-1.el7.noarch.rpm.asc
+
+sudo yum install rabbitmq-server-3.8.5-1.el7.noarch.rpm</code></pre><p><strong>设置开启自动启动和启动</strong></p>
+<pre><code>sudo chkconfig rabbitmq-server on
+sudo systemctl start rabbitmq-server
+sudo rabbitmqctl status</code></pre><p><strong>开启web管理界面</strong></p>
+<pre><code>sudo rabbitmq-plugins enable rabbitmq_management</code></pre><p><strong>开放外部端口</strong></p>
+<pre><code>5672和15672端口， 15672为web 管理端口</code></pre><p><strong>添加用户和外网访问</strong></p>
+<pre><code>sudo rabbitmqctl add_user admin 123456
+sudo rabbitmqctl set_user_tags admin administrator
+
+sudo rabbitmqctl set_permissions -p &quot;/&quot; admin &apos;.*&apos; &apos;.*&apos; &apos;.*&apos;
+sudo rabbitmqctl list_user_permissions admin</code></pre><p><strong>安装delay插件（默认目录）</strong></p>
+<pre><code>sudo wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.8.0/rabbitmq_delayed_message_exchange-3.8.0.ez
+
+sudo cp rabbitmq_delayed_message_exchange-3.8.0.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.8.5/plugins/
+
+sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>附：rabbitmq常见命令，非root用户请使用sudo</p>
+<h1 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h1><p>rabbitmqctl add_user <username> <password></p>
+<h1 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h1><p>rabbitmqctl delete_user <username></p>
+<h1 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h1><p>rabbitmqctl change_password <username> <newpassword></p>
+<h1 id="清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）"><a href="#清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）" class="headerlink" title="清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）"></a>清除用户密码（该用户将不能使用密码登陆，但是可以通过SASL登陆如果配置了SASL认证）</h1><p>rabbitmqctl clear_password <username></p>
+<h1 id="设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）"><a href="#设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）" class="headerlink" title="设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）"></a>设置用户tags（相当于角色，包含administrator，monitoring，policymaker，management）</h1><p>rabbitmqctl set_user_tags <username> <tag></p>
+<h1 id="列出所有用户"><a href="#列出所有用户" class="headerlink" title="列出所有用户"></a>列出所有用户</h1><p>rabbitmqctl list_users</p>
+<h1 id="创建一个vhosts"><a href="#创建一个vhosts" class="headerlink" title="创建一个vhosts"></a>创建一个vhosts</h1><p>rabbitmqctl add_vhost <vhostpath></p>
+<h1 id="删除一个vhosts"><a href="#删除一个vhosts" class="headerlink" title="删除一个vhosts"></a>删除一个vhosts</h1><p>rabbitmqctl delete_vhost <vhostpath></p>
+<h1 id="列出vhosts"><a href="#列出vhosts" class="headerlink" title="列出vhosts"></a>列出vhosts</h1><p>rabbitmqctl list_vhosts [<vhostinfoitem> …]</p>
+<h1 id="针对一个vhosts给用户赋予相关权限；"><a href="#针对一个vhosts给用户赋予相关权限；" class="headerlink" title="针对一个vhosts给用户赋予相关权限；"></a>针对一个vhosts给用户赋予相关权限；</h1><p>rabbitmqctl set_permissions [-p <vhostpath>] <user> <conf> <write> <read></p>
+<h1 id="清除一个用户对vhosts的权限；"><a href="#清除一个用户对vhosts的权限；" class="headerlink" title="清除一个用户对vhosts的权限；"></a>清除一个用户对vhosts的权限；</h1><p>rabbitmqctl clear_permissions [-p <vhostpath>] <username></p>
+<h1 id="列出哪些用户可以访问该vhosts；"><a href="#列出哪些用户可以访问该vhosts；" class="headerlink" title="列出哪些用户可以访问该vhosts；"></a>列出哪些用户可以访问该vhosts；</h1><p>rabbitmqctl list_permissions [-p <vhostpath>]</p>
+<h1 id="列出用户访问权限；"><a href="#列出用户访问权限；" class="headerlink" title="列出用户访问权限；"></a>列出用户访问权限；</h1><p>rabbitmqctl list_user_permissions <username></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="الصفحة السابقة"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="الصفحة التالية"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vision.Yi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">الوسوم</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vision.Yi</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,37 +1,418 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 下载 redis 包1234567sudo wget -c http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-5.0.14.tar.gzsudo tar -zxvf redis-5.0.14.tar.gzcd redis-5.0.14wget https:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.2.6.tar.gztar xzf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 安装 redis">
+<meta property="og:url" content="http://yoursite.com/2019/11/29/centos_install_redis/index.html">
+<meta property="og:site_name" content="Vision 的空间">
+<meta property="og:description" content="1. 下载 redis 包1234567sudo wget -c http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-5.0.14.tar.gzsudo tar -zxvf redis-5.0.14.tar.gzcd redis-5.0.14wget https:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.2.6.tar.gztar xzf">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-11-29T14:18:29.000Z">
+<meta property="article:modified_time" content="2022-02-08T06:44:20.201Z">
+<meta property="article:author" content="Vision.Yi">
+<meta property="article:tag" content="centos nginx">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/29/centos_install_redis/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>centOS 安装 redis | Vision 的空间</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vision 的空间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/centos_install_redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centOS 安装 redis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2019-11-29 22:18:29" itemprop="dateCreated datePublished" datetime="2019-11-29T22:18:29+08:00">2019-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2022-02-08 14:44:20" itemprop="dateModified" datetime="2022-02-08T14:44:20+08:00">2022-02-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-下载-redis-包"><a href="#1-下载-redis-包" class="headerlink" title="1. 下载 redis 包"></a><strong>1. 下载 redis 包</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -c http://download.redis.io/releases/redis-5.0.14.tar.gz</span><br><span class="line">sudo tar -zxvf redis-5.0.14.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-5.0.14</span><br><span class="line"></span><br><span class="line">wget https://download.redis.io/releases/redis-6.2.6.tar.gz</span><br><span class="line">tar xzf redis-6.2.6.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-6.2.6</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-编译与安装"><a href="#2-编译与安装" class="headerlink" title="2. 编译与安装"></a><strong>2. 编译与安装</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo make</span><br><span class="line">sudo make install</span><br><span class="line">sudo ./utils/install_server.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">groupadd redis</span><br><span class="line">useradd -M -g redis -s /sbin/nologin redis</span><br><span class="line"><span class="built_in">id</span> redis</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/redis6379/&#123;data,<span class="built_in">log</span>,conf&#125;</span><br><span class="line"><span class="built_in">chown</span> -R redis:redis /data/redis6379</span><br><span class="line"></span><br><span class="line">/data/redis6379/conf/redis_6379.conf</span><br><span class="line">/data/redis6379/log/redis_6379.<span class="built_in">log</span></span><br><span class="line">/data/redis6379/data</span><br><span class="line">/usr/local/bin/redis-server</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /data/redis6379/conf/redis_6379.conf &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">bind 0.0.0.0</span></span><br><span class="line"><span class="string">protected-mode no</span></span><br><span class="line"><span class="string">port 6379</span></span><br><span class="line"><span class="string">tcp-backlog 511</span></span><br><span class="line"><span class="string">timeout 0</span></span><br><span class="line"><span class="string">tcp-keepalive 300</span></span><br><span class="line"><span class="string">daemonize yes</span></span><br><span class="line"><span class="string">pidfile /data/redis6379/conf/redis_6379.pid</span></span><br><span class="line"><span class="string">loglevel notice</span></span><br><span class="line"><span class="string">logfile /data/redis6379/log/redis_6379.log</span></span><br><span class="line"><span class="string">databases 16</span></span><br><span class="line"><span class="string">always-show-logo no</span></span><br><span class="line"><span class="string">set-proc-title yes</span></span><br><span class="line"><span class="string">proc-title-template &quot;&#123;title&#125; &#123;listen-addr&#125; &#123;server-mode&#125;&quot;</span></span><br><span class="line"><span class="string">stop-writes-on-bgsave-error yes</span></span><br><span class="line"><span class="string">rdbcompression yes</span></span><br><span class="line"><span class="string">rdbchecksum yes</span></span><br><span class="line"><span class="string">dbfilename dump.rdb</span></span><br><span class="line"><span class="string">rdb-del-sync-files no</span></span><br><span class="line"><span class="string">dir /data/redis6379/data</span></span><br><span class="line"><span class="string">replica-serve-stale-data yes</span></span><br><span class="line"><span class="string">replica-read-only yes</span></span><br><span class="line"><span class="string">repl-diskless-sync no</span></span><br><span class="line"><span class="string">repl-diskless-sync-delay 5</span></span><br><span class="line"><span class="string">repl-diskless-load disabled</span></span><br><span class="line"><span class="string">repl-disable-tcp-nodelay no</span></span><br><span class="line"><span class="string">replica-priority 100</span></span><br><span class="line"><span class="string">acllog-max-len 128</span></span><br><span class="line"><span class="string">lazyfree-lazy-eviction no</span></span><br><span class="line"><span class="string">lazyfree-lazy-expire no</span></span><br><span class="line"><span class="string">lazyfree-lazy-server-del no</span></span><br><span class="line"><span class="string">replica-lazy-flush no</span></span><br><span class="line"><span class="string">lazyfree-lazy-user-del no</span></span><br><span class="line"><span class="string">lazyfree-lazy-user-flush no</span></span><br><span class="line"><span class="string">oom-score-adj no</span></span><br><span class="line"><span class="string">oom-score-adj-values 0 200 800</span></span><br><span class="line"><span class="string">disable-thp yes</span></span><br><span class="line"><span class="string">appendonly no</span></span><br><span class="line"><span class="string">appendfilename &quot;appendonly.aof&quot;</span></span><br><span class="line"><span class="string">appendfsync everysec</span></span><br><span class="line"><span class="string">no-appendfsync-on-rewrite no</span></span><br><span class="line"><span class="string">auto-aof-rewrite-percentage 100</span></span><br><span class="line"><span class="string">auto-aof-rewrite-min-size 64mb</span></span><br><span class="line"><span class="string">aof-load-truncated yes</span></span><br><span class="line"><span class="string">aof-use-rdb-preamble yes</span></span><br><span class="line"><span class="string">lua-time-limit 5000</span></span><br><span class="line"><span class="string">slowlog-log-slower-than 10000</span></span><br><span class="line"><span class="string">slowlog-max-len 128</span></span><br><span class="line"><span class="string">latency-monitor-threshold 0</span></span><br><span class="line"><span class="string">notify-keyspace-events &quot;&quot;</span></span><br><span class="line"><span class="string">hash-max-ziplist-entries 512</span></span><br><span class="line"><span class="string">hash-max-ziplist-value 64</span></span><br><span class="line"><span class="string">list-max-ziplist-size -2</span></span><br><span class="line"><span class="string">list-compress-depth 0</span></span><br><span class="line"><span class="string">set-max-intset-entries 512</span></span><br><span class="line"><span class="string">zset-max-ziplist-entries 128</span></span><br><span class="line"><span class="string">zset-max-ziplist-value 64</span></span><br><span class="line"><span class="string">hll-sparse-max-bytes 3000</span></span><br><span class="line"><span class="string">stream-node-max-bytes 4096</span></span><br><span class="line"><span class="string">stream-node-max-entries 100</span></span><br><span class="line"><span class="string">activerehashing yes</span></span><br><span class="line"><span class="string">client-output-buffer-limit normal 0 0 0</span></span><br><span class="line"><span class="string">client-output-buffer-limit replica 256mb 64mb 60</span></span><br><span class="line"><span class="string">client-output-buffer-limit pubsub 32mb 8mb 60</span></span><br><span class="line"><span class="string">hz 10</span></span><br><span class="line"><span class="string">dynamic-hz yes</span></span><br><span class="line"><span class="string">aof-rewrite-incremental-fsync yes</span></span><br><span class="line"><span class="string">rdb-save-incremental-fsync yes</span></span><br><span class="line"><span class="string">jemalloc-bg-thread yes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">requirepass abcd1234</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-其他修改配置文件："><a href="#4-其他修改配置文件：" class="headerlink" title="4. 其他修改配置文件："></a><strong>4. 其他修改配置文件：</strong></h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sudo</span> <span class="string">vim /etc/redis/6379.conf</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#redis默认处于保护模式，只能通过127.0.0.1本地连接，打开redis安装目录下的redis.conf</span></span><br><span class="line"><span class="comment">#注释bind 127.0.0.1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#redis默认不是以守护线程的方式运行，默认以前端模式运行，修改daemonize为yes，即修改为</span></span><br><span class="line"><span class="attr">daemonize</span> <span class="string">yes</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#修改protected-model为no，即修改为</span></span><br><span class="line"><span class="attr">protected-mode</span> <span class="string">no</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#设置密码</span></span><br><span class="line"><span class="attr">requirepass</span> <span class="string">abcd1234</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/redis8001.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Redis persistent key-value database</span><br><span class="line">After=network.target</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/local/redis/bin/redis-server /data/redis8001/redis8001.conf --supervised systemd</span><br><span class="line">ExecStop=/usr/local/redis/bin/redis-cli -h 127.0.0.1 -p 8001 -a abcd1234 shutdown</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Type=notify</span><br><span class="line">User=redis</span><br><span class="line">Group=redis</span><br><span class="line">RuntimeDirectory=redis</span><br><span class="line">RuntimeDirectoryMode=0755</span><br><span class="line">StandardOutput=journal</span><br><span class="line">StandardError=inherit</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line">LimitNPROC=65536</span><br><span class="line">TimeoutStopSec=0</span><br><span class="line">KillSignal=SIGTERM</span><br><span class="line">SendSIGKILL=no</span><br><span class="line">SuccessExitStatus=0</span><br><span class="line">Restart=always</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>4.手动启动测试代码</strong><br>    sudo vim /etc/init.d/redis_6379</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/redis_6379 stop</span><br><span class="line">/etc/init.d/redis_6379 start</span><br><span class="line">/etc/init.d/redis_6379 restart</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim redis_del_key.sh</span><br><span class="line">chmod +x redis_del_key.sh</span><br><span class="line">./redis_del_key.sh [PASSWORD] 匹配的key*</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">redis_comm=/usr/local/redis/bin/redis-cli</span><br><span class="line">redis_ser01=10.251.201.91</span><br><span class="line">redis_port01=8002</span><br><span class="line">redis_ser02=10.251.201.92</span><br><span class="line">redis_port02=8001</span><br><span class="line">redis_ser03=10.251.201.91</span><br><span class="line">redis_port03=8001</span><br><span class="line"></span><br><span class="line">$redis_comm -c -h $redis_ser01 -p $redis_port01 -a $1 keys $2 | xargs -i ./redis-cli -h $redis_ser01 -p $redis_port01 -a $1 del &#123;&#125;</span><br><span class="line">$redis_comm -c -h $redis_ser02 -p $redis_port02 -a $1 keys $2 | xargs -i ./redis-cli -h $redis_ser02 -p $redis_port02 -a $1 del &#123;&#125;</span><br><span class="line">$redis_comm -c -h $redis_ser03 -p $redis_port03 -a $1 keys $2 | xargs -i ./redis-cli -h $redis_ser03 -p $redis_port03 -a $1 del &#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>三、    错误处理<br>编译错误zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory<br>make MALLOC=libc</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/centos-nginx/" rel="tag"># centos nginx</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/29/centos_install_redis_dump/" rel="prev" title="centOS 安装 redis">
+      <i class="fa fa-chevron-left"></i> centOS 安装 redis
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/29/centos_install_hping3/" rel="next" title="centOS 安装 ddosim">
+      centOS 安装 ddosim <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD-redis-%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">1. 下载 redis 包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%96%E8%AF%91%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">2. 编译与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">4. 其他修改配置文件：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vision.Yi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">الوسوم</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vision.Yi</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

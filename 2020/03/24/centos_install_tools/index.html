@@ -1,37 +1,490 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1、安装常用包与优化配置123456789101112131415161718192021222324252627282930313233343536373839404142434445#本地优化ulimit -n 65535ulimit -u 7270ulimit -i 7270#加大打开文件数的限制（open files）vim &#x2F;etc&#x2F;security&#x2F;limits.conf#加入root">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 安装配置">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/centos_install_tools/index.html">
+<meta property="og:site_name" content="Vision 的空间">
+<meta property="og:description" content="1、安装常用包与优化配置123456789101112131415161718192021222324252627282930313233343536373839404142434445#本地优化ulimit -n 65535ulimit -u 7270ulimit -i 7270#加大打开文件数的限制（open files）vim &#x2F;etc&#x2F;security&#x2F;limits.conf#加入root">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-03-24T01:08:28.000Z">
+<meta property="article:modified_time" content="2022-10-14T09:58:22.881Z">
+<meta property="article:author" content="Vision.Yi">
+<meta property="article:tag" content="centos tools">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/24/centos_install_tools/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>centOS 安装配置 | Vision 的空间</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vision 的空间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centOS 安装配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2022-10-14 17:58:22" itemprop="dateModified" datetime="2022-10-14T17:58:22+08:00">2022-10-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1、安装常用包与优化配置"><a href="#1、安装常用包与优化配置" class="headerlink" title="1、安装常用包与优化配置"></a>1、安装常用包与优化配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#本地优化</span></span><br><span class="line"><span class="built_in">ulimit</span> -n 65535</span><br><span class="line"><span class="built_in">ulimit</span> -u 7270</span><br><span class="line"><span class="built_in">ulimit</span> -i 7270</span><br><span class="line"></span><br><span class="line"><span class="comment">#加大打开文件数的限制（open files）</span></span><br><span class="line">vim /etc/security/limits.conf</span><br><span class="line"><span class="comment">#加入</span></span><br><span class="line">root soft nofile 65535</span><br><span class="line">root hard nofile 65535</span><br><span class="line">* soft nofile 65535</span><br><span class="line">* hard nofile 65535</span><br><span class="line"><span class="comment">#或</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;root soft nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;root hard nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;* soft nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;* hard nofile 65535&quot;</span> &gt;&gt; /etc/security/limits.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#用户进程限制</span></span><br><span class="line">vi /etc/security/limits.d/20-nproc.conf</span><br><span class="line"><span class="comment">#加大普通用户限制  也可以改为unlimited （阿里没修改）</span></span><br><span class="line">*          soft    <span class="built_in">nproc</span>     40960</span><br><span class="line">root       soft    <span class="built_in">nproc</span>     unlimited</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装常用包</span></span><br><span class="line"><span class="comment">#git 最新版本源</span></span><br><span class="line">sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm</span><br><span class="line">sudo yum -y install https://packages.endpointdev.com/rhel/8/main/x86_64/endpoint-repo.noarch.rpm</span><br><span class="line"></span><br><span class="line">sudo yum -y install pcre-devel openssl openssl-devel</span><br><span class="line">sudo yum -y install gcc gcc-c++ kernel-devel</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<p>​    修改防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line"><span class="comment">#防火墙内容</span></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m multiport --dports 80,443,8080,8001 -j ACCEPT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、设置默认SSH端口"><a href="#2、设置默认SSH端口" class="headerlink" title="2、设置默认SSH端口"></a>2、设置默认SSH端口</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config </span><br><span class="line">Port 55888</span><br><span class="line">systemctl restart sshd.service</span><br><span class="line"></span><br><span class="line">ListenAddress 0.0.0.0:22</span><br><span class="line">ListenAddress 0.0.0.0:55888</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、设置安装源"><a href="#3、设置安装源" class="headerlink" title="3、设置安装源"></a>3、设置安装源</h2><p>先备份一下原来的源镜像文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<p>下载新的CentOS-Base.repo，并写入到基础源文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#国内阿里的镜像</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo </span><br></pre></td></tr></table></figure>
+
+<p>YUM缓存生成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all <span class="comment">#清理yum缓存，使设置生效</span></span><br><span class="line">yum makecache <span class="comment">#将服务器上的软件包信息缓存到本地,以提高搜索安装软件的速度</span></span><br><span class="line">yum -y update <span class="comment">#更新本地yum</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、查看网卡流量"><a href="#4、查看网卡流量" class="headerlink" title="4、查看网卡流量"></a>4、查看网卡流量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo iftop -i eth0</span><br></pre></td></tr></table></figure>
+
+<p>界面说明:<br>“&lt;=”与”=&gt;”，表示的是流量的方向</p>
+<p>“TX”：从网卡发出的流量<br>“RX”：网卡接收流量<br>“TOTAL”：网卡发送接收总流量<br>“cum”：iftop开始运行到当前时间点的总流量<br>“peak”：网卡流量峰值<br>“rates”：分别表示最近2s、10s、40s 的平均流量</p>
+<p>可以通过键盘的”q”键退出iftop </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat | grep -i <span class="string">&quot;5222&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo| grep <span class="string">&quot;processor&quot;</span>| <span class="built_in">wc</span> -l</span><br><span class="line"><span class="built_in">cat</span> /proc/meminfo| grep <span class="string">&quot;MemTotal&quot;</span></span><br><span class="line"></span><br><span class="line">yum install -y privoxy</span><br><span class="line">vim /etc/privoxy/config</span><br><span class="line">forward-socks5t / 192.168.0.254:1080</span><br><span class="line">systemctl start privoxy</span><br></pre></td></tr></table></figure>
+
+<p>查找 文件</p>
+<p>find / -name xxxxx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line">sudo fdisk /dev/sdb</span><br><span class="line">n (NEW)</span><br><span class="line">p (主分区)</span><br><span class="line">w (写入)</span><br><span class="line">mkfs -t ext4 /dev/sda3</span><br><span class="line">mount /dev/sdb1 /mnt</span><br><span class="line">用df -TH</span><br><span class="line">vim /etc/fstab</span><br><span class="line">最后加入：</span><br><span class="line">/dev/sdb1 /mnt ext3 defaults 1 2 </span><br><span class="line"> (格式说明：/dev/sdb1 代表哪个分区， /mnt是挂载目录， ext3是该分区的格式，defaults 是挂载时所要设定的参数(只读，读写，启用quota等)，输入defaults包括的参数有(rw、dev、exec、auto、nouser、async) ，1是使用dump是否要记录，0是不要。 2是开机时检查的顺序，是boot系统文件就为1，其他文件系统都为2，如不要检查就为0)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、SSR客户端"><a href="#5、SSR客户端" class="headerlink" title="5、SSR客户端"></a>5、SSR客户端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/the0demiurge/CharlesScripts/master/charles/bin/ssr</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x ssr</span><br><span class="line"><span class="built_in">cp</span> ssr /usr/local/bin/ssr</span><br><span class="line">yum install jq</span><br><span class="line"><span class="comment"># 安装ssr客户端</span></span><br><span class="line">ssr install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令行输入ssr可以弹出帮助</span></span><br><span class="line"><span class="comment"># 配置并启动</span></span><br><span class="line"><span class="comment"># （ 配置文件在 安装目录下/.local/share/shadowsocksr/config.json ）</span></span><br><span class="line">ssr config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">ssr uninstall</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、SS客户端"><a href="#6、SS客户端" class="headerlink" title="6、SS客户端"></a>6、SS客户端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br><span class="line">yum -y install python-pip</span><br><span class="line">yum -y install libsodium</span><br><span class="line">pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U</span><br><span class="line">vim /etc/shadowsocks.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;server&quot;</span>: <span class="string">&quot;srv01.gohomevs.xyz&quot;</span>,</span><br><span class="line">      <span class="string">&quot;server_port&quot;</span>: 50012,</span><br><span class="line">      <span class="string">&quot;password&quot;</span>: <span class="string">&quot;mzjeCj8gVu&quot;</span>,</span><br><span class="line">      <span class="string">&quot;method&quot;</span>: <span class="string">&quot;chacha20-ietf-poly1305&quot;</span>,</span><br><span class="line">    <span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line">    <span class="string">&quot;timeout&quot;</span>:600</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#Start the ShadowSocks Client Daemon</span></span><br><span class="line"></span><br><span class="line">sudo sslocal -c /etc/shadowsocks.json -d start</span><br><span class="line"></span><br><span class="line"><span class="comment">#Make sure everything is working so far</span></span><br><span class="line">curl --socks5-hostname 127.0.0.1:1080 http://wtfismyip.com/json</span><br><span class="line"></span><br><span class="line"><span class="comment">#Now you can set your current Terminal session to proxy everything through ShadowSocks:</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://127.0.0.1:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=socks5://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> http_proxy=socks5://192.168.12.251:1080</span><br><span class="line"><span class="built_in">export</span> https_proxy=socks5://192.168.12.251:1080</span><br><span class="line"></span><br><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://192.168.12.251:1080&#x27;</span></span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://192.168.12.251:1080&#x27;</span></span><br><span class="line"></span><br><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker pull ghcr.io/shadowsocks/sslocal-rust:latest</span><br><span class="line">docker run --name sslocal-rust \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 1080:1080/tcp \</span><br><span class="line">  -v /data/shadowsocks-rust:/etc/shadowsocks-rust \</span><br><span class="line">  -dit ghcr.io/shadowsocks/sslocal-rust:latest</span><br><span class="line">  </span><br><span class="line">docker run --name sslocal-rust \</span><br><span class="line">  -p 1080:1080/tcp \</span><br><span class="line">  -v /data/shadowsocks-rust:/etc/shadowsocks-rust \</span><br><span class="line">  -dit ghcr.io/shadowsocks/sslocal-rust:latest</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7、Privoxy配置"><a href="#7、Privoxy配置" class="headerlink" title="7、Privoxy配置"></a>7、Privoxy配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Amazon 安装epel库的命令是：</span></span><br><span class="line"><span class="comment"># emmm，我忘了，cli会提示你</span></span><br><span class="line">sudo amazon-linux-extras install epel</span><br><span class="line"> </span><br><span class="line">yum install privoxy</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、全局代理方式"><a href="#7、全局代理方式" class="headerlink" title="7、全局代理方式"></a>7、全局代理方式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以全局模式运行代理</span></span><br><span class="line"><span class="comment"># 代理模式同其他平台上方式，将所有http/https请求走代理服务，如果需要全局代理的话按照如下操作即可，如果要使用PAC模式，请跳过此部分。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加本地ssr服务到配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br><span class="line"></span><br><span class="line"><span class="comment"># Privoxy 默认监听端口是是8118</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># no_proxy是不经过privoxy代理的地址</span></span><br><span class="line"><span class="comment"># 只能填写具体的ip、域名后缀，多个条目之间使用&#x27;,&#x27;逗号隔开</span></span><br><span class="line"><span class="comment"># 比如: export no_proxy=&quot;localhost, 192.168.1.1, ip.cn, chinaz.com&quot;</span></span><br><span class="line"><span class="comment"># 访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久生效的话就要写入/etc/profile，非当前用户登陆才生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">systemctl start privoxy.service</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h2 id="6、代理测试"><a href="#6、代理测试" class="headerlink" title="6、代理测试"></a>6、代理测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 访问各大网站，如果都有网页源码输出说明代理没问题</span></span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br><span class="line">curl -sL www.google.com.hk</span><br><span class="line">curl -sL www.google.co.jp</span><br><span class="line">curl -sL www.youtube.com</span><br><span class="line">curl -sL mail.google.com</span><br><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL twitter.com</span><br><span class="line">curl -sL www.wikipedia.org</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、用户管理"><a href="#7、用户管理" class="headerlink" title="7、用户管理"></a>7、用户管理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#wheel默认有sudo权限，不过需要输入本帐号密码</span><br><span class="line">adduser samex           //添加一个新用户，名字叫Sirius</span><br><span class="line">passwd samex            //设置用户密码</span><br><span class="line">gpasswd -a samex wheel  //把用户添加到wheel组</span><br><span class="line">lid -g wheel             //查询组里所有用户</span><br><span class="line">userdel -r samex        //删除用户和相应的目录</span><br><span class="line">gpasswd -d samex wheel  //把用户移出wheel组</span><br><span class="line"></span><br><span class="line">#或者直接定义帐号有sudo权限，并且可以NOPASSWD</span><br><span class="line">chmod 755 /etc/sudoers</span><br><span class="line">vim /etc/sudoer</span><br><span class="line">#加入</span><br><span class="line">samex ALL=(ALL) NOPASSWD: ALL</span><br><span class="line"></span><br><span class="line">chmod 440 /etc/sudoers</span><br><span class="line"></span><br><span class="line">#查看所有群组</span><br><span class="line">cat /etc/group</span><br><span class="line"></span><br><span class="line">#查看所有用户</span><br><span class="line">cat /etc/shadow</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、创建公钥私钥"><a href="#8、创建公钥私钥" class="headerlink" title="8、创建公钥私钥"></a>8、创建公钥私钥</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br><span class="line"></span><br><span class="line">mkdir .ssh</span><br><span class="line">touch ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>如果出现无法登录可检查权限 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 .ssh/</span><br><span class="line">chmod 644 .ssh/authorized_keys</span><br><span class="line">chmod 600 .ssh/rsa_id</span><br><span class="line">chmod 644 .ssh/rsa_id.pub</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9、翻墙"><a href="#9、翻墙" class="headerlink" title="9、翻墙"></a>9、翻墙</h2><p>如果你的服务器能够访问外网，就可以用来翻墙，这里面我们用到的是<a target="_blank" rel="noopener" href="https://www.bitvise.com/port-forwarding">ssh port forwarding</a>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NCD 0.0.0.0:10024 用户名@服务器地址</span><br></pre></td></tr></table></figure>
+
+<p>这样你就有了一个socket proxy 地址:127.0.0.1 端口:10024</p>
+<h2 id="10、上传下载代码"><a href="#10、上传下载代码" class="headerlink" title="10、上传下载代码"></a>10、上传下载代码</h2><p>只要你会用cp就应该会scp<br>语法: scp 用户名@地址:{from} {to}</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp sirius@54.174.51.64:/home/sirius/articles.csv .</span><br><span class="line">scp ./articles.csv sirius@54.174.51.64:/home/sirius/</span><br></pre></td></tr></table></figure>
+
+<h2 id="11、网卡常用操作命令"><a href="#11、网卡常用操作命令" class="headerlink" title="11、网卡常用操作命令"></a>11、网卡常用操作命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmcli c show <span class="comment">#查看所有网络的连接信息</span></span><br><span class="line">nmcli d  <span class="comment">#网卡信息</span></span><br><span class="line">nmcli con del eno33554960</span><br><span class="line">nmcli con reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="12、关闭SWAP"><a href="#12、关闭SWAP" class="headerlink" title="12、关闭SWAP"></a>12、关闭SWAP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab </span><br><span class="line"></span><br><span class="line"><span class="comment"># 把swap分区的那行记录注释掉即可</span></span><br><span class="line"><span class="comment"># /dev/mapper/centos-swap  swap  swap  defaults  0 0</span></span><br></pre></td></tr></table></figure>
+
+<p>设置swappiness参数（默认:30）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/sys/vm/swappiness</span><br><span class="line">sudo sysctl -w vm.swappiness=0</span><br></pre></td></tr></table></figure>
+
+<h2 id="13、配置SELinux"><a href="#13、配置SELinux" class="headerlink" title="13、配置SELinux"></a>13、配置SELinux</h2><p>这个是Linux安全模块，在云服务器都关闭了，作用不大可以关。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#永久关闭</span></span><br><span class="line">sed -i <span class="string">&#x27;s/SELINUX=enforcing/SELINUX=disabled/g&#x27;</span> /etc/selinux/config</span><br><span class="line"><span class="comment">#临时关闭，不需重启</span></span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="14、设置时区"><a href="#14、设置时区" class="headerlink" title="14、设置时区"></a>14、设置时区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<h2 id="15、设置服务器名称"><a href="#15、设置服务器名称" class="headerlink" title="15、设置服务器名称"></a>15、设置服务器名称</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname srv04-clouddisk</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="16、设置vim显示行号和高亮"><a href="#16、设置vim显示行号和高亮" class="headerlink" title="16、设置vim显示行号和高亮"></a>16、设置vim显示行号和高亮</h2><h3 id="设置所有用户"><a href="#设置所有用户" class="headerlink" title="设置所有用户"></a>设置所有用户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/vimrc</span><br></pre></td></tr></table></figure>
+
+<p>在最后加上两行</p>
+<p><code>syntac on</code>：设置高亮<br><code>set nu</code>：设置行号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syntax on</span><br><span class="line">set nu</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置nignx-conf文件高亮"><a href="#设置nignx-conf文件高亮" class="headerlink" title="设置nignx conf文件高亮"></a>设置nignx conf文件高亮</h3><ul>
+<li><p>第一步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.vim/syntax/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.vim.org/scripts/download_script.php?src_id=19394 -O ~/.vim/syntax/nginx.vim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步<br>下面代码有几行，复制一起执行吧</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; ~/.vim/filetype.vim &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">au BufRead,BufNewFile /etc/nginx/*,/etc/nginx/conf.d/*,/usr/local/nginx/conf/* if &amp;ft == &#x27;&#x27; | setfiletype nginx | endif</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果上面设置了还不行，<code>reboot</code>重启linux看看</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/centos-tools/" rel="tag"># centos tools</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/24/ubuntu_install_ss/" rel="prev" title="ubuntu 安装配置">
+      <i class="fa fa-chevron-left"></i> ubuntu 安装配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/24/centos_install_ssr/" rel="next" title="centOS 安装配置">
+      centOS 安装配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%8C%85%E4%B8%8E%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">1、安装常用包与优化配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4SSH%E7%AB%AF%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">2、设置默认SSH端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%AE%BE%E7%BD%AE%E5%AE%89%E8%A3%85%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">3、设置安装源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%E6%B5%81%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">4、查看网卡流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81SSR%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">5.</span> <span class="nav-text">5、SSR客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81SS%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">6.</span> <span class="nav-text">6、SS客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81Privoxy%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">7、Privoxy配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">7、全局代理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E4%BB%A3%E7%90%86%E6%B5%8B%E8%AF%95"><span class="nav-number">9.</span> <span class="nav-text">6、代理测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">7、用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81%E5%88%9B%E5%BB%BA%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5"><span class="nav-number">11.</span> <span class="nav-text">8、创建公钥私钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81%E7%BF%BB%E5%A2%99"><span class="nav-number">12.</span> <span class="nav-text">9、翻墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10%E3%80%81%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%A0%81"><span class="nav-number">13.</span> <span class="nav-text">10、上传下载代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11%E3%80%81%E7%BD%91%E5%8D%A1%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">14.</span> <span class="nav-text">11、网卡常用操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12%E3%80%81%E5%85%B3%E9%97%ADSWAP"><span class="nav-number">15.</span> <span class="nav-text">12、关闭SWAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13%E3%80%81%E9%85%8D%E7%BD%AESELinux"><span class="nav-number">16.</span> <span class="nav-text">13、配置SELinux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14%E3%80%81%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA"><span class="nav-number">17.</span> <span class="nav-text">14、设置时区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15%E3%80%81%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0"><span class="nav-number">18.</span> <span class="nav-text">15、设置服务器名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16%E3%80%81%E8%AE%BE%E7%BD%AEvim%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7%E5%92%8C%E9%AB%98%E4%BA%AE"><span class="nav-number">19.</span> <span class="nav-text">16、设置vim显示行号和高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7"><span class="nav-number">19.1.</span> <span class="nav-text">设置所有用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnignx-conf%E6%96%87%E4%BB%B6%E9%AB%98%E4%BA%AE"><span class="nav-number">19.2.</span> <span class="nav-text">设置nignx conf文件高亮</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vision.Yi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">الوسوم</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vision.Yi</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

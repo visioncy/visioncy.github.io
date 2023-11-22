@@ -1,37 +1,410 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 下载与安装12345678910111213141516171819202122232425262728293031323334353637383940sudo wget -O gitea https:&#x2F;&#x2F;dl.gitea.io&#x2F;gitea&#x2F;1.12.6&#x2F;gitea-1.12.6-linux-amd64#sudo wget -O gitea https:&#x2F;&#x2F;dl.gitea.io&#x2F;gitea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 安装 gitea">
+<meta property="og:url" content="http://yoursite.com/2019/11/08/centos_install_gitea/index.html">
+<meta property="og:site_name" content="Vision 的空间">
+<meta property="og:description" content="1. 下载与安装12345678910111213141516171819202122232425262728293031323334353637383940sudo wget -O gitea https:&#x2F;&#x2F;dl.gitea.io&#x2F;gitea&#x2F;1.12.6&#x2F;gitea-1.12.6-linux-amd64#sudo wget -O gitea https:&#x2F;&#x2F;dl.gitea.io&#x2F;gitea">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-11-08T09:26:25.000Z">
+<meta property="article:modified_time" content="2022-11-21T09:41:50.774Z">
+<meta property="article:author" content="Vision.Yi">
+<meta property="article:tag" content="centos gitea">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/08/centos_install_gitea/">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>centOS 安装 gitea | Vision 的空间</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Vision 的空间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/centos_install_gitea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centOS 安装 gitea
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">نُشر في</span>
+
+              <time title="أُنشأ: 2019-11-08 17:26:25" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:25+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">عُدل في</span>
+                <time title="عُدل: 2022-11-21 17:41:50" itemprop="dateModified" datetime="2022-11-21T17:41:50+08:00">2022-11-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1. 下载与安装"></a><strong>1. 下载与安装</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O gitea https://dl.gitea.io/gitea/1.12.6/gitea-1.12.6-linux-amd64</span><br><span class="line"><span class="comment">#sudo wget -O gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64</span></span><br><span class="line">sudo <span class="built_in">chmod</span> +x gitea</span><br><span class="line"><span class="built_in">mkdir</span> /usr/local/gitea/</span><br><span class="line"><span class="built_in">mv</span> gitea /usr/local/gitea/</span><br><span class="line"></span><br><span class="line"><span class="comment">#官网建议以下创建用户，但是测试发现无法ssh（由于--system用户的uid&lt;1000 ），建议使用adduser git即可</span></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/git</span><br><span class="line"><span class="built_in">chown</span> -R git:git /home/git</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/gitea/&#123;data,<span class="built_in">log</span>,conf&#125;</span><br><span class="line"><span class="built_in">touch</span> /data/gitea/conf/app.ini</span><br><span class="line"><span class="built_in">chown</span> -R git:git /data/gitea/</span><br><span class="line"><span class="built_in">chmod</span> -R 750 /data/gitea/</span><br><span class="line"><span class="built_in">chown</span> root:git /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 770 /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 640 /data/gitea/conf/app.ini</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control 2&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/gitea \</span><br><span class="line">   gitea</span><br><span class="line"> sudo useradd \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --create-home \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /usr/lib/systemd/system/gitea.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=Gitea (Git with a cup of tea)</span></span><br><span class="line"><span class="string">After=syslog.target</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="string">#LimitNOFILE=65535</span></span><br><span class="line"><span class="string">RestartSec=2s</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=git</span></span><br><span class="line"><span class="string">Group=git</span></span><br><span class="line"><span class="string">WorkingDirectory=/data/gitea/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ExecStart=/usr/local/gitea/gitea web --config /data/gitea/conf/app.ini</span></span><br><span class="line"><span class="string">Restart=always</span></span><br><span class="line"><span class="string">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<p>Using a text editor of your choice, open this newly create file and populate it with the following.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/gitea.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Gitea (Git with a cup of tea)</span><br><span class="line">After=network.target</span><br><span class="line">After=mariadb.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># Modify these two values and uncomment them if you have</span></span><br><span class="line"><span class="comment"># repos with lots of files and get an HTTP error 500 because</span></span><br><span class="line"><span class="comment"># of that</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="comment">#LimitNOFILE=65535</span></span><br><span class="line">RestartSec=2s</span><br><span class="line">Type=simple</span><br><span class="line">User=git</span><br><span class="line">Group=git</span><br><span class="line">WorkingDirectory=/data/gitea/</span><br><span class="line">ExecStart=/usr/local/gitea/gitea web -c /data/gitea/conf/app.ini</span><br><span class="line">Restart=always</span><br><span class="line">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span><br><span class="line"><span class="comment"># If you want to bind Gitea to a port below 1024 uncomment</span></span><br><span class="line"><span class="comment"># the two values below</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#CapabilityBoundingSet=CAP_NET_BIND_SERVICE</span></span><br><span class="line"><span class="comment">#AmbientCapabilities=CAP_NET_BIND_SERVICE</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>Enable and start Gitea at boot.</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl enable gitea
+sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
+<pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
+<pre><code>http://YOUR_SERVER_IP:3000/install</code></pre><h2 id="2-备份脚本"><a href="#2-备份脚本" class="headerlink" title="2.备份脚本"></a>2.备份脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : backupgitea.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">GITBAK=gitea<span class="string">&quot;_&quot;</span>$(<span class="built_in">date</span> <span class="string">&quot;+%Y_%m_%d_%H_%M_%S&quot;</span>)</span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line">tar -zcvf <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz -P /data/gitea/ </span><br><span class="line"><span class="built_in">split</span> -b 2048M -d -a 1 <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz.</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -<span class="built_in">type</span> f -name <span class="string">&quot;<span class="variable">$GITBAK</span>.tar.gz.*&quot;</span> -<span class="built_in">exec</span> /usr/local/bin/bypy upload &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-清理文件"><a href="#3-清理文件" class="headerlink" title="3.清理文件"></a>3.清理文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : cleanbackup.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line"></span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz.*&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-定时任务"><a href="#4-定时任务" class="headerlink" title="4.定时任务"></a>4.定时任务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * *  /data/crontab/backupgitea.sh &gt;&gt; /var/log/daily-backup.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/centos-gitea/" rel="tag"># centos gitea</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/08/centos_install_haproxy/" rel="prev" title="centOS 安装 turnserver">
+      <i class="fa fa-chevron-left"></i> centOS 安装 turnserver
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/08/centos_install_nginx/" rel="next" title="centOS 安装 nginx">
+      centOS 安装 nginx <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">1. 下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">2.备份脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B8%85%E7%90%86%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">3.清理文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">4.定时任务</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Vision.Yi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">الوسوم</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vision.Yi</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
