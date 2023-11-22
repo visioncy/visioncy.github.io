@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Node的升级因为之前用的nvm，就比较简单， 1234nvm ls-remotenvm install --lts     #安装最新的lts版本吧，比较推荐nvm ls                #查看现在安装的哪些版本nvm uninstall v8.12.0 #找到旧的版本删除掉吧  Hexo的升级 全局升级hexo-cli，先hexo version查看当前版本，然后npm inst">
+  <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo升级指南">
 <meta property="og:url" content="http://yoursite.com/2023/11/22/Hexo_upgrade/index.html">
 <meta property="og:site_name" content="Vision 的空间">
-<meta property="og:description" content="Node的升级因为之前用的nvm，就比较简单， 1234nvm ls-remotenvm install --lts     #安装最新的lts版本吧，比较推荐nvm ls                #查看现在安装的哪些版本nvm uninstall v8.12.0 #找到旧的版本删除掉吧  Hexo的升级 全局升级hexo-cli，先hexo version查看当前版本，然后npm inst">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-22T09:08:15.000Z">
-<meta property="article:modified_time" content="2023-11-22T10:09:50.970Z">
+<meta property="article:modified_time" content="2023-11-22T10:15:36.775Z">
 <meta property="article:author" content="Vision.Yi">
 <meta property="article:tag" content="hexo private">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-11-22 17:08:15 / 修改时间：18:09:50" itemprop="dateCreated datePublished" datetime="2023-11-22T17:08:15+08:00">2023-11-22</time>
+              <time title="创建时间：2023-11-22 17:08:15 / 修改时间：18:15:36" itemprop="dateCreated datePublished" datetime="2023-11-22T17:08:15+08:00">2023-11-22</time>
             </span>
 
           
@@ -189,19 +189,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Node的升级"><a href="#Node的升级" class="headerlink" title="Node的升级"></a>Node的升级</h1><p>因为之前用的nvm，就比较简单，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote</span><br><span class="line">nvm install --lts     #安装最新的lts版本吧，比较推荐</span><br><span class="line">nvm ls                #查看现在安装的哪些版本</span><br><span class="line">nvm uninstall v8.12.0 #找到旧的版本删除掉吧</span><br></pre></td></tr></table></figure>
-
-<h1 id="Hexo的升级"><a href="#Hexo的升级" class="headerlink" title="Hexo的升级"></a>Hexo的升级</h1><ol>
-<li>全局升级hexo-cli，先hexo version查看当前版本，然后npm install -g hexo-cli，再次hexo version查看是否升级成功。如果hexo不能直接识别运行，改为npx hexo。</li>
-<li>使用npm-check，检查系统中的插件是否有升级的。</li>
-<li>使用npm-upgrade，升级系统中的相关插件。</li>
-<li>npm update -g，检查升级npm本身。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo version</span><br><span class="line"></span><br><span class="line">npm install -g npm-check</span><br><span class="line">npm-check</span><br><span class="line"></span><br><span class="line">npm install -g npm-upgrade</span><br><span class="line">npm-upgrade</span><br><span class="line"></span><br><span class="line">npm update -g</span><br><span class="line">npm install -g npm</span><br><span class="line"></span><br><span class="line">hexo clean #清理hexo数据并重新生成页面并部署</span><br><span class="line">hexo g -s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>经过以上这些命令，整体翻新就差不多了，theme的升级，我这边是删除了原来的主题目录，重新进行了拉取，注意保留配置文件，重新配置即可，就不详述了。</p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="a81983076d9417fcdfbe526be4d153a2f8b08513583d462e92c46ff6605ce6d8">10d79030e8222445804370796b90fca1b3149e2c2a0f36d6b4ea04e548758c214646473b26c01cd01607c8a8d7a9b0130c89f2149f34c94fb81148acbfbe0c70415c5320ff213125a527b4a46ad2b01c35113a01e070a90f039f5ede80cadd93c4682ceb4418d37a20cdf7bcbd473a897cad964391fc87c23ef5c9d40deaa80adcf5ce8e100e8590d8927a80debf2507a46c878c457f9ac3bc58d60530bd3b9dbb0cd0c2a94edc1e148254da843be16fa2cc2e867543097b15d9dee967afb9c75523e0e9acfdf28dacfe9d802689a5e7e22beff6e46f92ed11e5cff8f07b4e7a5081eb3147d66cf4625cea0c85c493eac97a7041411f7b0b2ab3307370e15369210047a3dfa161ea1d822fbeb8e629b8e3a449836f7a2563bf0fe79750cd9187b1c623e8a3fa1f15ecdd4efc643e235d9f4512e114d05388e50f8c5a64eeda4136510e7b2a4607ffa6abfdb7d42aac2a282f7a3730e98f1b78681fe3f0f41d6c6d076b0e5b0b38e0441cd9560e9b307e6e6a7fee7369022efb2ad2cd15104e7027434039e9525031f528fc3591ba03c0dd5853aefcbfd6ef75b55a46d28704e36725ee89f1b4bea512c5b400f2401c5db733588bf9c3b79e4d06bff4f2cfd441199758102fea714682627b065e367c2fadf1226a3e2b3e9bb7cc115afacb832a00611b7aeb842e4bb401667808c98b91d473bb576db544ab7abf2bebe964a822a5031b594526cd10409e22e58d80c297031ef2f3ee0cf3dd3075d851f692ee0d2ba37d052c7e6d325a04a8140553aaaa4ece88557c30ab63a875f970618b1baa07edb7851f7c4246ed6bbf07e2e4cd8ed62f97a94039a492005352a0291c5f0b77e377a0c08ff0eecc2e5c5dbecb76ab7f8a3caa0867f2e92f05cc0e7b1200a0fba3f703fef0afad35ef8e7ca2bff3f6f68b3b0e86c74c2f838e240b5d8b8321b09b78cd3217c08a5bc9e3983ed099f4a3605a13dc44082e7016cbdb9759b6f6ca9402df48f5dba045efff9f21ff7ce8176f0d4f15ab132b1659a43de4eb97eb63621185ff3c48593b1e835e7275b0b4e3e03631d2935cbb60df8c57446bb7fb806c5e730e29c65a8088dbe9a754f1b8b16a38d4675f5a94dd23e6eb0e47d6345a45f2820c8b8054b8cae390aa776ef068c8ed6efb3489b213b4b22ded69ae8f7dc154e3a69a2b459baf6b0996b09c093ad42cab0e8ff3409f833bbb201fb086043746c2389cfe5a2b06fb6ced895c9f28221cc8ebdacbe5ba5c5c7bb2d6fb10fa51f3d7936ea19afc5838a137e40acc3aaeca3b740594e97f96c0b9273bf586341bfc4bbc37802b7e0c90c3af93337da7069a8128611b75dc75921c5a79f26d5c138c93b6f676bdb996fdd1de57dc836d42cbee5b423a531d5e7250060737ad3cd07faabc45bfd5188783c8e9fa9e5783a497c1eb40c2f08ae76ad3196d9e238152c86e5d3a1a6d1b070b03b98f9f2e562a5e9ed73a5d3d9761daa5ddc768a8159218dda6e304a1ba3e7a56f20f8db87ddedd06af1c42101a20724436dd3c0199eae34ff31ba1824136b0aefb125f5444fb9c54a21283686c54ce9f2f6e6dd0fc13930705358221c738ac6a96ea899f5d9367da61e01f6cf7543cf847dd3733200fb58eb09dd5b4681196c891ec0e0a454f2cf66957767d61e8fe08a0c330bf5b424f606d0075c4d8df733cfd4d4e199e92745191bb5502ab94c6e9bae97732880200005abcf1fc7feeaf757e97c89166cf7a145d34be6ea72719f5c89972696eac9b52d9111163816557c0fd50357ca35ad69adaf533349d7c343579fcbe0f2c401534e826deb6dc8eec02b88992642d0e53cc6259c341058f3d76c1838e61c201f07a16776dd418becc945437ddbf6a0a607ab102dce8adb4bb7556187c5912d7e36d99b1d6d83956e9bf5348c01f5522583d4768b223e7994e4b1280d95b0b1974efb9567a9a86531b0366b7c1e5b43b2bca0812f4c770495553ffd622c5952259a397cac749882a3579fc373619cf685f9825b855bd04240ba24ad18a4cfa30bed7fe0ddbc2aa220f366092be4ce58be86242f40db2bade8ad8e5b442c3c34d27a2ccc0cbc7e31379916441b7e9c49777b2d24ae2d2f8f857224e23c1945ab5a9c006f29934bf6cf1fbad54c7aec7752ea302db203101eea0a9c92b99b16309db35a1cbdf636d5772e9bbd2ab6570dcc42bf57bb4a9884d00a6e77337a9e50cb619811d6fd5cceeae9266956e279bdfd950d3a88670b2d96f58bafc2c4aff17c76d21dbd28ed901b9a3153070673f171700741f74f3ab4cb5b2871e4653e2198a45e360c6de20aed29ce9603d9cffc43b790e9901a6700ff477a67e32b8f6814ddc8601be82195f115a89aa7fc43f60082ba0fa8d90acd3ffdda4051703cc28adb07e092c326acc5c6906a8a1ffccc8a97ef4419da4ffb0eec37b9ea1dac3f96460250d21b39610fb3b0702618f3e20c271259dcc8170a5bb3fe347fa780a66ffc8efdd946939687629b58c26576af2d0ce91838d651c5a35ca666feed77a99a9b760aee12842c4acadfcd3e95b7dcc852261fda8c2bbad64b2521e05f1f2c955a25115d304a495504ba56d3ffe354c1dc28884f8f6c4ae81679277e40c8e8e16931f0d3ef1f19220ad09aa1775cbfc116caa5edfaa718c009689d18a54310e53dfdc39552babfc8c8e0fe96222ff43c0aa39241c4655f322d2f792257296d8a7aa0866aed6b7dc8794178d0db42319cde1f21501face10c7df5c8e1c5b410eb33866c290609a11c8181c4addc3722c84129f23bf6cf2ef38a00bee8141f54658c38ad7fbb0d307e9a8f4f3ccd1e32810edc81981296878c81b8fd2b63ab59f9ef8bc4591ecd7ab1e722a111967c2a0e1d66d75cf30ea482e34947c50a74ec4390c33d26fab800534bd17721d1c6b5961e6e85bfb6f94ab4ef6bdeb98aabf91fae89ff648988df74e9432d4bfe77e79422f073cb2252ededd865aca91843287c70a9b51ed874951ac8ce838a3df691e23fff3af1d3b77fb535fed752619acfa5b8e3675d9ac5285ee0e23975270d1ff907215ee8551de59e599b2821c5630add55eff086d74cf14b5fadd56691e77aab3f06660baa0d601b9c0c9512def8146a2d2d34cc686d79c2e21feb059e4d1c7486725e34034c2ac10c882a0092734469595931dfa17c4c3100ed0ae04466ad472adbae9eb6235f2bcc732c7d13f6fa3b1f8a34a8b4fd1fa0bbf7becf7b13f34ea9888f07718c33730c6cfbf39147bcbb4db92e95569751b49360c36ca7d563f55a6ffc32fb460e5abfa1166f40158d644cbd49d35c70b4377aa5dd1ac28efb080088ebbb59d8e457540505b43253f124dd9c19102d51da624a493c94869d052861b3b873eaacc413a4f104994af1bfee23ec04f54526bf9bf95a09af097010c8dc54ec1dfb83d28f95ad8cc575e72d5280da5f85521a691b4b8e734f5201d5fde663819e30383bb684857996e4d533073300e3f47f27fec0aecf12ea33e9a84dac4e79fd011c60452875ecb4f01c010920e9ac18fddf282bc282084a8887e885a57d670743685a3a40685871d39d789dd3a1bc4fabd13bc75d407d9f447bba4b3fc49de30f835bb3da834ea1f8175eda162aebdc951f2f2d4685e580f443cc4366afc949a1fdf234fbd9ea38c526a77b52e1f40aae8572bb175a4d499436fb62c2c72d0537c2e731770d8dbd71a18a48c349eee83402f49ee596c27226b5e458036957d905aff52e95124fb06f7ed3f7bb743ac982fe740f5617cc2d98b7ceb89ce2aaee112ea5fca3fa1717e4aba154260cadd01b85723d5d8a8c097c9f78f0eef9a48370d5cf402fbef302621bba31110d8ead633c1c53b2fb8a6b6396f774caf15059bd7d39c1a28f3e890b8</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -281,7 +280,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Node%E7%9A%84%E5%8D%87%E7%BA%A7"><span class="nav-number">1.</span> <span class="nav-text">Node的升级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo%E7%9A%84%E5%8D%87%E7%BA%A7"><span class="nav-number">2.</span> <span class="nav-text">Hexo的升级</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
