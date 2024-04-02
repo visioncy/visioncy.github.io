@@ -132,70 +132,10 @@ cd nginx-1.24.0</code></pre><h2 id="2-配置与编译"><a href="#2-配置与编�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_nginx/" data-id="cluihrd18000zioux028d5ldv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_nginx/" data-id="cluii05gg000zrsux9x3s7983" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-nginx/" rel="tag">centos nginx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_gitea" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_gitea/" class="article-date">
-  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_gitea/">centOS 安装 gitea</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1. 下载与安装"></a><strong>1. 下载与安装</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O gitea https://dl.gitea.io/gitea/1.12.6/gitea-1.12.6-linux-amd64</span><br><span class="line"><span class="comment">#sudo wget -O gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64</span></span><br><span class="line">sudo <span class="built_in">chmod</span> +x gitea</span><br><span class="line"><span class="built_in">mkdir</span> /usr/local/gitea/</span><br><span class="line"><span class="built_in">mv</span> gitea /usr/local/gitea/</span><br><span class="line"></span><br><span class="line"><span class="comment">#官网建议以下创建用户，但是测试发现无法ssh（由于--system用户的uid&lt;1000 ），建议使用adduser git即可</span></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/git</span><br><span class="line"><span class="built_in">chown</span> -R git:git /home/git</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/gitea/&#123;data,<span class="built_in">log</span>,conf&#125;</span><br><span class="line"><span class="built_in">touch</span> /data/gitea/conf/app.ini</span><br><span class="line"><span class="built_in">chown</span> -R git:git /data/gitea/</span><br><span class="line"><span class="built_in">chmod</span> -R 750 /data/gitea/</span><br><span class="line"><span class="built_in">chown</span> root:git /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 770 /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 640 /data/gitea/conf/app.ini</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control 2&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/gitea \</span><br><span class="line">   gitea</span><br><span class="line"> sudo useradd \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --create-home \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /usr/lib/systemd/system/gitea.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=Gitea (Git with a cup of tea)</span></span><br><span class="line"><span class="string">After=syslog.target</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="string">#LimitNOFILE=65535</span></span><br><span class="line"><span class="string">RestartSec=2s</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=git</span></span><br><span class="line"><span class="string">Group=git</span></span><br><span class="line"><span class="string">WorkingDirectory=/data/gitea/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ExecStart=/usr/local/gitea/gitea web --config /data/gitea/conf/app.ini</span></span><br><span class="line"><span class="string">Restart=always</span></span><br><span class="line"><span class="string">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>Using a text editor of your choice, open this newly create file and populate it with the following.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/gitea.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Gitea (Git with a cup of tea)</span><br><span class="line">After=network.target</span><br><span class="line">After=mariadb.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># Modify these two values and uncomment them if you have</span></span><br><span class="line"><span class="comment"># repos with lots of files and get an HTTP error 500 because</span></span><br><span class="line"><span class="comment"># of that</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="comment">#LimitNOFILE=65535</span></span><br><span class="line">RestartSec=2s</span><br><span class="line">Type=simple</span><br><span class="line">User=git</span><br><span class="line">Group=git</span><br><span class="line">WorkingDirectory=/data/gitea/</span><br><span class="line">ExecStart=/usr/local/gitea/gitea web -c /data/gitea/conf/app.ini</span><br><span class="line">Restart=always</span><br><span class="line">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span><br><span class="line"><span class="comment"># If you want to bind Gitea to a port below 1024 uncomment</span></span><br><span class="line"><span class="comment"># the two values below</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#CapabilityBoundingSet=CAP_NET_BIND_SERVICE</span></span><br><span class="line"><span class="comment">#AmbientCapabilities=CAP_NET_BIND_SERVICE</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>Enable and start Gitea at boot.</p>
-<pre><code>sudo systemctl daemon-reload
-sudo systemctl enable gitea
-sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
-<pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
-<pre><code>http://YOUR_SERVER_IP:3000/install</code></pre><h2 id="2-备份脚本"><a href="#2-备份脚本" class="headerlink" title="2.备份脚本"></a>2.备份脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : backupgitea.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">GITBAK=gitea<span class="string">&quot;_&quot;</span>$(<span class="built_in">date</span> <span class="string">&quot;+%Y_%m_%d_%H_%M_%S&quot;</span>)</span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line">tar -zcvf <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz -P /data/gitea/ </span><br><span class="line"><span class="built_in">split</span> -b 2048M -d -a 1 <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz.</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -<span class="built_in">type</span> f -name <span class="string">&quot;<span class="variable">$GITBAK</span>.tar.gz.*&quot;</span> -<span class="built_in">exec</span> /usr/local/bin/bypy upload &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-清理文件"><a href="#3-清理文件" class="headerlink" title="3.清理文件"></a>3.清理文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : cleanbackup.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line"></span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz.*&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-定时任务"><a href="#4-定时任务" class="headerlink" title="4.定时任务"></a>4.定时任务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * *  /data/crontab/backupgitea.sh &gt;&gt; /var/log/daily-backup.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_gitea/" data-id="cluihrd0y000aiouxh61j3so5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
 
     </footer>
   </div>
@@ -302,10 +242,70 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_haproxy/" data-id="cluihrd0z000dioux19l9fdop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_haproxy/" data-id="cluii05g5000arsux1cax4ibj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos_install_gitea" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/centos_install_gitea/" class="article-date">
+  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/centos_install_gitea/">centOS 安装 gitea</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1. 下载与安装"></a><strong>1. 下载与安装</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O gitea https://dl.gitea.io/gitea/1.12.6/gitea-1.12.6-linux-amd64</span><br><span class="line"><span class="comment">#sudo wget -O gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64</span></span><br><span class="line">sudo <span class="built_in">chmod</span> +x gitea</span><br><span class="line"><span class="built_in">mkdir</span> /usr/local/gitea/</span><br><span class="line"><span class="built_in">mv</span> gitea /usr/local/gitea/</span><br><span class="line"></span><br><span class="line"><span class="comment">#官网建议以下创建用户，但是测试发现无法ssh（由于--system用户的uid&lt;1000 ），建议使用adduser git即可</span></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/git</span><br><span class="line"><span class="built_in">chown</span> -R git:git /home/git</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/gitea/&#123;data,<span class="built_in">log</span>,conf&#125;</span><br><span class="line"><span class="built_in">touch</span> /data/gitea/conf/app.ini</span><br><span class="line"><span class="built_in">chown</span> -R git:git /data/gitea/</span><br><span class="line"><span class="built_in">chmod</span> -R 750 /data/gitea/</span><br><span class="line"><span class="built_in">chown</span> root:git /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 770 /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 640 /data/gitea/conf/app.ini</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control 2&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/gitea \</span><br><span class="line">   gitea</span><br><span class="line"> sudo useradd \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --create-home \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /usr/lib/systemd/system/gitea.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=Gitea (Git with a cup of tea)</span></span><br><span class="line"><span class="string">After=syslog.target</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="string">#LimitNOFILE=65535</span></span><br><span class="line"><span class="string">RestartSec=2s</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=git</span></span><br><span class="line"><span class="string">Group=git</span></span><br><span class="line"><span class="string">WorkingDirectory=/data/gitea/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ExecStart=/usr/local/gitea/gitea web --config /data/gitea/conf/app.ini</span></span><br><span class="line"><span class="string">Restart=always</span></span><br><span class="line"><span class="string">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<p>Using a text editor of your choice, open this newly create file and populate it with the following.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/gitea.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Gitea (Git with a cup of tea)</span><br><span class="line">After=network.target</span><br><span class="line">After=mariadb.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># Modify these two values and uncomment them if you have</span></span><br><span class="line"><span class="comment"># repos with lots of files and get an HTTP error 500 because</span></span><br><span class="line"><span class="comment"># of that</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="comment">#LimitNOFILE=65535</span></span><br><span class="line">RestartSec=2s</span><br><span class="line">Type=simple</span><br><span class="line">User=git</span><br><span class="line">Group=git</span><br><span class="line">WorkingDirectory=/data/gitea/</span><br><span class="line">ExecStart=/usr/local/gitea/gitea web -c /data/gitea/conf/app.ini</span><br><span class="line">Restart=always</span><br><span class="line">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span><br><span class="line"><span class="comment"># If you want to bind Gitea to a port below 1024 uncomment</span></span><br><span class="line"><span class="comment"># the two values below</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#CapabilityBoundingSet=CAP_NET_BIND_SERVICE</span></span><br><span class="line"><span class="comment">#AmbientCapabilities=CAP_NET_BIND_SERVICE</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>Enable and start Gitea at boot.</p>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl enable gitea
+sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
+<pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
+<pre><code>http://YOUR_SERVER_IP:3000/install</code></pre><h2 id="2-备份脚本"><a href="#2-备份脚本" class="headerlink" title="2.备份脚本"></a>2.备份脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : backupgitea.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">GITBAK=gitea<span class="string">&quot;_&quot;</span>$(<span class="built_in">date</span> <span class="string">&quot;+%Y_%m_%d_%H_%M_%S&quot;</span>)</span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line">tar -zcvf <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz -P /data/gitea/ </span><br><span class="line"><span class="built_in">split</span> -b 2048M -d -a 1 <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz.</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -<span class="built_in">type</span> f -name <span class="string">&quot;<span class="variable">$GITBAK</span>.tar.gz.*&quot;</span> -<span class="built_in">exec</span> /usr/local/bin/bypy upload &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-清理文件"><a href="#3-清理文件" class="headerlink" title="3.清理文件"></a>3.清理文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : cleanbackup.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line"></span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz.*&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-定时任务"><a href="#4-定时任务" class="headerlink" title="4.定时任务"></a>4.定时任务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * *  /data/crontab/backupgitea.sh &gt;&gt; /var/log/daily-backup.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_gitea/" data-id="cluii05g6000drsux0i2o93ns" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
 
     </footer>
   </div>
@@ -362,64 +362,10 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_nextcloud/" data-id="cluihrd16000uioux2ppi7flb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_nextcloud/" data-id="cluii05ge000ursux3z06f3x4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_openssl" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_openssl/" class="article-date">
-  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_openssl/">centOS 安装 gitea</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>**1. 下载安装openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz</span><br><span class="line">tar -xzf openssl-1.1.1k.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1k</span><br><span class="line">./config shared --openssldir=/usr/local/openssl --prefix=/usr/local/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<p>移除老版本openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/openssl /tmp/</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/bin/openssl /usr/bin/openssl</span><br></pre></td></tr></table></figure>
-
-<p>配置lib库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/usr/local/openssl/lib/&quot;</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig</span><br></pre></td></tr></table></figure>
-
-<p>查看版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@c7 ~]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.1.1i  22 Sep 2020</span><br></pre></td></tr></table></figure>
-
-<p>如果运行openssl version出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
-
-<p>是因为openssl库的位置不正确造成的，参考配置lib库即可解决；<br>至此，已升级完毕·</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_openssl/" data-id="cluihrd190011iouxhsq190pf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
 
     </footer>
   </div>
@@ -533,7 +479,61 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_openvpn/" data-id="cluihrd1a0014iouxalmvgi18" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_openvpn/" data-id="cluii05gg0011rsuxfy9j81g8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos_install_openssl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/centos_install_openssl/" class="article-date">
+  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/centos_install_openssl/">centOS 安装 gitea</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>**1. 下载安装openssl</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz</span><br><span class="line">tar -xzf openssl-1.1.1k.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1k</span><br><span class="line">./config shared --openssldir=/usr/local/openssl --prefix=/usr/local/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>移除老版本openssl</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/openssl /tmp/</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/bin/openssl /usr/bin/openssl</span><br></pre></td></tr></table></figure>
+
+<p>配置lib库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/usr/local/openssl/lib/&quot;</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig</span><br></pre></td></tr></table></figure>
+
+<p>查看版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@c7 ~]<span class="comment"># openssl version</span></span><br><span class="line">OpenSSL 1.1.1i  22 Sep 2020</span><br></pre></td></tr></table></figure>
+
+<p>如果运行openssl version出现如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>是因为openssl库的位置不正确造成的，参考配置lib库即可解决；<br>至此，已升级完毕·</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_openssl/" data-id="cluii05gh0014rsux3inw847f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
@@ -596,7 +596,7 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_tomcat/" data-id="cluihrd1h001liouxfybwdal9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_tomcat/" data-id="cluii05go001lrsux8sxzej97" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tomcat/" rel="tag">centos tomcat</a></li></ul>
@@ -642,7 +642,7 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_trojan/" data-id="cluihrd1j001qiouxcid6gctm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_trojan/" data-id="cluii05gp001qrsuxh9ucg8nd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">centos 科学上网</a></li></ul>
@@ -716,7 +716,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_turnserver/" data-id="cluihrd1l001sioux3yxfbdzc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_turnserver/" data-id="cluii05gr001srsux4wm5e7yi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
@@ -790,7 +790,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/windows_git/" data-id="cluihrd1v002niouxc8k966d7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/windows_git/" data-id="cluii05h0002nrsux9d5kdqjt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-ssh-git/" rel="tag">windows ssh git</a></li></ul>
