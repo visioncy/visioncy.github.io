@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.0.0">
+<meta name="generator" content="Hexo 7.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -141,6 +141,513 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/07/dev_layer_controller/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/07/dev_layer_controller/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-07 16:19:12 / 修改时间：16:22:20" itemprop="dateCreated datePublished" datetime="2021-05-07T16:19:12+08:00">2021-05-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>controller : 响应用户请求<br>service : 接口接口实现类<br>dao : 即Mapper层（抽象类：xxxMapper.java文件，具体实现在xxxMapper.xml）<br>vo : View Object，视图层，其作用是将指定页面的展示数据封装起来。<br>dto : Data Transfer Object，数据传输对象</p>
+<p>do : Domain Object，领域对象</p>
+<p>model : 实体类：xxx.java</p>
+<p>po : Persistent Object，持久化对象</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tooyi/p/13340374.html">https://www.cnblogs.com/tooyi/p/13340374.html</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lyjin/p/6389349.html">https://www.cnblogs.com/lyjin/p/6389349.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/18/openwrt_setting_prerouting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/18/openwrt_setting_prerouting/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-18 09:42:25" itemprop="dateCreated datePublished" datetime="2021-03-18T09:42:25+08:00">2021-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-31 14:39:30" itemprop="dateModified" datetime="2024-03-31T14:39:30+08:00">2024-03-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>title: openwrt 配置ip跳转<br>date: 3/12/2020 3:58:25 PM<br>tags: openwrt</p>
+<h2 id="1-命令配置（重启后失效）"><a href="#1-命令配置（重启后失效）" class="headerlink" title="1.命令配置（重启后失效）"></a>1.命令配置（重启后失效）</h2>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#设置DNAT 使用指定访问ip跳转</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 31.105.78.1 --dport 8087 -j DNAT --to-destination 112.7.29.1:8080</span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 47.104.12.139 --dport 80 -j DNAT --to-destination 8.129.191.170:80</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 47.104.12.139 --dport 81 -j DNAT --to-destination 8.129.191.170:81</span><br><span class="line">#打印路由设定</span><br><span class="line">iptables -t nat -L --line-number</span><br><span class="line">#删除第3行PREROUTING</span><br><span class="line">iptables -t nat -D PREROUTING 3</span><br><span class="line">#恢复默认</span><br><span class="line">iptables -t nat -F PREROUTING</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING -p udp -m udp -d 0.0.0.0/0 --dport 5938 -j DNAT --to-destination 144.208.223.166:5938</span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 0.0.0.0/0 --dport 5938 -j DNAT --to-destination 144.208.223.166:5938</span><br><span class="line"></span><br><span class="line">ip6tables -t nat -A PREROUTING -p tcp -d [::]/0 --dport 8888 -j DNAT --to-destination 192.168.1.2:18080</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-开机自动加载（持久化设置）"><a href="#2-开机自动加载（持久化设置）" class="headerlink" title="2.开机自动加载（持久化设置）"></a>2.开机自动加载（持久化设置）</h2><p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#编辑文件</span><br><span class="line">vi /etc/firewall.user</span><br><span class="line">#加入配置</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 31.105.78.1 --dport 8087 -j DNAT --to-destination 112.7.29.1:8080</span><br><span class="line">#重启网络</span><br><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-clash跳过指定ip"><a href="#3-clash跳过指定ip" class="headerlink" title="3.clash跳过指定ip"></a>3.clash跳过指定ip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I clash -s 10.120.1.250 -j RETURN</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-OK-zhibo-Redirect"><a href="#4-OK-zhibo-Redirect" class="headerlink" title="4.OK zhibo Redirect"></a>4.OK zhibo Redirect</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/firewall.user</span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -m tcp -d 47.104.12.139 --dport 80 -j DNAT --to-destination 8.129.191.170:80</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-如果openvpn半年出现无法连接"><a href="#5-如果openvpn半年出现无法连接" class="headerlink" title="5.如果openvpn半年出现无法连接"></a>5.如果openvpn半年出现无法连接</h2><p>/tmp/openvpn.log出现log</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Failed to stat CRL file, not reloading CRL.</span><br></pre></td></tr></table></figure>
+
+
+
+<p>有可能是作废证书需要重新生成,执行如下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easyrsa gen-crl</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-mount"><a href="#6-mount" class="headerlink" title="6.mount"></a>6.mount</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it jellyfin /bin/bash</span><br><span class="line">apt install cifs-utils</span><br><span class="line">mount -t cifs -o username=ftp -o iocharset=utf8 //10.120.1.3/disk2 /data/disk2 </span><br><span class="line">umount /data/disk2</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/18/centos_install_mysql8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/18/centos_install_mysql8/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-18 09:42:25" itemprop="dateCreated datePublished" datetime="2021-03-18T09:42:25+08:00">2021-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-25 09:56:40" itemprop="dateModified" datetime="2024-01-25T09:56:40+08:00">2024-01-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、MySQL-安装"><a href="#一、MySQL-安装" class="headerlink" title="一、MySQL 安装"></a>一、MySQL 安装</h1><h2 id="1、删除原有的mariadb"><a href="#1、删除原有的mariadb" class="headerlink" title="1、删除原有的mariadb"></a>1、删除原有的mariadb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">rpm -qa | grep mariadb</span><br><span class="line">rpm -qa | grep mysql</span><br><span class="line"><span class="comment"># for i in $(rpm -qa|grep mysql);do rpm -e $i --nodeps;done</span></span><br><span class="line"></span><br><span class="line">rpm -e --nodeps mariadb-libs</span><br><span class="line"></span><br><span class="line"><span class="comment"># rm -rf /var/lib/mysql &amp;&amp; rm -rf /etc/my.cnf &amp;&amp; rm -rf /usr/share/mysql &amp;&amp; rm -rf /etc/my.cnf.d</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、安装依赖包"><a href="#2、安装依赖包" class="headerlink" title="2、安装依赖包"></a>2、安装依赖包</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install libaio net-tools</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、下载安装包并解压"><a href="#3、下载安装包并解压" class="headerlink" title="3、下载安装包并解压"></a>3、下载安装包并解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-8.0.26-el7-x86_64.tar.gz</span><br><span class="line">tar zxf mysql-8.0.26-el7-x86_64.tar.gz</span><br><span class="line"><span class="built_in">mv</span> mysql-8.0.26-el7-x86_64 /usr/local/mysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.31-el7-x86_64.tar.gz</span><br><span class="line">tar zxf mysql-5.7.31-el7-x86_64.tar.gz</span><br><span class="line"><span class="built_in">mv</span> mysql-5.7.31-el7-x86_64 /usr/local/mysql</span><br><span class="line"></span><br><span class="line">wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">tar zxf mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"><span class="built_in">mv</span> mysql-5.7.32-linux-glibc2.12-x86_64 /usr/local/mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、创建MySQL用户用户组"><a href="#4、创建MySQL用户用户组" class="headerlink" title="4、创建MySQL用户用户组"></a>4、创建MySQL用户用户组</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -M -g mysql -s /sbin/nologin mysql</span><br><span class="line"><span class="built_in">id</span> mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、创建数据目录"><a href="#5、创建数据目录" class="headerlink" title="5、创建数据目录"></a>5、创建数据目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /data/mysql/&#123;data,logs,binlogs,relaylogs,filedir,slowlogs,genelogs,tmp&#125;</span><br><span class="line"><span class="built_in">mkdir</span> -p /usr/local/mysql/&#123;etc,run&#125;</span><br><span class="line"><span class="built_in">chown</span> -R mysql:mysql /data/mysql</span><br><span class="line"><span class="built_in">chown</span> -R mysql:mysql /usr/local/mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、配置-my-cnf"><a href="#6、配置-my-cnf" class="headerlink" title="6、配置 my.cnf"></a>6、配置 my.cnf</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port = 3306</span><br><span class="line">socket = /data/mysql/tmp/mysql3306.sock</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line">prompt = <span class="string">&quot;\u@\h[\d]&gt;&quot;</span></span><br><span class="line">no-auto-rehash</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">lower_case_table_names =  1 </span><br><span class="line">user = mysql </span><br><span class="line">server_id =  1 </span><br><span class="line">port =  3306 </span><br><span class="line"><span class="comment"># default-time-zone =  &#x27;+08:00&#x27; </span></span><br><span class="line">enforce_gtid_consistency = ON </span><br><span class="line">gtid_mode = ON</span><br><span class="line"><span class="comment"># binlog_checksum = none </span></span><br><span class="line">default_authentication_plugin = mysql_native_password </span><br><span class="line">datadir =  /data/mysql/data </span><br><span class="line">pid-file =  /data/mysql/tmp/mysqld.pid </span><br><span class="line">socket =  /data/mysql/tmp/mysqld.sock</span><br><span class="line">tmpdir =  /data/mysql/tmp/ </span><br><span class="line"><span class="comment"># skip-name-resolve = ON </span></span><br><span class="line">open_files_limit =  65535 </span><br><span class="line">table_open_cache =  2000</span><br><span class="line"><span class="comment">################# innodb ######################## </span></span><br><span class="line"><span class="comment"># innodb_data_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="comment"># innodb_data_file_path = ibdata1:512M;ibdata2:512M:autoextend </span></span><br><span class="line"><span class="comment"># innodb_buffer_pool_size = 12000M </span></span><br><span class="line">innodb_flush_log_at_trx_commit =  1 </span><br><span class="line">innodb_io_capacity =  600 </span><br><span class="line">innodb_lock_wait_timeout =  120 </span><br><span class="line">innodb_log_buffer_size = 8M </span><br><span class="line">innodb_log_file_size = 200M </span><br><span class="line">innodb_log_files_in_group =  3 </span><br><span class="line">innodb_max_dirty_pages_pct =  85 </span><br><span class="line">innodb_read_io_threads =  8 </span><br><span class="line">innodb_write_io_threads =  8 </span><br><span class="line">innodb_thread_concurrency =  32 </span><br><span class="line">innodb_file_per_table </span><br><span class="line">innodb_rollback_on_timeout </span><br><span class="line"><span class="comment"># innodb_undo_directory =  /data/mysql/data </span></span><br><span class="line"><span class="comment"># innodb_log_group_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="comment">################### session ########################### </span></span><br><span class="line">join_buffer_size = 8M </span><br><span class="line">key_buffer_size = 256M </span><br><span class="line">bulk_insert_buffer_size = 8M </span><br><span class="line">max_heap_table_size = 96M </span><br><span class="line">tmp_table_size = 96M </span><br><span class="line">read_buffer_size = 8M </span><br><span class="line">sort_buffer_size = 2M </span><br><span class="line">max_allowed_packet = 64M </span><br><span class="line">read_rnd_buffer_size = 32M </span><br><span class="line"><span class="comment">############ log set ################### </span></span><br><span class="line"><span class="comment"># log-error =  /data/mysql/log/mysqld.err </span></span><br><span class="line"><span class="comment"># log-bin =  /data/mysql/binlog/binlog </span></span><br><span class="line"><span class="comment"># log_bin_index =  /data/mysql/binlog/binlog.index </span></span><br><span class="line">max_binlog_size = 500M </span><br><span class="line">slow_query_log_file =  /data/mysql/slowlogs/slow.log </span><br><span class="line">slow_query_log =  1 </span><br><span class="line">long_query_time =  10 </span><br><span class="line"><span class="comment"># log_queries_not_using_indexes = ON </span></span><br><span class="line"><span class="comment"># log_throttle_queries_not_using_indexes =  10 </span></span><br><span class="line">log_slow_admin_statements = ON </span><br><span class="line"><span class="comment"># log_output = FILE,TABLE </span></span><br><span class="line"><span class="comment"># master_info_file =  /data/mysql/binlog/master.info</span></span><br><span class="line"></span><br><span class="line">=======================================================================================</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &gt; /usr/local/mysql/etc/my.cnf &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">#</span></span><br><span class="line"><span class="string">## my.cnfforMySQL8.0+</span></span><br><span class="line"><span class="string">## 本配置文件主要适用于MySQL8.0+版本</span></span><br><span class="line"><span class="string">#</span></span><br><span class="line"><span class="string">[client]</span></span><br><span class="line"><span class="string">port = 6630</span></span><br><span class="line"><span class="string">socket = /usr/local/mysql/run/mysql6630.sock</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string">prompt = &quot;\u@\h[\d]&gt;&quot;</span></span><br><span class="line"><span class="string">no-auto-rehash</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="string">user = mysql</span></span><br><span class="line"><span class="string">port = 6630</span></span><br><span class="line"><span class="string">basedir = /usr/local/mysql</span></span><br><span class="line"><span class="string">datadir = /data/mysql/data</span></span><br><span class="line"><span class="string">socket = /usr/local/mysql/run/mysql6630.sock</span></span><br><span class="line"><span class="string">pid_file = /usr/local/mysql/run/mysql6630.pid</span></span><br><span class="line"><span class="string">mysqlx_port = 16630</span></span><br><span class="line"><span class="string">mysqlx_socket = /usr/local/mysql/run/mysqlx16630.sock</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#---GLOBAL---#</span></span><br><span class="line"><span class="string">server_id = 1</span></span><br><span class="line"><span class="string">character-set-server = utf8mb4</span></span><br><span class="line"><span class="string">collation-server = utf8mb4_unicode_ci</span></span><br><span class="line"><span class="string">character-set-client-handshake = FALSE</span></span><br><span class="line"><span class="string">default_authentication_plugin = &#x27;mysql_native_password&#x27;</span></span><br><span class="line"><span class="string">tmpdir = /data/mysql/tmp</span></span><br><span class="line"><span class="string">sql_mode=&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&#x27;</span></span><br><span class="line"><span class="string">log_timestamps = SYSTEM</span></span><br><span class="line"><span class="string">log_error = /data/mysql/logs/error.log</span></span><br><span class="line"><span class="string">log_error_verbosity = 2</span></span><br><span class="line"><span class="string">slow_query_log = 1</span></span><br><span class="line"><span class="string">slow_query_log_file = /data/mysql/slowlogs/mysql_slow.log</span></span><br><span class="line"><span class="string">long_query_time = 1</span></span><br><span class="line"><span class="string">general_log_file = /data/mysql/genelogs/mysql_gene.log</span></span><br><span class="line"><span class="string">secure_file_priv = /data/mysql/filedir</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">innodb_print_ddl_logs = 1	# mysql8.0.3新增</span></span><br><span class="line"><span class="string">open_files_limit = 65535</span></span><br><span class="line"><span class="string">thread_cache_size = 3000</span></span><br><span class="line"><span class="string">table_open_cache = 1024</span></span><br><span class="line"><span class="string">table_definition_cache = 1024</span></span><br><span class="line"><span class="string">table_open_cache_instances = 64</span></span><br><span class="line"><span class="string">thread_stack = 512K</span></span><br><span class="line"><span class="string">external-locking = FALSE</span></span><br><span class="line"><span class="string">sort_buffer_size = 4M</span></span><br><span class="line"><span class="string">join_buffer_size = 4M</span></span><br><span class="line"><span class="string">thread_cache_size = 5000</span></span><br><span class="line"><span class="string">tmp_table_size = 32M</span></span><br><span class="line"><span class="string">max_heap_table_size = 32M</span></span><br><span class="line"><span class="string">key_buffer_size = 32M</span></span><br><span class="line"><span class="string">read_buffer_size = 8M</span></span><br><span class="line"><span class="string">read_rnd_buffer_size = 4M</span></span><br><span class="line"><span class="string">bulk_insert_buffer_size = 64M</span></span><br><span class="line"><span class="string">lock_wait_timeout = 3600</span></span><br><span class="line"><span class="string">lower_case_table_names = 1</span></span><br><span class="line"><span class="string">explicit_defaults_for_timestamp = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># myisam</span></span><br><span class="line"><span class="string">myisam_sort_buffer_size = 128M</span></span><br><span class="line"><span class="string">myisam_max_sort_file_size = 10G</span></span><br><span class="line"><span class="string">myisam_repair_threads = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># innodb</span></span><br><span class="line"><span class="string">innodb_thread_concurrency = 0</span></span><br><span class="line"><span class="string">innodb_sync_spin_loops = 100</span></span><br><span class="line"><span class="string">innodb_spin_wait_delay = 30</span></span><br><span class="line"><span class="string">transaction_isolation = READ-COMMITTED</span></span><br><span class="line"><span class="string"># innodb_additional_mem_pool_size = 16M</span></span><br><span class="line"><span class="string">innodb_buffer_pool_size = 1G</span></span><br><span class="line"><span class="string">innodb_buffer_pool_load_at_startup = 1</span></span><br><span class="line"><span class="string">innodb_buffer_pool_dump_at_shutdown = 1</span></span><br><span class="line"><span class="string">innodb_data_file_path = ibdata1:1G:autoextend</span></span><br><span class="line"><span class="string">innodb_log_buffer_size = 32M</span></span><br><span class="line"><span class="string">innodb_log_file_size = 2G</span></span><br><span class="line"><span class="string">innodb_log_files_in_group = 2</span></span><br><span class="line"><span class="string">innodb_max_undo_log_size = 4G</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#---REPL---#</span></span><br><span class="line"><span class="string">log_bin = /data/mysql/binlogs/mysql_bin</span></span><br><span class="line"><span class="string">binlog_rows_query_log_events = ON</span></span><br><span class="line"><span class="string"># formysql8binlog_expire_logs_secondsinsteadofbinlog_expire_logs_days</span></span><br><span class="line"><span class="string"># expire_logs_days = 30</span></span><br><span class="line"><span class="string">binlog_expire_logs_seconds = 2592000</span></span><br><span class="line"><span class="string">binlog_checksum = 1</span></span><br><span class="line"><span class="string">binlog_format = row</span></span><br><span class="line"><span class="string">binlog_cache_size = 4M</span></span><br><span class="line"><span class="string">max_binlog_cache_size = 2G</span></span><br><span class="line"><span class="string">max_binlog_size = 1G</span></span><br><span class="line"><span class="string">min_examined_row_limit = 100</span></span><br><span class="line"><span class="string">log_slow_admin_statements = 1</span></span><br><span class="line"><span class="string">log_slow_slave_statements = 1</span></span><br><span class="line"><span class="string">log_queries_not_using_indexes = 0</span></span><br><span class="line"><span class="string">log_slave_updates</span></span><br><span class="line"><span class="string">master_info_repository = TABLE</span></span><br><span class="line"><span class="string">relay_log_info_repository = TABLE</span></span><br><span class="line"><span class="string">skip_slave_start</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#--gtid</span></span><br><span class="line"><span class="string">gtid_mode = ON</span></span><br><span class="line"><span class="string">enforce_gtid_consistency = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#---flushdisk---#</span></span><br><span class="line"><span class="string">innodb_flush_log_at_trx_commit = 1</span></span><br><span class="line"><span class="string">sync_binlog = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#--relay_log</span></span><br><span class="line"><span class="string">relay_log = /data/mysql/relaylogs/mysql_relay_bin</span></span><br><span class="line"><span class="string">relay_log_recovery = 1</span></span><br><span class="line"><span class="string">relay_log_purge = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#---NETWORK---#</span></span><br><span class="line"><span class="string">max_allowed_packet = 128M</span></span><br><span class="line"><span class="string">back_log = 1024</span></span><br><span class="line"><span class="string">interactive_timeout = 3600</span></span><br><span class="line"><span class="string">wait_timeout = 3600</span></span><br><span class="line"><span class="string">max_connections = 5000</span></span><br><span class="line"><span class="string">skip_name_resolve = 1</span></span><br><span class="line"><span class="string">max_connect_errors = 1000000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#--并行复制</span></span><br><span class="line"><span class="string">loose-binlog_transaction_dependency_tracking = WriteSet_Session</span></span><br><span class="line"><span class="string"># loose-binlog_transaction_dependency_tracking = WriteSet</span></span><br><span class="line"><span class="string">loose-binlog_transaction_dependency_history_size = 1000000		# 可设置的最大值为1000000											</span></span><br><span class="line"><span class="string">loose-transaction_write_set_extraction = XXHASH64</span></span><br><span class="line"><span class="string">slave_parallel_type = LOGICAL_CLOCK</span></span><br><span class="line"><span class="string">slave_parallel_workers = 8		# 根据服务器配置适当调整</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 根据您的服务器IOPS能力适当调整</span></span><br><span class="line"><span class="string"># 一般配普通SSD盘的话，可以调整到10000-20000</span></span><br><span class="line"><span class="string"># 配置高端PCIeSSD卡的话，则可以调整的更高，比如50000-80000</span></span><br><span class="line"><span class="string">innodb_io_capacity = 4000</span></span><br><span class="line"><span class="string">innodb_io_capacity_max = 8000</span></span><br><span class="line"><span class="string">innodb_flush_sync = 0</span></span><br><span class="line"><span class="string">innodb_flush_neighbors = 0</span></span><br><span class="line"><span class="string">innodb_write_io_threads = 8</span></span><br><span class="line"><span class="string">innodb_read_io_threads = 8</span></span><br><span class="line"><span class="string">innodb_purge_threads = 4</span></span><br><span class="line"><span class="string">innodb_page_cleaners = 4</span></span><br><span class="line"><span class="string">innodb_open_files = 65535</span></span><br><span class="line"><span class="string">innodb_max_dirty_pages_pct = 50</span></span><br><span class="line"><span class="string">innodb_flush_method = O_DIRECT</span></span><br><span class="line"><span class="string">innodb_lru_scan_depth = 4000</span></span><br><span class="line"><span class="string">innodb_checksum_algorithm = crc32</span></span><br><span class="line"><span class="string">innodb_lock_wait_timeout = 10</span></span><br><span class="line"><span class="string">innodb_rollback_on_timeout = 1</span></span><br><span class="line"><span class="string">innodb_print_all_deadlocks = 1</span></span><br><span class="line"><span class="string">innodb_file_per_table = 1</span></span><br><span class="line"><span class="string">innodb_online_alter_log_max_size = 4G</span></span><br><span class="line"><span class="string"># formysql8thisvariableslsunknown</span></span><br><span class="line"><span class="string">## internal_tmp_disk_storage_engine = InnoDB</span></span><br><span class="line"><span class="string">innodb_stats_on_metadata = 0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">innodb_status_file = 1</span></span><br><span class="line"><span class="string"># 注意:开启innodb_status_output&amp;innodb_status_output_locks后,可能会导致log-error文件增长较快</span></span><br><span class="line"><span class="string">innodb_status_output = 0</span></span><br><span class="line"><span class="string">innodb_status_output_locks = 0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># performance_schema</span></span><br><span class="line"><span class="string">performance_schema = 1</span></span><br><span class="line"><span class="string">performance_schema_instrument = &#x27;% = on&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># innodbmonitor</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_innodb&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_server&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_dml&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_ddl&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_trx&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_os&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_purge&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_log&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_lock&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_buffer&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_index&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_ibuf_system&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_buffer_page&quot;</span></span><br><span class="line"><span class="string">innodb_monitor_enable = &quot;module_adaptive_hash&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">log_bin_trust_function_creators = 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqldump]</span></span><br><span class="line"><span class="string">quick</span></span><br><span class="line"><span class="string">quote-names</span></span><br><span class="line"><span class="string">max_allowed_packet = 128M</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7、初始化"><a href="#7、初始化" class="headerlink" title="7、初始化"></a>7、初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/mysql/bin/mysqld --defaults-file=/usr/local/mysql/etc/my.cnf --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql/data --explicit_defaults_for_timestamp</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /data/mysql/logs/error.log | grep -i password</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、systemd-启动"><a href="#8、systemd-启动" class="headerlink" title="8、systemd 启动"></a>8、systemd 启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /usr/lib/systemd/system/mysqld.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=MySQL Server(6630)</span></span><br><span class="line"><span class="string">After=network.target,syslog.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">User=mysql</span></span><br><span class="line"><span class="string">Group=mysql</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Have mysqld write its state to the systemd notify socket</span></span><br><span class="line"><span class="string">Type=notify</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Disable service start and stop timeout logic of systemd for mysqld service.</span></span><br><span class="line"><span class="string">TimeoutSec=0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Start main service</span></span><br><span class="line"><span class="string">ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/usr/local/mysql/etc/my.cnf</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Sets open_files_limit</span></span><br><span class="line"><span class="string">LimitNOFILE=65530</span></span><br><span class="line"><span class="string">LimitNPROC=65530</span></span><br><span class="line"><span class="string">Restart=on-failure</span></span><br><span class="line"><span class="string">RestartPreventExitStatus=1</span></span><br><span class="line"><span class="string">PrivateTmp=false</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9、登录"><a href="#9、登录" class="headerlink" title="9、登录"></a>9、登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/mysql/bin/mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#修改初始密码</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="keyword">user</span>() identified <span class="keyword">by</span> &quot;root&quot;;</span><br><span class="line">#授权外网访问</span><br><span class="line">use mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host <span class="operator">=</span> <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> <span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> host, <span class="keyword">user</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line">#授权用户,你想root使用密码从任何主机连接到mysql服务器</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;admin123&#x27;</span>;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span>  <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="10、其他配置-5-7"><a href="#10、其他配置-5-7" class="headerlink" title="10、其他配置(5.7)"></a>10、其他配置(5.7)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql 5.7</span></span><br><span class="line"><span class="built_in">cat</span> &gt; /usr/local/mysql/etc/my.cnf &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[client]</span></span><br><span class="line"><span class="string">port = 3306</span></span><br><span class="line"><span class="string">socket = /usr/local/mysql/run/mysql3306.sock</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="string">default-character-set = utf8mb4</span></span><br><span class="line"><span class="string">prompt = &quot;\u@\h[\d]&gt;&quot;</span></span><br><span class="line"><span class="string">no-auto-rehash</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="string">lower_case_table_names =  1 </span></span><br><span class="line"><span class="string">user = mysql </span></span><br><span class="line"><span class="string">server_id =  1 </span></span><br><span class="line"><span class="string">port =  3306 </span></span><br><span class="line"><span class="string"># default-time-zone =  &#x27;+08:00&#x27; </span></span><br><span class="line"><span class="string">enforce_gtid_consistency = ON </span></span><br><span class="line"><span class="string">gtid_mode = ON</span></span><br><span class="line"><span class="string"># binlog_checksum = none </span></span><br><span class="line"><span class="string">default_authentication_plugin = mysql_native_password </span></span><br><span class="line"><span class="string">datadir =  /data/mysql/data </span></span><br><span class="line"><span class="string">pid-file =  /data/mysql/tmp/mysqld.pid </span></span><br><span class="line"><span class="string">socket =  /data/mysql/tmp/mysqld.sock</span></span><br><span class="line"><span class="string">tmpdir =  /data/mysql/tmp/ </span></span><br><span class="line"><span class="string"># skip-name-resolve = ON </span></span><br><span class="line"><span class="string">open_files_limit =  65535 </span></span><br><span class="line"><span class="string">table_open_cache =  2000</span></span><br><span class="line"><span class="string">################# innodb ######################## </span></span><br><span class="line"><span class="string"># innodb_data_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="string"># innodb_data_file_path = ibdata1:512M;ibdata2:512M:autoextend </span></span><br><span class="line"><span class="string"># innodb_buffer_pool_size = 12000M </span></span><br><span class="line"><span class="string">innodb_flush_log_at_trx_commit =  1 </span></span><br><span class="line"><span class="string">innodb_io_capacity =  600 </span></span><br><span class="line"><span class="string">innodb_lock_wait_timeout =  120 </span></span><br><span class="line"><span class="string">innodb_log_buffer_size = 8M </span></span><br><span class="line"><span class="string">innodb_log_file_size = 200M </span></span><br><span class="line"><span class="string">innodb_log_files_in_group =  3 </span></span><br><span class="line"><span class="string">innodb_max_dirty_pages_pct =  85 </span></span><br><span class="line"><span class="string">innodb_read_io_threads =  8 </span></span><br><span class="line"><span class="string">innodb_write_io_threads =  8 </span></span><br><span class="line"><span class="string">innodb_thread_concurrency =  32 </span></span><br><span class="line"><span class="string">innodb_file_per_table </span></span><br><span class="line"><span class="string">innodb_rollback_on_timeout </span></span><br><span class="line"><span class="string"># innodb_undo_directory =  /data/mysql/data </span></span><br><span class="line"><span class="string"># innodb_log_group_home_dir =  /data/mysql/data </span></span><br><span class="line"><span class="string">################### session ########################### </span></span><br><span class="line"><span class="string">join_buffer_size = 8M </span></span><br><span class="line"><span class="string">key_buffer_size = 256M </span></span><br><span class="line"><span class="string">bulk_insert_buffer_size = 8M </span></span><br><span class="line"><span class="string">max_heap_table_size = 96M </span></span><br><span class="line"><span class="string">tmp_table_size = 96M </span></span><br><span class="line"><span class="string">read_buffer_size = 8M </span></span><br><span class="line"><span class="string">sort_buffer_size = 2M </span></span><br><span class="line"><span class="string">max_allowed_packet = 64M </span></span><br><span class="line"><span class="string">read_rnd_buffer_size = 32M </span></span><br><span class="line"><span class="string">############ log set ################### </span></span><br><span class="line"><span class="string"># log-error =  /data/mysql/log/mysqld.err </span></span><br><span class="line"><span class="string"># log-bin =  /data/mysql/binlog/binlog </span></span><br><span class="line"><span class="string"># log_bin_index =  /data/mysql/binlog/binlog.index </span></span><br><span class="line"><span class="string">max_binlog_size = 500M </span></span><br><span class="line"><span class="string">slow_query_log_file =  /data/mysql/slowlogs/slow.log </span></span><br><span class="line"><span class="string">slow_query_log =  1 </span></span><br><span class="line"><span class="string">long_query_time =  10 </span></span><br><span class="line"><span class="string"># log_queries_not_using_indexes = ON </span></span><br><span class="line"><span class="string"># log_throttle_queries_not_using_indexes =  10 </span></span><br><span class="line"><span class="string">log_slow_admin_statements = ON </span></span><br><span class="line"><span class="string"># log_output = FILE,TABLE </span></span><br><span class="line"><span class="string"># master_info_file =  /data/mysql/binlog/master.info</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="11、主从复制配置（bin-log）"><a href="#11、主从复制配置（bin-log）" class="headerlink" title="11、主从复制配置（bin-log）"></a>11、主从复制配置（bin-log）</h2><h3 id="a-创建用于复制操作的用户"><a href="#a-创建用于复制操作的用户" class="headerlink" title="a.创建用于复制操作的用户"></a>a.创建用于复制操作的用户</h3><p>在主节点创建一个用户repl，用于从节点链接主节点时使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#x27;repl&#x27;@&#x27;192.168.12.17&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;cL0ne2MasTer2uSerPwd&#x27;;</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO &#x27;repl&#x27;@&#x27;192.168.12.17&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h3 id="b-获取主节点当前binary-log文件名和位置（position）"><a href="#b-获取主节点当前binary-log文件名和位置（position）" class="headerlink" title="b.获取主节点当前binary log文件名和位置（position）"></a>b.获取主节点当前binary log文件名和位置（position）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SHOW MASTER STATUS;</span><br><span class="line"></span><br><span class="line">#从库复制后查看position</span><br><span class="line">SELECT BINLOG_FILE, BINLOG_POSITION FROM performance_schema.clone_status;</span><br></pre></td></tr></table></figure>
+
+<h3 id="c-在从（Slave）节点上设置主节点参数"><a href="#c-在从（Slave）节点上设置主节点参数" class="headerlink" title="c.在从（Slave）节点上设置主节点参数"></a>c.在从（Slave）节点上设置主节点参数</h3><p>MASTER_LOG_FILE填上一步得到的  <strong>[binary log文件名]</strong>  与  <strong>[位置（position）]</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1，replicate-do-db/replicate-do-table</span><br><span class="line">2，replicate-ignore-db/replicate-ignore-table</span><br><span class="line">3，replicate-while-do-table</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST=&#x27;192.168.12.15&#x27;,</span><br><span class="line">MASTER_PORT=6630,#默认3306</span><br><span class="line">MASTER_USER=&#x27;repl&#x27;,</span><br><span class="line">MASTER_PASSWORD=&#x27;cL0ne2MasTer2uSerPwd&#x27;,</span><br><span class="line">MASTER_LOG_FILE=&#x27;mysql_bin.000020&#x27;,</span><br><span class="line">MASTER_LOG_POS=424127;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="d-查看主从同步状态"><a href="#d-查看主从同步状态" class="headerlink" title="d.查看主从同步状态"></a>d.查看主从同步状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show slave status</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-开启主从同步"><a href="#e-开启主从同步" class="headerlink" title="e.开启主从同步"></a>e.开启主从同步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="f-再查看主从同步状态"><a href="#f-再查看主从同步状态" class="headerlink" title="f.再查看主从同步状态"></a>f.再查看主从同步状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+<p>查看状态时，可能会出现I/O任务启动失败的情况，即如下错误:</p>
+<p>Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server ids; these ids must be different for replication to work (or the –replicate-same-server-id option must be used on slave but this does not always make sense; please check the manual before using it).</p>
+<p>这是因为在MySQL主从结构中，从机上的server_id和主机上的server_id不能相同，我们可以看一下主机上的server_id和从机上的server_id是否相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;server_id&#x27;; </span><br></pre></td></tr></table></figure>
+
+<p><strong>9、重新开启同步并查看装态</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+<h3 id="g-重置主从状态"><a href="#g-重置主从状态" class="headerlink" title="g.重置主从状态"></a>g.重置主从状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#重置从节点(需要重启)</span><br><span class="line">stop slave;</span><br><span class="line">reset slave all;</span><br><span class="line">show slave status;</span><br><span class="line"></span><br><span class="line">#重置主节点(需要重启)</span><br><span class="line">reset master;</span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#按DO_DB复制</span><br><span class="line">CHANGE REPLICATION FILTER</span><br><span class="line">    REPLICATE_DO_DB = (db1,db2);</span><br><span class="line">START SLAVE  </span><br><span class="line"></span><br><span class="line">#按CHANNEL复制</span><br><span class="line">CHANGE REPLICATION FILTER REPLICATE_DO_DB = (d1) FOR CHANNEL channel_1;</span><br><span class="line">START SLAVE FOR CHANNEL &quot;source_1&quot;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="h-克隆所有数据库"><a href="#h-克隆所有数据库" class="headerlink" title="h.克隆所有数据库"></a>h.克隆所有数据库</h3><h4 id="h1-主库"><a href="#h1-主库" class="headerlink" title="h1.主库"></a>h1.主库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#检查插件是否安装</span><br><span class="line">SELECT PLUGIN_NAME, PLUGIN_STATUS FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME = &#x27;clone&#x27;;</span><br><span class="line">SHOW PLUGINS like &#x27;clone&#x27;; </span><br><span class="line"></span><br><span class="line">#主库root</span><br><span class="line">INSTALL PLUGIN clone SONAME &#x27;mysql_clone.so&#x27;;</span><br><span class="line">create user &#x27;clone_user&#x27;@&#x27;%&#x27; identified by &#x27;uVGSvgSzmrOiqx9L&#x27;;</span><br><span class="line">grant BACKUP_ADMIN on *.* to &#x27;clone_user&#x27;@&#x27;%&#x27;;</span><br><span class="line"></span><br><span class="line">#从库root</span><br><span class="line">INSTALL PLUGIN clone SONAME &#x27;mysql_clone.so&#x27;;</span><br><span class="line">create user &#x27;clone_user&#x27;@&#x27;%&#x27; identified by &#x27;uVGSvgSzmrOiqx9L&#x27;;</span><br><span class="line">grant CLONE_ADMIN on *.* to &#x27;clone_user&#x27;@&#x27;%&#x27;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="h2-从库执行克隆任务"><a href="#h2-从库执行克隆任务" class="headerlink" title="h2.从库执行克隆任务"></a>h2.从库执行克隆任务</h4><p>注意：需要使用clone_user登录slave服务器执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 设置克隆源，将clone_valid_donor_list设置为主库 使用帐号 root</span><br><span class="line">SET GLOBAL clone_valid_donor_list = &#x27;192.168.12.15:3306&#x27;;</span><br><span class="line"></span><br><span class="line"># 开始克隆 使用帐号 clone_user</span><br><span class="line">CLONE INSTANCE FROM &#x27;clone_user&#x27;@&#x27;192.168.12.15&#x27;:3306 IDENTIFIED BY &#x27;uVGSvgSzmrOiqx9L&#x27;;</span><br><span class="line"></span><br><span class="line">#查看克隆后的状态</span><br><span class="line">select * from performance_schema.clone_status</span><br><span class="line"></span><br><span class="line">#查看复制进度</span><br><span class="line">SELECT STATE, ERROR_NO, ERROR_MESSAGE FROM performance_schema.clone_status;</span><br><span class="line">SELECT STAGE, STATE, END_TIME FROM performance_schema.clone_progress;</span><br></pre></td></tr></table></figure>
+
+<h4 id="h3-设置从库为只读"><a href="#h3-设置从库为只读" class="headerlink" title="h3.设置从库为只读"></a>h3.设置从库为只读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#设置只读状态</span><br><span class="line">SET GLOBAL read_only=1;</span><br><span class="line">SET GLOBAL super_read_only=1;</span><br><span class="line"></span><br><span class="line">#查看只读状态</span><br><span class="line">show variables like &#x27;%READ_ONLY%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="11、主从同步数据库-SZ"><a href="#11、主从同步数据库-SZ" class="headerlink" title="11、主从同步数据库(SZ)"></a>11、主从同步数据库(SZ)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#主从复制数据库</span><br><span class="line">#从库 root</span><br><span class="line">SET GLOBAL clone_valid_donor_list = &#x27;192.168.10.23:6630&#x27;;</span><br><span class="line">grant CLONE_ADMIN on *.* to &#x27;clone_user&#x27;@&#x27;%&#x27;;</span><br><span class="line">#从库 clone_user</span><br><span class="line">CLONE INSTANCE FROM &#x27;clone_user&#x27;@&#x27;192.168.10.23&#x27;:6630 IDENTIFIED BY &#x27;uVGSvgSzmrOiqx9L&#x27;;</span><br><span class="line"></span><br><span class="line">#主从同步数据库</span><br><span class="line">#从库 root</span><br><span class="line">SET GLOBAL read_only=1;</span><br><span class="line">SET GLOBAL super_read_only=1;</span><br><span class="line">show variables like &#x27;%READ_ONLY%&#x27;;</span><br><span class="line"></span><br><span class="line">#从库复制后查看position</span><br><span class="line">SELECT BINLOG_FILE, BINLOG_POSITION FROM performance_schema.clone_status;</span><br><span class="line"></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST=&#x27;192.168.10.23&#x27;,</span><br><span class="line">MASTER_PORT=6630,#默认3306</span><br><span class="line">MASTER_USER=&#x27;repl&#x27;,</span><br><span class="line">MASTER_PASSWORD=&#x27;PyTVFKTF0cTPOL9g&#x27;,</span><br><span class="line">MASTER_LOG_FILE=&#x27;mysql_bin.000060&#x27;,</span><br><span class="line">MASTER_LOG_POS=620601291;</span><br><span class="line"></span><br><span class="line">start slave;</span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="12、备份还原数据库"><a href="#12、备份还原数据库" class="headerlink" title="12、备份还原数据库"></a>12、备份还原数据库</h2><p><strong>一、备份数据：</strong></p>
+<p>Mysqldump常用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -u用户名 -p密码 --databases 数据库1 数据库2 &gt; xxx.sql</span><br></pre></td></tr></table></figure>
+
+<p> <strong>常见选项：</strong></p>
+<p>-u: 用户名</p>
+<p>-p: 密码</p>
+<p>-P: 端口号，不写默认3306</p>
+<p>–all-databases, -A：备份所有数据库</p>
+<p>–databases, -B: 用于备份多个数据库，如果没有该选项，mysqldump把第一个名字参数作为数据库名，后面的作为表名。使用该选项，mysqldum把每个名字都当作为数据库名。</p>
+<p>-d: 只导出数据库的表结构</p>
+<p>-t: 只导出数据库的数据</p>
+<p>–quick, -q：快速导出</p>
+<p>–xml, -X：导出为xml文件</p>
+<p><strong>下面是具体的使用samples:</strong></p>
+<ol>
+<li>备份全部数据库的数据和结构（-A）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -A &gt; 0101.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>备份全部数据库的结构（-d）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 -A -d &gt; 0102.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>备份全部数据库的数据（-t）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 -A -t &gt; 0103.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>备份单个数据库的数据和结构（sakila 为数据库名）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 sakila &gt; 0104.sql</span><br><span class="line"><span class="comment">#-R 包含function与procedure</span></span><br><span class="line">./mysqldump -uroot -p[PASSWORD] -P3306 -R p2db_release&gt; /data/mysql/backups/p2db_release_20211213.sql --set-gtid-purged=OFF</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>备份单个数据库结构（sakila 为数据库名，-d）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 sakila -d &gt; 0105.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>备份单个数据库数据（sakila 为数据库名，-t）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 sakila -t &gt; 0106.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>备份多个表的结构和数据 (table1,table2为表名)</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 -P3306 sakila table1 table2 &gt; 0107.sql</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>一次备份多个数据库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mysqldump -uroot -p123456 --databases db1 db2 &gt; 0108.sql</span><br></pre></td></tr></table></figure>
+
+<h2 id="13、后台检查process-list"><a href="#13、后台检查process-list" class="headerlink" title="13、后台检查process list"></a>13、后台检查process list</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./mysqladmin processlist -u root -p</span><br><span class="line">./mysqladmin -u root -p <span class="built_in">kill</span> 4</span><br></pre></td></tr></table></figure>
+
+<p><strong>二、还原数据库：</strong></p>
+<ol>
+<li>系统命令行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p123456 create db_name </span><br><span class="line">./mysql -uroot -p[PASSWORD] -P3306 p2db_release &lt; /data/mysql/backups/p2db_release_20211213.sql</span><br><span class="line"><span class="comment">#如果使用windows DBeaver 需要添加 --default-character-set=utf8 进行还原</span></span><br><span class="line"><span class="comment">#注：在导入备份数据库前，db_name如果没有，是需要创建的； 而且与backup20110527.sql中数据库名是一样的才可以导入。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>soure 方法： </li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; use db</span><br><span class="line">mysql &gt; <span class="built_in">source</span> d:\bak\0101.sql</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong><em>Comments：</em></strong></p>
+<ol>
+<li><p>还原单个数据库、单个数据库的多表需要指定数据库，而还原多个数据库时不用指定数据库。</p>
+</li>
+<li><p>区别：备份用的命令是mysqldump， 还原用的是mysql。</p>
+</li>
+</ol>
+<h2 id="14、定时备份"><a href="#14、定时备份" class="headerlink" title="14、定时备份"></a>14、定时备份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># Name:clear_tomcat_log.sh</span></span><br><span class="line"><span class="comment"># This is a ShellScript For Auto DB Backup and Delete old Backup</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 参数说明：</span></span><br><span class="line"><span class="comment"># backupdir 保存路径的绝对地址</span></span><br><span class="line"><span class="comment"># 代码中 time=` date +%Y%m%d`也可以写为time=”$(date +”%Y%m%d”)” 找到当前日期时间格式</span></span><br><span class="line"><span class="comment"># 其中`符号是TAB键上面的符号，不是ENTER左边的’符号，还有date后要有一个空格。</span></span><br><span class="line"><span class="comment">#mysql_bin_dir：mysql的bin路径；</span></span><br><span class="line"><span class="comment">#dataname：数据库名；</span></span><br><span class="line"><span class="comment">#user：数据库用户名；</span></span><br><span class="line"><span class="comment">#password：用户密码；</span></span><br><span class="line"><span class="comment">#name：自定义备份文件前缀标识</span></span><br><span class="line"><span class="comment"># name：自定义备份文件前缀标识。</span></span><br><span class="line"><span class="comment"># -type f    表示查找普通类型的文件，f表示普通文件。</span></span><br><span class="line"><span class="comment"># -mtime +30   按照文件的更改时间来查找文件，+30表示文件更改时间距现在30天以前；如果是 -mmin +7 表示文件更改时间距现在7分钟以前。</span></span><br><span class="line"><span class="comment"># -exec rm -rf &#123;&#125; \;   表示执行一段shell命令，exec选项后面跟随着所要执行的命令或脚本，然后是一对儿&#123;&#125;，一个空格和一个\，最后是一个分号。</span></span><br><span class="line"><span class="comment">#数据库备份的位置</span></span><br><span class="line">backupdir=/data/mysql/backups</span><br><span class="line">time=` <span class="built_in">date</span> +%Y%m%d%H%M%S`</span><br><span class="line"><span class="comment">#需要备份的数据库的连接的用户名和密码和数据库</span></span><br><span class="line"><span class="comment">#mysql_bin_dir/mysqldump -uuser -ppassword dataname | gzip &gt; $backupdir/name$time.sql.gz</span></span><br><span class="line">/usr/local/mysql/bin/mysqldump -u root -pBSA60omxDCW38HZp --databases jiradb mysql confluencedb p2db p2db_release | gzip &gt; <span class="variable">$backupdir</span>/mysql_<span class="variable">$time</span>.sql.gz</span><br><span class="line"><span class="comment">#传输至备份服务器，如果保留本机则不需要此步骤</span></span><br><span class="line"><span class="comment">#scp $backupdir/mysql_$time.sql.gz 22.122.51.158:/data/bakup/159/</span></span><br><span class="line"><span class="comment">#find $backupdir -name &quot;name*.sql.gz&quot; -type f -mtime +30 -exec rm -rf &#123;&#125; \;</span></span><br><span class="line"><span class="comment">#还原所有数据库</span></span><br><span class="line"><span class="comment">#gunzip &lt; all_databases.gz | mysql -u root -p</span></span><br><span class="line"><span class="comment">#保留10日</span></span><br><span class="line">find <span class="variable">$backupdir</span> -name <span class="string">&quot;mysql_*.sql.gz&quot;</span> -<span class="built_in">type</span> f -mtime +7 -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、配置MHA"><a href="#三、配置MHA" class="headerlink" title="三、配置MHA"></a>三、配置MHA</h1><p>参考1：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/plluoye/p/10996152.html">https://www.cnblogs.com/plluoye/p/10996152.html</a></p>
+<p>参考2：<a target="_blank" rel="noopener" href="https://www.cxyzjd.com/article/richie696/114261284#11__6">https://www.cxyzjd.com/article/richie696/114261284#11__6</a></p>
+<h2 id="1、下载安装软件"><a href="#1、下载安装软件" class="headerlink" title="1、下载安装软件"></a>1、下载安装软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yum install -y perl-Class-Load.noarch perl-DBD-MySQL</span><br><span class="line"></span><br><span class="line"><span class="comment">#以下需下载，地址： https://pkgs.org/</span></span><br><span class="line">yum install -y perl-Log-Dispatch-2.41-1.of.el7.noarch.rpm   </span><br><span class="line">yum install -y perl-Config-Tiny-2.14-7.el7.noarch.rpm</span><br><span class="line">yum install -y perl-Parallel-ForkManager-1.06-1.of.el7.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment">#MHA包需下载，地址 https://github.com/yoshinorim</span></span><br><span class="line">mha4mysql-manager-0.58-0.el7.centos.noarch.rpm <span class="comment">#建议安装在独立服务器，也可选择任一从库安装</span></span><br><span class="line">mha4mysql-node-0.58-0.el7.centos.noarch.rpm <span class="comment">#安装在所有节点</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、密码认证"><a href="#2、密码认证" class="headerlink" title="2、密码认证"></a>2、密码认证</h2><p>密码认证插件需要用 mysql_native_password</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[mysqld]</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=<span class="string">mysql_native_password</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> rep identified <span class="keyword">with</span> <span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">by</span> <span class="string">&#x27;rep&#x27;</span>;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> root identified <span class="keyword">with</span> <span class="string">&#x27;mysql_native_password&#x27;</span> <span class="keyword">by</span> <span class="string">&#x27;root &#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、检查配置是否成功"><a href="#3、检查配置是否成功" class="headerlink" title="3、检查配置是否成功"></a>3、检查配置是否成功</h2><p>建议所有从库都置为只读模式 read_only=1,但这实际并不影响MHA搭建。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[root@mysql3 soft]<span class="comment"># masterha_check_repl --conf=/etc/masterha_default.cnf </span></span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Reading default configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Reading application default configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Reading server configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] MHA::MasterMonitor version 0.58.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] GTID failover mode = 1</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Dead Servers:</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Alive Servers:</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql1(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql2(192.168.20.82:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql3(192.168.20.83:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql4(192.168.20.84:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Alive Slaves:</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql2(192.168.20.82:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Primary candidate <span class="keyword">for</span> the new Master (candidate_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql3(192.168.20.83:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]   mysql4(192.168.20.84:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Current Alive Master: mysql1(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking slave configurations..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  read_only=1 is not <span class="built_in">set</span> on slave mysql2(192.168.20.82:3306).</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking replication filtering settings..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  binlog_do_db= , binlog_ignore_db= </span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  Replication filtering check ok.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] GTID (with auto-pos) is supported. Skipping all SSH and Node package checking.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking SSH publickey authentication settings on the current master..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] HealthCheck: SSH to mysql1 is reachable.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] </span><br><span class="line">mysql1(192.168.20.81:3306) (current master)</span><br><span class="line"> +--mysql2(192.168.20.82:3306)</span><br><span class="line"> +--mysql3(192.168.20.83:3306)</span><br><span class="line"> +--mysql4(192.168.20.84:3306)</span><br><span class="line"></span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking replication health on mysql2..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking replication health on mysql3..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Checking replication health on mysql4..</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [warning] master_ip_failover_script is not defined.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [warning] shutdown_script is not defined.</span><br><span class="line">Mon Jun 10 05:38:47 2019 - [info] Got <span class="built_in">exit</span> code 0 (Not master dead).</span><br><span class="line"></span><br><span class="line">MySQL Replication Health is OK.</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、以上我用的GTID-复制模式"><a href="#4、以上我用的GTID-复制模式" class="headerlink" title="4、以上我用的GTID 复制模式"></a>4、以上我用的GTID 复制模式</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">[mysqld]</span></span><br><span class="line"><span class="attr">enforce_gtid_consistency</span>=<span class="string">ON</span></span><br><span class="line"><span class="attr">gtid_mode</span>=<span class="string">on</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--从库执行如下命令，启动复制</span></span><br><span class="line">change master <span class="keyword">to</span> </span><br><span class="line">        master_host<span class="operator">=</span><span class="string">&#x27;192.168.20.81&#x27;</span>,</span><br><span class="line">        master_port<span class="operator">=</span><span class="number">3306</span>,</span><br><span class="line">        master_auto_position<span class="operator">=</span><span class="number">1</span>; </span><br><span class="line"><span class="keyword">start</span> slave <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;rep&#x27;</span> password<span class="operator">=</span><span class="string">&#x27;rep&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、MHA-相关命令"><a href="#5、MHA-相关命令" class="headerlink" title="5、MHA 相关命令"></a>5、MHA 相关命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">masterha_check_ssh --conf=/etc/masterha_default.cnf</span><br><span class="line">masterha_check_repl --conf=/etc/masterha_default.cnf</span><br><span class="line"></span><br><span class="line">masterha_master_switch　　　　　　　　<span class="comment">#可用来执行 fail over/online master switch</span></span><br><span class="line"><span class="comment"># For master failover</span></span><br><span class="line">masterha_master_switch --master_state=dead</span><br><span class="line">    --global_conf=/etc/masterha_default.cnf</span><br><span class="line">    --conf=/usr/local/masterha/conf/app1.cnf --dead_master_host=host1</span><br><span class="line"><span class="comment"># For online master switch</span></span><br><span class="line">    masterha_master_switch --master_state=alive</span><br><span class="line">    --global_conf=/etc/masterha_default.cnf</span><br><span class="line">    --conf=/usr/local/masterha/conf/app1.cnf</span><br><span class="line">    </span><br><span class="line">masterha_master_monitor --global_conf=/etc/masterha_default.cnf --conf=/usr/local/masterha/app1.cnf</span><br><span class="line"></span><br><span class="line">masterha_secondary_check -s secondary_host1 -s secondary_host2 .. --user=ssh_username --master_host=host --master_ip=ip --master_port=port</span><br><span class="line"></span><br><span class="line">masterha_manager --global_conf=/etc/masterha_default.cnf --conf=/usr/local/masterha/conf/app1.cnf<span class="comment"># 以上的--global_conf=/etc/masterha_default.cnf 参数均可省略</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、MHA-在线切换测试"><a href="#6、MHA-在线切换测试" class="headerlink" title="6、MHA 在线切换测试"></a>6、MHA 在线切换测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">[root@mysql3 soft]<span class="comment"># masterha_master_switch --master_state=alive --conf=/etc/masterha_default.cnf </span></span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] MHA::MasterRotate version 0.58.</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Starting online master switch..</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] </span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] * Phase 1: Configuration Check Phase..</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] </span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Reading default configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Reading application default configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Reading server configuration from /etc/masterha_default.cnf..</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] GTID failover mode = 1</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Current Alive Master: mysql1(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info] Alive Slaves:</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]   mysql2(192.168.20.82:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Primary candidate <span class="keyword">for</span> the new Master (candidate_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]   mysql3(192.168.20.83:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]   mysql4(192.168.20.84:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:33:03 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line"></span><br><span class="line">It is better to execute FLUSH NO_WRITE_TO_BINLOG TABLES on the master before switching. Is it ok to execute on mysql1(192.168.20.81:3306)? (YES/no): YES</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Executing FLUSH NO_WRITE_TO_BINLOG TABLES. This may take long time..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Checking MHA is not monitoring or doing failover..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Checking replication health on mysql2..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Checking replication health on mysql3..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Checking replication health on mysql4..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] Searching new master from slaves..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  Candidate masters from the configuration file:</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]   mysql1(192.168.20.81:3306)  Version=8.0.16 log-bin:enabled</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]   mysql2(192.168.20.82:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Primary candidate <span class="keyword">for</span> the new Master (candidate_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  Non-candidate masters:</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]   mysql3(192.168.20.83:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]   mysql4(192.168.20.84:3306)  Version=8.0.16 (oldest major version between slaves) log-bin:enabled</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     GTID ON</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Replicating from 192.168.20.81(192.168.20.81:3306)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]     Not candidate <span class="keyword">for</span> the new Master (no_master is <span class="built_in">set</span>)</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info]  Searching from candidate_master slaves <span class="built_in">which</span> have received the latest relay <span class="built_in">log</span> events..</span><br><span class="line">Mon Jun 10 06:34:00 2019 - [info] </span><br><span class="line">From:</span><br><span class="line">mysql1(192.168.20.81:3306) (current master)</span><br><span class="line"> +--mysql2(192.168.20.82:3306)</span><br><span class="line"> +--mysql3(192.168.20.83:3306)</span><br><span class="line"> +--mysql4(192.168.20.84:3306)</span><br><span class="line"></span><br><span class="line">To:</span><br><span class="line">mysql2(192.168.20.82:3306) (new master)</span><br><span class="line"> +--mysql3(192.168.20.83:3306)</span><br><span class="line"> +--mysql4(192.168.20.84:3306)</span><br><span class="line"></span><br><span class="line">Starting master switch from mysql1(192.168.20.81:3306) to mysql2(192.168.20.82:3306)? (<span class="built_in">yes</span>/NO): <span class="built_in">yes</span></span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info] Checking whether mysql2(192.168.20.82:3306) is ok <span class="keyword">for</span> the new master..</span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info] ** Phase 1: Configuration Check Phase completed.</span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info] </span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info] * Phase 2: Rejecting updates Phase..</span><br><span class="line">Mon Jun 10 06:35:02 2019 - [info] </span><br><span class="line">FLUSH NO_WRITE_TO_BINLOG TABLES is not defined. If you <span class="keyword">do</span> not <span class="built_in">disable</span> writes on the current master manually, applications keep writing on the current master. Is it ok to proceed? (<span class="built_in">yes</span>/NO): <span class="built_in">yes</span></span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info] Locking all tables on the orig master to reject updates from everybody (including root):</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info] Executing FLUSH TABLES WITH READ LOCK..</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info]  ok.</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info] Orig master binlog:pos is binlog.000017:1285.</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info]  Waiting to execute all relay logs on mysql2(192.168.20.82:3306)..</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info]  master_pos_wait(binlog.000017:1285) completed on mysql2(192.168.20.82:3306). Executed 0 events.</span><br><span class="line">Mon Jun 10 06:35:53 2019 - [info]   <span class="keyword">done</span>.</span><br><span class="line">Mon Jun 10 06:35:54 2019 - [info] Getting new master<span class="string">&#x27;s binlog name and position..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  binlog.000015:235</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  All other slaves should start replication from here. Statement should be: CHANGE MASTER TO MASTER_HOST=&#x27;</span>mysql2 or 192.168.20.82<span class="string">&#x27;, MASTER_PORT=3306, MASTER_AUTO_POSITION=1, MASTER_USER=&#x27;</span>rep<span class="string">&#x27;, MASTER_PASSWORD=&#x27;</span>xxx<span class="string">&#x27;;</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Setting read_only=0 on mysql2(192.168.20.82:3306)..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  ok.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] * Switching slaves in parallel..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] -- Slave switch on host mysql3(192.168.20.83:3306) started, pid: 9450</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] -- Slave switch on host mysql4(192.168.20.84:3306) started, pid: 9451</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Log messages from mysql3 ...</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Waiting to execute all relay logs on mysql3(192.168.20.83:3306)..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  master_pos_wait(binlog.000017:1285) completed on mysql3(192.168.20.83:3306). Executed 0 events.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]   done.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Resetting slave mysql3(192.168.20.83:3306) and starting replication from the new master mysql2(192.168.20.82:3306)..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Executed CHANGE MASTER.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Slave started.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] End of log messages from mysql3 ...</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] -- Slave switch on host mysql3(192.168.20.83:3306) succeeded.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Log messages from mysql4 ...</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Waiting to execute all relay logs on mysql4(192.168.20.84:3306)..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  master_pos_wait(binlog.000017:1285) completed on mysql4(192.168.20.84:3306). Executed 0 events.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]   done.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Resetting slave mysql4(192.168.20.84:3306) and starting replication from the new master mysql2(192.168.20.82:3306)..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Executed CHANGE MASTER.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  Slave started.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] End of log messages from mysql4 ...</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] -- Slave switch on host mysql4(192.168.20.84:3306) succeeded.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Unlocking all tables on the orig master:</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Executing UNLOCK TABLES..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  ok.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] All new slave servers switched successfully.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] * Phase 5: New master cleanup phase..</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] </span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info]  mysql2: Resetting slave info succeeded.</span></span><br><span class="line"><span class="string">Mon Jun 10 06:35:54 2019 - [info] Switching master to mysql2(192.168.20.82:3306) completed successfully.</span></span><br></pre></td></tr></table></figure>
+
+<p>执行过程中提供了几次YES输入，还有几个重要的语句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查阶段：</span></span><br><span class="line"><span class="comment">#master 执行 </span></span><br><span class="line">FLUSH NO_WRITE_TO_BINLOG TABLES</span><br><span class="line"><span class="comment">#搜寻candidate_master=1 的slave 节点，选择其为新master </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#执行阶段：</span></span><br><span class="line">FLUSH NO_WRITE_TO_BINLOG TABLES is not defined. If you <span class="keyword">do</span> not <span class="built_in">disable</span> writes on the current master manually, applications keep writing on the current master. Is it ok to proceed? (<span class="built_in">yes</span>/NO): <span class="built_in">yes</span></span><br><span class="line">Locking all tables on the orig master to reject updates from everybody (including root):</span><br><span class="line">Executing FLUSH TABLES WITH READ LOCK..</span><br><span class="line">All other slaves should start replication from here. Statement should be: CHANGE MASTER TO MASTER_HOST=<span class="string">&#x27;mysql2 or 192.168.20.82&#x27;</span>, MASTER_PORT=3306, MASTER_AUTO_POSITION=1, MASTER_USER=<span class="string">&#x27;rep&#x27;</span>, MASTER_PASSWORD=<span class="string">&#x27;xxx&#x27;</span>;</span><br><span class="line">Setting read_only=0 on mysql2(192.168.20.82:3306)..</span><br><span class="line">Unlocking all tables on the orig master:</span><br><span class="line">Executing UNLOCK TABLES..</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、在线切换注意点"><a href="#7、在线切换注意点" class="headerlink" title="7、在线切换注意点"></a>7、在线切换注意点</h2><ol>
+<li>会从 candidate_master=1的slave节点中选择新master</li>
+<li>被选择的新master 修改为read_only=0</li>
+<li>原来的master 修改为read_only=1</li>
+<li>切换后，原master 不会转为新master 的 slave。</li>
+<li>配置文件不会发生改变，所以重启需注意。</li>
+</ol>
+<h2 id="8、将原master-改为新master-的slave"><a href="#8、将原master-改为新master-的slave" class="headerlink" title="8、将原master 改为新master 的slave"></a>8、将原master 改为新master 的slave</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--将原master 修改为新master 的从库</span></span><br><span class="line">change master <span class="keyword">to</span>  master_host<span class="operator">=</span><span class="string">&#x27;192.168.20.82&#x27;</span>,master_port<span class="operator">=</span><span class="number">3306</span>,master_auto_position<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"><span class="keyword">start</span> slave <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;rep&#x27;</span> password<span class="operator">=</span><span class="string">&#x27;rep&#x27;</span>;</span><br><span class="line"><span class="keyword">show</span> slave status \G</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、切换回原来的master"><a href="#9、切换回原来的master" class="headerlink" title="9、切换回原来的master"></a>9、切换回原来的master</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># masterha_master_switch <span class="comment">--master_state=alive --conf=/etc/masterha_default.cnf` </span></span><br><span class="line"># 同样的需要把node2 改为slave</span><br><span class="line">change master <span class="keyword">to</span>  master_host<span class="operator">=</span><span class="string">&#x27;192.168.20.81&#x27;</span>,master_port<span class="operator">=</span><span class="number">3306</span>,master_auto_position<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"><span class="keyword">start</span> slave <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;rep&#x27;</span> password<span class="operator">=</span><span class="string">&#x27;rep&#x27;</span>;</span><br><span class="line"><span class="keyword">show</span> slave status \G</span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/18/centos_install_minio_ha/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Vision.Yi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vision 的空间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/18/centos_install_minio_ha/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-18 09:42:25" itemprop="dateCreated datePublished" datetime="2021-03-18T09:42:25+08:00">2021-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-19 08:53:28" itemprop="dateModified" datetime="2020-10-19T08:53:28+08:00">2020-10-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Env-description"><a href="#Env-description" class="headerlink" title="Env description"></a>Env description</h1><ul>
+<li>Centos7 X64</li>
+<li>2 core</li>
+<li>2G memory</li>
+<li>1TB disk</li>
+</ul>
+<p>假设我们的服务器清单为：</p>
+<p>MinIO服务器</p>
+<ul>
+<li>192.168.56.216</li>
+<li>192.168.56.217</li>
+<li>192.168.56.218</li>
+<li>192.168.56.219</li>
+</ul>
+<p>反向代理服务器</p>
+<ul>
+<li>192.168.0.226</li>
+</ul>
+<h1 id="Download-or-upload-the-minio-binary"><a href="#Download-or-upload-the-minio-binary" class="headerlink" title="Download or upload the minio binary"></a>Download or upload the minio binary</h1><p>每个MinIO服务器执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.min.io/server/minio/release/linux-amd64/minio</span><br><span class="line">chmod +x minio</span><br><span class="line">sudo cp minio /usr/local/bin/</span><br></pre></td></tr></table></figure>
+
+<h1 id="Create-work-directories"><a href="#Create-work-directories" class="headerlink" title="Create work directories"></a>Create work directories</h1><p>每个MinIO服务器执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /data/minio/</span><br><span class="line">sudo chown -R optuser:optuser /data/minio</span><br><span class="line">rm -rf /data/minio/*</span><br><span class="line">mkdir -p /data/minio/data/disk_&#123;1001..1004&#125;</span><br><span class="line">mkdir -p /data/minio/config</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>分区绑定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs -t ext4 /dev/sdb1</span><br><span class="line">sudo mount /dev/sdb1 /data/minio/data/disk_1001</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sdc1</span><br><span class="line">sudo mount /dev/sdc1 /data/minio/data/disk_1002</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sdd1</span><br><span class="line">sudo mount /dev/sdd1 /data/minio/data/disk_1003</span><br><span class="line"></span><br><span class="line">sudo mkfs -t ext4 /dev/sde1</span><br><span class="line">sudo mount /dev/sde1 /data/minio/data/disk_1004</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Start-a-minio-cluster-with-4-servers-and-16-disks-per-server"><a href="#Start-a-minio-cluster-with-4-servers-and-16-disks-per-server" class="headerlink" title="Start a minio cluster with 4 servers and 16 disks per server."></a>Start a minio cluster with 4 servers and 16 disks per server.</h1><p>每个MinIO服务器执行</p>
+<p>cat start-minio.sh </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">export MINIO_ACCESS_KEY=admin</span><br><span class="line">export MINIO_SECRET_KEY=12345678</span><br><span class="line"></span><br><span class="line">nohup minio --config-dir /data/minio/config server --address :9000 \</span><br><span class="line">http://192.168.56.216:9000/data/minio/data/disk_&#123;1001...1016&#125; \</span><br><span class="line">http://192.168.56.217:9000/data/minio/data/disk_&#123;1001...1016&#125; \</span><br><span class="line">http://192.168.56.218:9000/data/minio/data/disk_&#123;1001...1016&#125; \</span><br><span class="line">http://192.168.56.219:9000/data/minio/data/disk_&#123;1001...1016&#125; \</span><br><span class="line">2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">echo $! &gt; minio.pid</span><br></pre></td></tr></table></figure>
+
+<p>cat stop-minio.sh </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#/bin/bash</span><br><span class="line"></span><br><span class="line">kill `cat ./minio.pid`</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装反向代理服务器"><a href="#安装反向代理服务器" class="headerlink" title="安装反向代理服务器"></a>安装反向代理服务器</h1><p>反向代理服务器上使用默认轮询方式即可，代理到每个节点的IP地址上。</p>
+<h1 id="Install-minio-client"><a href="#Install-minio-client" class="headerlink" title="Install minio client"></a>Install minio client</h1><p>客户端可以在任意一个能连接代理服务器的电脑上安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.min.io/client/mc/release/linux-amd64/mc</span><br><span class="line">chmod +x mc</span><br><span class="line">sudo cp mc /usr/local/bin/</span><br><span class="line">mc --help</span><br><span class="line"></span><br><span class="line">配置服务客户端连接：</span><br><span class="line">mc config host add xinhoo http://192.168.0.226:9000 admin 12345678 --api S3v4</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -798,332 +1305,10 @@ mc admin heal -r nodeName</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/ubuntu_install_squid/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/01/ubuntu_install_squid/" class="post-title-link" itemprop="url">ubuntu 安装 squid</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-01 20:10:03" itemprop="dateCreated datePublished" datetime="2020-06-01T20:10:03+08:00">2020-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-25 11:49:06" itemprop="dateModified" datetime="2020-11-25T11:49:06+08:00">2020-11-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>1. 安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks-all.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/shadowsocks-r/config.json</span><br><span class="line"></span><br><span class="line">systemctl restart shadowsocks-r.service</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;server&quot;</span>:<span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;server_ipv6&quot;</span>:<span class="string">&quot;::&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_address&quot;</span>:<span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line"><span class="string">&quot;port_password&quot;</span>:&#123;</span><br><span class="line"><span class="string">&quot;18001&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18002&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18003&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18004&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18005&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;444&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;timeout&quot;</span>:120,</span><br><span class="line"><span class="string">&quot;method&quot;</span>:<span class="string">&quot;aes-256-cfb&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol&quot;</span>:<span class="string">&quot;auth_aes128_md5&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs&quot;</span>:<span class="string">&quot;tls1.2_ticket_fastauth&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;redirect&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;dns_ipv6&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;fast_open&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;workers&quot;</span>:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装squid</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install squid</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成密码文件</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;xhusr:<span class="subst">$(openssl passwd -crypt &#x27;qS03v8Sw&#x27;)</span>\n&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/squid/htpasswd</span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sudo apt-get install apache2-utils</span><br><span class="line">htpasswd -c /etc/squid/htpasswd xhusr</span><br><span class="line"></span><br><span class="line">qS03v8Swstn2xU7e</span><br></pre></td></tr></table></figure>
-
-
-<p>​    </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#备份配置</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/squid/squid.conf&#123;,.orginal&#125;</span><br><span class="line"><span class="comment">#编辑配置</span></span><br><span class="line">sudo nano /etc/squid/squid.conf</span><br><span class="line"><span class="comment">#or</span></span><br><span class="line">sudo vim /etc/squid/squid.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#加入验证配置文件（注：要放在文件前面，不然会提示密码错误）</span></span><br><span class="line">auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd</span><br><span class="line">auth_param basic realm proxy</span><br><span class="line">acl authenticated proxy_auth REQUIRED</span><br><span class="line"><span class="comment">#http_access allow localnet</span></span><br><span class="line">http_access allow localhost</span><br><span class="line">http_access allow authenticated</span><br><span class="line"><span class="comment"># And finally deny all other access to this proxy</span></span><br><span class="line">http_access deny all</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启</span></span><br><span class="line">sudo systemctl restart squid</span><br></pre></td></tr></table></figure>
-
-
-
-<p>安装socks5</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/anonymous-test/p/13809348.html">https://www.cnblogs.com/anonymous-test/p/13809348.html</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dante-server</span><br><span class="line"></span><br><span class="line">#生成密码</span><br><span class="line">sudo useradd -s /sbin/nologin test -g proxy</span><br><span class="line">passwd test</span><br><span class="line"></span><br><span class="line">wHaQ8NRAUMEniIKZ</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#指定日志文件保存的绝对路径</span><br><span class="line">logoutput: /var/log/socks5.log</span><br><span class="line">#进口IP或网卡</span><br><span class="line">internal: eth0 port = 8888</span><br><span class="line">#进口网卡及端口</span><br><span class="line">internal: eth0 port = 9999</span><br><span class="line">#出口网卡</span><br><span class="line">external: eth0</span><br><span class="line">#设置代理方式（rfc931）</span><br><span class="line">socksmethod: username none</span><br><span class="line">#设置客户端规则</span><br><span class="line">clientmethod: none</span><br><span class="line">#设置用户权限</span><br><span class="line">user.privileged: root</span><br><span class="line">#非特权用户</span><br><span class="line">user.notprivileged: nobody</span><br><span class="line">#如果编译时支持 libwrap，使用的用户 ID（ libwrap：服务程序安全增强工具，对有状态连接的特定服务进行安全检测并实现访问控制）</span><br><span class="line">user.libwrap: nobody</span><br><span class="line">#设置访问规则</span><br><span class="line">client pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">#记录连接、断开、报错信息</span><br><span class="line">log: connect disconnect error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socks pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">protocol: tcp udp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/11/centos_install_keepalived_lvs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/11/centos_install_keepalived_lvs/" class="post-title-link" itemprop="url">keepalived lvs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-11 13:40:57" itemprop="dateCreated datePublished" datetime="2020-05-11T13:40:57+08:00">2020-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-12 11:37:28" itemprop="dateModified" datetime="2020-05-12T11:37:28+08:00">2020-05-12</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>1. 命令配置（重启后失效）</strong></p>
-<pre><code>yum install ipvsadm -y
-ipvsadm   （执行ipvsadm（modprobe ip_vs）把ip_vs模块加载到内核）
-lsmod |grep ip_vs   #查看IPVS加载到内核没有</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/action_curl/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/24/action_curl/" class="post-title-link" itemprop="url">centOS 安装配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-21 16:39:30" itemprop="dateModified" datetime="2020-10-21T16:39:30+08:00">2020-10-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>1. 命令</strong> COD</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//上传文件     </span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://cod.xinhoo.com:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0a16a87ad9a4012a304ee30d7643f51&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP0&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
-
-
-
-<pre><code>curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2 -H &quot;Authorization:eXwdrXrvrjsHDs7F&quot; -H &quot;Content-Type:application/json;charset=UTF-8&quot; -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
-
-curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/updateservice/checkversion -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: eXwdrXrvrjsHDs7F&quot; --data-raw &quot;&#123;&apos;resource&apos;: &apos;ANDROID&apos;,&apos;appVersion&apos;: &apos;1.0.0&apos;&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
-
-curl --location --request GET &quot;https://im.imangoim.com:9001/file/openfire/v1/download/a8c9e562b99847b0a7af0017c668c296?storeType=MESSAGE&quot; ^
---header &quot;xh-user-token: 466826d3c1d144b482f38d8b440feab0&quot; ^
---header &quot;xh-user-name: cod_60000001&quot; ^
---header &quot;xh-user-resource: DESKTOP&quot; ^
---header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^
---output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;
-
-curl --location --request  POST -g \
-       &quot;https://imapi.rezffb.com/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot; \
-        --header &apos;Authorization: eXwdrXrvrjsHDs7F&apos; \
-        --header &apos;Content-Type: application/json; charset=UTF-8&apos; \
-        -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;</code></pre><p>​<br>    curl –location –request  POST -g <br>           “<a target="_blank" rel="noopener" href="https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;">https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;</a> <br>            –header ‘Authorization: eXwdrXrvrjsHDs7F’ <br>            –header ‘Content-Type: application/json; charset=UTF-8’ <br>            -d “{‘targetname’:’codm_1080005491’,’text’:’Hi,\nIm test robot.’,’chatType’:2,’model’:1}”</p>
-<p>​<br>​    </p>
-<p>​    </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//下载文件</span><br><span class="line">curl --location --request GET &quot;https://file.rezffb.com/file/openfire/v1/download/[fileid]?storeType=MESSAGE&quot; ^</span><br><span class="line">--header &quot;xh-user-token: 123123123123123123&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^</span><br><span class="line">--output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上传文件</span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br><span class="line"></span><br><span class="line">curl --resolve im.flygram.im:443:35.247.162.93 --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/centos_install_esxi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Vision.Yi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Vision 的空间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/24/centos_install_esxi/" class="post-title-link" itemprop="url">centOS 安装配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-24 09:08:28" itemprop="dateCreated datePublished" datetime="2020-03-24T09:08:28+08:00">2020-03-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-29 10:29:06" itemprop="dateModified" datetime="2021-11-29T10:29:06+08:00">2021-11-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a><strong>1. 常用命令</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#扩展空间</span></span><br><span class="line">vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk</span><br><span class="line"><span class="comment">#复制</span></span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_01/centos8disk1.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_02/centos8disk2.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_03/centos8disk3.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line"></span><br><span class="line">vmkfstools --server 10.21.49.14 -i <span class="string">&#x27;[Datastore] examplevm/examplevm.vmdk&#x27;</span> <span class="string">&#x27;[Datastore 2] newexamplevm/newexamplevm.vmdk&#x27;</span> -d thin -a buslogic</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-查看磁盘健康状态"><a href="#2-查看磁盘健康状态" class="headerlink" title="2.查看磁盘健康状态"></a>2.查看磁盘健康状态</h3><p>列出硬盘</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device list</span><br><span class="line">或</span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br></pre></td></tr></table></figure>
-
-<p>查看硬盘smart信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device smart get -d &lt;disk&gt; </span><br><span class="line"></span><br><span class="line">eg.</span><br><span class="line">esxcli storage core device smart get -d t10.ATA_____WDC_WD10EZEX2D08WN4A0_________________________WD2DWCC6Y4JZLP3E</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-挂载物理硬盘到虚拟机"><a href="#3-挂载物理硬盘到虚拟机" class="headerlink" title="3.挂载物理硬盘到虚拟机"></a>3.挂载物理硬盘到虚拟机</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示硬盘信息</span></span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br><span class="line"><span class="comment">#影响硬盘到vmdk</span></span><br><span class="line">vmkfstools -z /vmfs/devices/disks/t10.ATA_____WDC_WD1003FBYX2D01Y7B1________________________WD2DWCAW35647184 /vmfs/volumes/datastore1_esxipc/WD1TB.vmdk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1189,7 +1374,7 @@ curl --location --request  POST -g \
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1221,7 +1406,7 @@ curl --location --request  POST -g \
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
