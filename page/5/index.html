@@ -64,316 +64,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-centos_install_nginx" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_nginx/" class="article-date">
-  <time datetime="2019-11-08T09:26:29.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_nginx/">centOS 安装 nginx</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-下载nginx包"><a href="#1-下载nginx包" class="headerlink" title="1. 下载nginx包"></a><strong>1. 下载nginx包</strong></h2><pre><code>cd /usr/local/src
-git clone git://github.com/vozlt/nginx-module-vts.git
-git clone https://github.com/yaoweibin/nginx_upstream_check_module
-
-git clone https://github.com/Refinitiv/nginx-sticky-module-ng
-
-sudo wget -c https://nginx.org/download/nginx-1.24.0.tar.gz
-sudo tar -zxvf nginx-1.24.0.tar.gz
-cd nginx-1.24.0</code></pre><h2 id="2-配置与编译"><a href="#2-配置与编译" class="headerlink" title="2. 配置与编译"></a><strong>2. 配置与编译</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install pcre-devel openssl openssl-devel</span><br><span class="line">sudo yum -y install perl-devel perl-ExtUtils-Embed</span><br><span class="line"></span><br><span class="line">patch -p1 &lt; /usr/local/src/nginx_upstream_check_module/check_1.16.1+.patch</span><br><span class="line">sudo ./configure --add-module=/usr/local/src/nginx-module-vts --add-module=/usr/local/src/nginx_upstream_check_module --with-stream --with-http_ssl_module --with-http_perl_module</span><br><span class="line"></span><br><span class="line"><span class="comment">#with lua module</span></span><br><span class="line">--with-luajit</span><br><span class="line"><span class="comment">#with centos 8</span></span><br><span class="line">--with-cc-opt=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line"><span class="comment">#sticky-module</span></span><br><span class="line">--add-module=/root/nginx-sticky-module-ng</span><br><span class="line"></span><br><span class="line">sudo ./configure --with-stream --with-http_ssl_module --with-http_perl_module --with-http_v2_module </span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>创建MySQL用户用户组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd nginx</span><br><span class="line">useradd -M -g nginx -s /sbin/nologin nginx</span><br><span class="line"><span class="built_in">id</span> nginx</span><br></pre></td></tr></table></figure>
-
-<p>授权目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R mysql:mysql /data/mysql</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="使用lua"><a href="#使用lua" class="headerlink" title="使用lua"></a>使用lua</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先安装pcre库，Redhat系的机器对应的包可能为pcre-devel；也可以自己手动编译</span></span><br><span class="line">aptitude -y install libpcre3-dev</span><br><span class="line"><span class="comment"># 下载并编译安装Lua解释器-LuaJIT</span></span><br><span class="line">wget -c https://github.com/openresty/luajit2/archive/v2.1-20220111.tar.gz</span><br><span class="line">tar -zxvf v2.1-20220111.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ./luajit2-2.1-20220111</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">wget -c https://github.com/openresty/luajit2/archive/v2.1-20200102.tar.gz</span><br><span class="line">tar -zxvf v2.1-20200102.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ./luajit2-2.1-20200102</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 告诉操作系统luajit的路径</span></span><br><span class="line"><span class="built_in">export</span> LUAJIT_LIB=/usr/local/lib</span><br><span class="line"><span class="built_in">export</span> LUAJIT_INC=/usr/local/include/luajit-2.1</span><br><span class="line"><span class="comment"># 写进配置文件，为luajit配置动态链接库</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/usr/local/lib/&#x27;</span> &gt;&gt; /etc/ld.so.conf.d/luajit_so.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载并解压Nginx编译所需的模块</span></span><br><span class="line"><span class="comment"># OpenResty Lua 模块</span></span><br><span class="line">wget -c https://github.com/openresty/lua-nginx-module/archive/v0.10.12.tar.gz</span><br><span class="line">tar -zxvf v0.10.12.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># ngx_devel_kit 模块</span></span><br><span class="line">wget -c https://github.com/vision5/ngx_devel_kit/archive/v0.3.1.tar.gz</span><br><span class="line">tar -zxvf v0.3.1.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单编译示例</span></span><br><span class="line"></span><br><span class="line">sudo ./configure --with-stream --with-http_ssl_module --with-http_perl_module --with-http_v2_module --add-module=../ngx_devel_kit-0.3.1 --add-module=../lua-nginx-module-0.10.15</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line">./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --add-module=../ngx_devel_kit-0.3.1 --add-module=../lua-nginx-module-0.10.16rc5</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-设置开机启动"><a href="#3-设置开机启动" class="headerlink" title="3. 设置开机启动"></a><strong>3. 设置开机启动</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /usr/lib/systemd/system/nginx.service</span><br></pre></td></tr></table></figure>
-
-<p>文件内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> &gt; /usr/lib/systemd/system/nginx.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=nginx service</span></span><br><span class="line"><span class="string">After=network.target </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service] </span></span><br><span class="line"><span class="string">#User=nginx</span></span><br><span class="line"><span class="string">#Group=nginx</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Type=forking </span></span><br><span class="line"><span class="string">ExecStart=/usr/local/nginx/sbin/nginx</span></span><br><span class="line"><span class="string">ExecReload=/usr/local/nginx/sbin/nginx -s reload</span></span><br><span class="line"><span class="string">ExecStop=/usr/local/nginx/sbin/nginx -s quit</span></span><br><span class="line"><span class="string">PrivateTmp=true </span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">[Install] </span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>设置自动启动</p>
-<pre><code>sudo systemctl enable nginx.service</code></pre><h2 id="4-手动启动测试代码"><a href="#4-手动启动测试代码" class="headerlink" title="4.手动启动测试代码"></a><strong>4.手动启动测试代码</strong></h2><pre><code>cd /usr/local/nginx/sbin/
-./nginx -t
-./nginx -s stop
-./nginx -s quit
-./nginx -s reload</code></pre><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attribute">worker_processes</span> auto;</span><br><span class="line"><span class="comment">#pid /run/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">	<span class="attribute">worker_connections</span> <span class="number">65535</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line">	<span class="comment"># Basic Settings</span></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">sendfile</span> <span class="literal">on</span>;</span><br><span class="line">	<span class="attribute">tcp_nopush</span> <span class="literal">on</span>;</span><br><span class="line">	<span class="attribute">tcp_nodelay</span> <span class="literal">on</span>;</span><br><span class="line">	<span class="attribute">keepalive_timeout</span> <span class="number">65</span>;</span><br><span class="line">	<span class="attribute">types_hash_max_size</span> <span class="number">2048</span>;</span><br><span class="line">	<span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">	<span class="comment"># server_tokens off;</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">proxy_connect_timeout</span> <span class="number">300</span>; <span class="comment">#单位秒 </span></span><br><span class="line">    <span class="attribute">proxy_send_timeout</span> <span class="number">300</span>; <span class="comment">#单位秒 </span></span><br><span class="line">    <span class="attribute">proxy_read_timeout</span> <span class="number">300</span>; <span class="comment">#单位秒 </span></span><br><span class="line">	</span><br><span class="line">	<span class="comment"># server_names_hash_bucket_size 64;</span></span><br><span class="line">	<span class="comment"># server_name_in_redirect off;</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">include</span> mime.types;</span><br><span class="line">	<span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line">	<span class="comment"># SSL Settings</span></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>; <span class="comment"># Dropping SSLv3, ref: POODLE</span></span><br><span class="line">	<span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line">	<span class="comment"># Logging Settings</span></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">access_log</span> logs/access.log;</span><br><span class="line">	<span class="attribute">error_log</span> logs/<span class="literal">error</span>.log;</span><br><span class="line"></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line">	<span class="comment"># Gzip Settings</span></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line"></span><br><span class="line">	<span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment"># gzip_vary on;</span></span><br><span class="line">	<span class="comment"># gzip_proxied any;</span></span><br><span class="line">	<span class="comment"># gzip_comp_level 6;</span></span><br><span class="line">	<span class="comment"># gzip_buffers 16 8k;</span></span><br><span class="line">	<span class="comment"># gzip_http_version 1.1;</span></span><br><span class="line">	<span class="comment"># gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line">	<span class="comment"># Virtual Host Configs</span></span><br><span class="line">	<span class="comment">##</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#include /etc/nginx/conf.d/*.conf;</span></span><br><span class="line">	<span class="comment">#include /etc/nginx/sites-enabled/*;</span></span><br><span class="line">  </span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span>      ssl/full_chain.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  ssl/private.key;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_session_timeout</span>  <span class="number">5m</span>;</span><br><span class="line">	</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">proxy_set_header</span>  X-Forwarded-For <span class="variable">$http_x_forwarded_fo</span>;</span><br><span class="line">		<span class="attribute">proxy_set_header</span>  X-Forwarded-Host <span class="variable">$server_name</span>;</span><br><span class="line">		<span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">		<span class="attribute">client_max_body_size</span> <span class="number">200M</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> https://192.168.12.50;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">		<span class="attribute">proxy_set_header</span>  X-Forwarded-For <span class="variable">$http_x_forwarded_for</span>;</span><br><span class="line">		<span class="attribute">proxy_set_header</span>  X-Forwarded-Host <span class="variable">$server_name</span>;</span><br><span class="line">		<span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://192.168.12.50;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-安裝php"><a href="#5-安裝php" class="headerlink" title="5.安裝php"></a>5.安裝php</h2><h3 id="清除php历史版本"><a href="#清除php历史版本" class="headerlink" title="清除php历史版本"></a>清除php历史版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#搜索已经安装的包</span></span><br><span class="line">rpm -pa | grep php*</span><br><span class="line"><span class="comment"># yum查询想要安装的包,</span></span><br><span class="line"><span class="comment"># 例如:yum search messenger</span></span><br><span class="line">yum search <span class="string">&#x27;keyword&#x27;</span></span><br><span class="line"><span class="comment">#模糊搜索本地yum包</span></span><br><span class="line">yum list | grep php</span><br><span class="line"><span class="comment">#删除指定的包</span></span><br><span class="line">yum -y remove php*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装php-fpm"><a href="#安装php-fpm" class="headerlink" title="安装php-fpm"></a>安装php-fpm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置remi安裝源(php 7.4)</span></span><br><span class="line">sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm</span><br><span class="line"><span class="comment"># 配置安裝源</span></span><br><span class="line">rpm -Uvh https://dl.Fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm</span><br><span class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同上效果</span></span><br><span class="line">yum install epel-release -y</span><br><span class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简包</span></span><br><span class="line">yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精简包7.4</span></span><br><span class="line">yum -y install php74w php72w-cli php72w-fpm php72w-common php72w-devel</span><br><span class="line">yum install php  php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完整包</span></span><br><span class="line">yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel php72w-embedded php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动服务</span></span><br><span class="line">systemctl <span class="built_in">enable</span> php-fpm.service</span><br><span class="line">systemctl start php-fpm.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装Remi-php-7-4"><a href="#安装Remi-php-7-4" class="headerlink" title="安装Remi - php 7.4"></a>安装<strong>Remi</strong> - php 7.4</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加 EPEL 存储库</span></span><br><span class="line">sudo yum install epel-release</span><br><span class="line">sudo yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装 Remi 存储库</span></span><br><span class="line">yum install yum-utils</span><br><span class="line">yum-config-manager --<span class="built_in">enable</span> remi-php74</span><br><span class="line"></span><br><span class="line">yum install php php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_nginx/" data-id="cluii05gg000zrsux9x3s7983" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-nginx/" rel="tag">centos nginx</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_haproxy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_haproxy/" class="article-date">
-  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_haproxy/">centOS 安装 turnserver</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 下载turnserver包</strong></p>
-<pre><code>wget http://www.haproxy.org/download/2.2/src/haproxy-2.2.2.tar.gz
-sudo tar -zxvf haproxy-2.2.2.tar.gz
-cd haproxy-2.2.2</code></pre><p><strong>2. 配置与编译</strong></p>
-<pre><code>sudo yum install -y make gcc cc gcc-c++ wget
-sudo yum install -y openssl-devel libevent libevent-devel mysql-devel mysql-server
-sudo yum install -y libsystemd-dev systemd-devel
-make TARGET=linux-glibc PREFIX=/usr/local/haproxy USE_OPENSSL=1 USE_SYSTEMD=1
-make install PREFIX=/usr/local/haproxy
-
-cp /usr/local/haproxy/sbin/haproxy /usr/local/sbin/</code></pre><h4 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3.    修改配置文件"></a><strong>3.    修改配置文件</strong></h4><pre><code>vim /etc/haproxy/haproxy.cfg
-
-#---------------------------------------------------------------------
-# Defaults settings
-#---------------------------------------------------------------------
-defaults
-    log      global
-    option   dontlognull
-    option   httpclose
-    option   redispatch
-    balance  roundrobin
-    #maxconn  4096
-    timeout  connect 5s
-    timeout  client 5s
-    timeout  server 3s
-    timeout  check 5s
-    retries  3
-#---------------------------------------------------------------------
-# Statistics
-#---------------------------------------------------------------------
-listen admin_stats
-    bind     0.0.0.0:8100
-    stats    enable
-    mode     http
-    log      global
-    stats    uri  /stats
-    stats    realm Haproxy\ Statistics
-    stats    auth  admin:c0s43pa
-    stats    admin if TRUE
-    stats    refresh 5s
-##########################################
-frontend stats
-    mode     http
-    bind *:8404
-    http-request use-service prometheus-exporter if &#123; path /metrics &#125;
-    stats enable
-    stats uri /stats
-    stats refresh 10s
-#---------------------------------------------------------------------
-# IM CLUSTER
-#---------------------------------------------------------------------
-listen IM_cluster
-    bind     0.0.0.0:5222
-    mode     tcp
-    option   tcplog
-    balance  roundrobin
-    timeout  client 3h
-#    timeout  connect 3s
-    timeout  server 3h
-    server   im01 47.242.8.252:5222 check inter 5000 rise 2 fall 3</code></pre><p>4.设置开机启动</p>
-<pre><code>sudo vim /usr/lib/systemd/system/haproxy.service 
-
-[Unit]
-Description=HAProxy Load Balancer
-After=syslog.target network.target
-
-[Service]
-ExecStartPre=/usr/local/sbin/haproxy -f /etc/haproxy/haproxy.cfg   -c -q
-ExecStart=/usr/local/sbin/haproxy -Ws -f /etc/haproxy/haproxy.cfg  -p /usr/local/haproxy/haproxy.pid
-ExecReload=/bin/kill -USR2 $MAINPID
-
-[Install]
-WantedBy=multi-user.target</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_haproxy/" data-id="cluii05g5000arsux1cax4ibj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_gitea" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_gitea/" class="article-date">
-  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_gitea/">centOS 安装 gitea</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-下载与安装"><a href="#1-下载与安装" class="headerlink" title="1. 下载与安装"></a><strong>1. 下载与安装</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O gitea https://dl.gitea.io/gitea/1.12.6/gitea-1.12.6-linux-amd64</span><br><span class="line"><span class="comment">#sudo wget -O gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64</span></span><br><span class="line">sudo <span class="built_in">chmod</span> +x gitea</span><br><span class="line"><span class="built_in">mkdir</span> /usr/local/gitea/</span><br><span class="line"><span class="built_in">mv</span> gitea /usr/local/gitea/</span><br><span class="line"></span><br><span class="line"><span class="comment">#官网建议以下创建用户，但是测试发现无法ssh（由于--system用户的uid&lt;1000 ），建议使用adduser git即可</span></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/git</span><br><span class="line"><span class="built_in">chown</span> -R git:git /home/git</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/gitea/&#123;data,<span class="built_in">log</span>,conf&#125;</span><br><span class="line"><span class="built_in">touch</span> /data/gitea/conf/app.ini</span><br><span class="line"><span class="built_in">chown</span> -R git:git /data/gitea/</span><br><span class="line"><span class="built_in">chmod</span> -R 750 /data/gitea/</span><br><span class="line"><span class="built_in">chown</span> root:git /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 770 /data/gitea/conf</span><br><span class="line"><span class="built_in">chmod</span> 640 /data/gitea/conf/app.ini</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adduser \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control 2&#x27;</span> \</span><br><span class="line">   --user-group \</span><br><span class="line">   --home /home/gitea \</span><br><span class="line">   gitea</span><br><span class="line"> sudo useradd \</span><br><span class="line">   --system \</span><br><span class="line">   --shell /bin/bash \</span><br><span class="line">   --comment <span class="string">&#x27;Git Version Control&#x27;</span> \</span><br><span class="line">   --create-home \</span><br><span class="line">   --home /home/git \</span><br><span class="line">   git</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /usr/lib/systemd/system/gitea.service &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=Gitea (Git with a cup of tea)</span></span><br><span class="line"><span class="string">After=syslog.target</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="string">#LimitNOFILE=65535</span></span><br><span class="line"><span class="string">RestartSec=2s</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">User=git</span></span><br><span class="line"><span class="string">Group=git</span></span><br><span class="line"><span class="string">WorkingDirectory=/data/gitea/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ExecStart=/usr/local/gitea/gitea web --config /data/gitea/conf/app.ini</span></span><br><span class="line"><span class="string">Restart=always</span></span><br><span class="line"><span class="string">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<p>Using a text editor of your choice, open this newly create file and populate it with the following.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/gitea.service</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=Gitea (Git with a cup of tea)</span><br><span class="line">After=network.target</span><br><span class="line">After=mariadb.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># Modify these two values and uncomment them if you have</span></span><br><span class="line"><span class="comment"># repos with lots of files and get an HTTP error 500 because</span></span><br><span class="line"><span class="comment"># of that</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#LimitMEMLOCK=infinity</span></span><br><span class="line"><span class="comment">#LimitNOFILE=65535</span></span><br><span class="line">RestartSec=2s</span><br><span class="line">Type=simple</span><br><span class="line">User=git</span><br><span class="line">Group=git</span><br><span class="line">WorkingDirectory=/data/gitea/</span><br><span class="line">ExecStart=/usr/local/gitea/gitea web -c /data/gitea/conf/app.ini</span><br><span class="line">Restart=always</span><br><span class="line">Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/data/gitea</span><br><span class="line"><span class="comment"># If you want to bind Gitea to a port below 1024 uncomment</span></span><br><span class="line"><span class="comment"># the two values below</span></span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment">#CapabilityBoundingSet=CAP_NET_BIND_SERVICE</span></span><br><span class="line"><span class="comment">#AmbientCapabilities=CAP_NET_BIND_SERVICE</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>Enable and start Gitea at boot.</p>
-<pre><code>sudo systemctl daemon-reload
-sudo systemctl enable gitea
-sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
-<pre><code>sudo systemctl status gitea</code></pre><p>Web-based Gitea configuration.<br>Finally, open a web browser and point it to:</p>
-<pre><code>http://YOUR_SERVER_IP:3000/install</code></pre><h2 id="2-备份脚本"><a href="#2-备份脚本" class="headerlink" title="2.备份脚本"></a>2.备份脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : backupgitea.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">GITBAK=gitea<span class="string">&quot;_&quot;</span>$(<span class="built_in">date</span> <span class="string">&quot;+%Y_%m_%d_%H_%M_%S&quot;</span>)</span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line">tar -zcvf <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz -P /data/gitea/ </span><br><span class="line"><span class="built_in">split</span> -b 2048M -d -a 1 <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz <span class="variable">$BACKUP_PATH</span>/<span class="variable">$GITBAK</span>.tar.gz.</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -<span class="built_in">type</span> f -name <span class="string">&quot;<span class="variable">$GITBAK</span>.tar.gz.*&quot;</span> -<span class="built_in">exec</span> /usr/local/bin/bypy upload &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-清理文件"><a href="#3-清理文件" class="headerlink" title="3.清理文件"></a>3.清理文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># File name : cleanbackup.sh</span></span><br><span class="line"><span class="comment"># Check system is up</span></span><br><span class="line">BACKUP_PATH=<span class="string">&#x27;/data/backup&#x27;</span></span><br><span class="line"></span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br><span class="line">sudo find <span class="variable">$BACKUP_PATH</span> -mtime +1 -<span class="built_in">type</span> f -name <span class="string">&quot;*.tar.gz.*&quot;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-定时任务"><a href="#4-定时任务" class="headerlink" title="4.定时任务"></a>4.定时任务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 * * *  /data/crontab/backupgitea.sh &gt;&gt; /var/log/daily-backup.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_gitea/" data-id="cluii05g6000drsux0i2o93ns" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_nextcloud" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/centos_install_nextcloud/" class="article-date">
-  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/centos_install_nextcloud/">centOS 安装 nextcloud</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 运行nextcloud</strong></p>
-<pre><code>docker run -d --name nextcloud -v mkdir /data/nextcloud:/var/www/html -p 8080:80 nextcloud</code></pre><p>搭建Nextcloud服务端<br>2.1安装Docker容器<br>Centos系统安装docker容器十分方便，推荐使用Docker官方的安装方式，依次执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装旧版本docker</span></span><br><span class="line"><span class="comment">#yum install -y docker</span></span><br><span class="line"><span class="comment">#安装最新docker CE</span></span><br><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
-
-<p>安装完毕后，设置开机启动，开启Docker服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker </span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
-
-<p>2.2安装Nextcloud服务端<br>docker hub镜像仓库自带有nextcloud的镜像，可以直接拉取</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nextcloud</span><br></pre></td></tr></table></figure>
-
-<p>2.3启动Nextcloud服务器端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /data/nextcloud</span><br><span class="line">docker run --name nextcloud -p 8081:80 -v /data/nextcloud:/var/www/html/data -d nextcloud</span><br><span class="line"></span><br><span class="line">docker run --name nextcloud -p 8081:80 -d \</span><br><span class="line">-v /data/nextcloud/config:/var/www/html/config \</span><br><span class="line">-v /data/nextcloud/data:/var/www/html/data \</span><br><span class="line">nextcloud</span><br><span class="line"></span><br><span class="line">docker run --name nextcloud -p 8081:80 -d \</span><br><span class="line">	-v /data/nextcloud/config:/var/www/html/config \</span><br><span class="line">	-v /data/nextcloud/data:/var/www/html/data \</span><br><span class="line">	-v /data/nextcloud/apps:/var/www/html/custom_apps \</span><br><span class="line">	nextcloud</span><br><span class="line">	</span><br><span class="line">docker run --name nextcloud -p 8081:80 -d \</span><br><span class="line">	-v /data/nextcloud/config:/var/www/html/config \</span><br><span class="line">	-v /data/nextcloud/data:/var/www/html/data \</span><br><span class="line">	-v /data/nextcloud/apps:/var/www/html/custom_apps \</span><br><span class="line">	nextcloud:23.0.6</span><br><span class="line">	</span><br><span class="line">docker run --name nextcloud -p 8081:80 -v nextcloud:/var/www/html/data -d nextcloud</span><br></pre></td></tr></table></figure>
-
-
-
-<p>安装最新社区版本Docker</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils</span><br><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">    </span><br><span class="line">yum list docker-ce --showduplicates | <span class="built_in">sort</span> -r</span><br><span class="line"></span><br><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mariadb -p 3306:3306 -d \</span><br><span class="line">-v /data/db:/var/lib/mysql \</span><br><span class="line">mariadb:10.5</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker run -itd --name mariadb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456  \</span><br><span class="line">-v  /data/mariadb:/var/lib/mysql mariadb </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;nextclouduser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;5ztlCifH4rjxwBz0&#x27;</span>;</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> nextclouddb <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_general_ci;</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">on</span> nextclouddb.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;nextclouduser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">FLUSH privileges;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_nextcloud/" data-id="cluii05ge000ursux3z06f3x4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-centos_install_openvpn" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/08/centos_install_openvpn/" class="article-date">
@@ -479,7 +169,7 @@ sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_openvpn/" data-id="cluii05gg0011rsuxfy9j81g8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_openvpn/" data-id="cluii14mi0011ecuxdks1b5ut" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
@@ -533,7 +223,7 @@ sudo systemctl start gitea</code></pre><p>Ensure Gitea is running.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_openssl/" data-id="cluii05gh0014rsux3inw847f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_openssl/" data-id="cluii14mj0014ecux96h8dlsp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-gitea/" rel="tag">centos gitea</a></li></ul>
@@ -596,7 +286,7 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_tomcat/" data-id="cluii05go001lrsux8sxzej97" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_tomcat/" data-id="cluii14mp001lecux260jhdt7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tomcat/" rel="tag">centos tomcat</a></li></ul>
@@ -642,7 +332,7 @@ WantedBy=multi-user.target</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_trojan/" data-id="cluii05gp001qrsuxh9ucg8nd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_trojan/" data-id="cluii14mq001qecux069qhpqr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">centos 科学上网</a></li></ul>
@@ -716,7 +406,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/centos_install_turnserver/" data-id="cluii05gr001srsux4wm5e7yi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/centos_install_turnserver/" data-id="cluii14mr001secux5bfdeul7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
@@ -790,10 +480,284 @@ UMask=0007</code></pre><p>设置自动启动</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/08/windows_git/" data-id="cluii05h0002nrsux9d5kdqjt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/08/windows_git/" data-id="cluii14n2002necux6b4j175r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows-ssh-git/" rel="tag">windows ssh git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-windows_kms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/windows_kms/" class="article-date">
+  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/windows_kms/">kms 激活 windows office</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Windows    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#KMS激活</span></span><br><span class="line">slmgr /skms kms.raysto.cn</span><br><span class="line">slmgr /ato</span><br><span class="line"><span class="comment">#或</span></span><br><span class="line"><span class="built_in">cd</span> C:\Windows\System32</span><br><span class="line">CSCRIPT /NOLOGO SLMGR.VBS /SKMS kms.raysto.cn</span><br><span class="line">CSCRIPT /NOLOGO SLMGR.VBS /ATO</span><br><span class="line">CSCRIPT /NOLOGO SLMGR.VBS /XPR</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新授权</span></span><br><span class="line">slmgr /upk</span><br><span class="line">slmgr /ipk N69G4-B89J2-4G8F4-WWYCC-J464C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Office</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#KMS激活</span></span><br><span class="line"><span class="built_in">cd</span> C:\Program Files\Microsoft Office\Office16</span><br><span class="line">CSCRIPT OSPP.VBS /SETHST:kms.raysto.cn</span><br><span class="line">CSCRIPT OSPP.VBS /ACT</span><br><span class="line">CSCRIPT OSPP.VBS /DSTATUS</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新授权</span></span><br><span class="line">CSCRIPT OSPP.VBS /inpkey:GP3YN-RPX2T-FVYT8-4TPFY-7MKG3</span><br><span class="line">cscript ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99</span><br><span class="line"></span><br><span class="line">【Office Professional Plus 2016：XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99】</span><br><span class="line">【Office Standard 2016：JNRGM-WHDWX-FJJG3-K47QV-DRTFM】</span><br></pre></td></tr></table></figure>
+
+
+
+<p>错误：The Software Licensing Service reported that the product SKU is not found</p>
+<p>这不是vlmcsd中的错误，这是Office的一个问题。可能是您的系统上没有安装批量许可SKU，打开C:\Program Files\Microsoft Office\root\icenses16文件夹，在这个文件夹中应该是一堆XRM-MS文件。如果是这样的，下面的批处理文件会帮你安装许可证证书：</p>
+<p>转换VOL版本批处理</p>
+<pre><code>@echo off
+:ADMIN
+openfiles &gt;nul 2&gt;nul ||(
+echo CreateObject^(&quot;Shell.Application&quot;^).ShellExecute &quot;%~s0&quot;, &quot;&quot;, &quot;&quot;, &quot;runas&quot;, 1 &gt;&gt; &quot;%temp%\getadmin.vbs&quot;
+&quot;%temp%\getadmin.vbs&quot; &gt;nul 2&gt;&amp;1
+goto:eof
+)
+del /f /q &quot;%temp%\getadmin.vbs&quot; &gt;nul 2&gt;nul
+
+for /f &quot;tokens=6 delims=[]. &quot; %%G in (&apos;ver&apos;) do set win=%%G
+
+setlocal
+
+set OPPKEY=XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99
+set PPKEY=YG9NW-3K39V-2T3HJ-93F3Q-G83KT
+set VPKEY=PD3PC-RHNGV-FXJ29-8JK7D-RJRJK
+set S4BKEY=869NQ-FJ69K-466HW-QYCP2-DDBV6
+
+pushd &quot;%~dp0&quot;
+Title Office 2016 Retail to Volume License Converter
+
+SET OfficePath=%ProgramFiles%\Microsoft Office
+if not exist &quot;%OfficePath%\root\Licenses16&quot; SET OfficePath=%ProgramFiles(x86)%\Microsoft Office
+if not exist &quot;%OfficePath%\root\Licenses16&quot; (
+    echo Could not find the license files for Office 2016!
+    pause
+    goto :eof
+)
+
+echo Press Enter to start VL-Conversion...
+echo.
+pause
+echo.
+cd /D &quot;%SystemRoot%\System32&quot;
+
+if %win% GEQ 9200 (
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ul.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ul-oob.xrm-ms&quot;
+
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ul-oob.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ul.xrm-ms&quot;
+
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ul-oob.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ul.xrm-ms&quot;
+
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ul.xrm-ms&quot;
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ul-oob.xrm-ms&quot;
+
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-bridge-office.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-root.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-root-bridge-test.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-stil.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-ul.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\client-issuance-ul-oob.xrm-ms
+    cscript slmgr.vbs /ilc &quot;%OfficePath%\root\Licenses16\pkeyconfig-office.xrm-ms
+)
+ if %win% LSS 9200 (
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ul.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProPlusVL_KMS_Client-ul-oob.xrm-ms&quot;
+
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ul-oob.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\ProjectProVL_KMS_Client-ul.xrm-ms&quot;
+
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ul-oob.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\VisioProVL_KMS_Client-ul.xrm-ms&quot;0
+
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ppd.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ul.xrm-ms&quot;
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\SkypeforBusinessVL_KMS_Client-ul-oob.xrm-ms&quot;
+
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-bridge-office.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-root.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-root-bridge-test.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-stil.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-ul.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\client-issuance-ul-oob.xrm-ms
+    cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inslic:&quot;%OfficePath%\root\Licenses16\pkeyconfig-office.xrm-ms
+)
+
+for %%a in (%OPPKEY% %PPKEY% %VPKEY% %S4BKEY%) do cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /inpkey:%%a
+cscript &quot;%OfficePath%\Office16\ospp.vbs&quot; /act
+
+echo.
+echo Retail to Volume License conversion finished.
+echo.
+pause</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/windows_kms/" data-id="cluii14n2002pecuxbl1e2zbw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kms-office-windows/" rel="tag">kms office windows</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-windows_vpn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/windows_vpn/" class="article-date">
+  <time datetime="2019-11-08T09:26:25.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/windows_vpn/">centOS 安装 turnserver</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Windows    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、route delete 0.0.0.0</span><br><span class="line">//删除所有默认路由</span><br><span class="line"></span><br><span class="line">2、route -p add 0.0.0.0 mask 0.0.0.0 10.120.1.1</span><br><span class="line">//10.120.1.1当前电脑所使用网络的网关地址,#去互联网.</span><br><span class="line"></span><br><span class="line">3、route -p add 192.168.0.0 mask 255.255.0.0 10.1.0.2</span><br><span class="line">//10.1.0.2拨VPN本机获取到的IP地址，192.168.10.0是拨了VPN之后需要访问的地址段；#去vpn</span><br><span class="line"></span><br><span class="line">route PRINT -4</span><br></pre></td></tr></table></figure>
+
+<p>OpenWRT</p>
+<pre><code>iptables -A forwarding_rule -s 192.168.125.0/24 -j ACCEPT
+其中192.168.125.0/24是你vpn拨进来的网段。</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/windows_vpn/" data-id="cluii14n3002secux8rk54ikq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-turnserver/" rel="tag">centos turnserver</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gitsetproxy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/gitsetproxy/" class="article-date">
+  <time datetime="2019-11-08T09:08:15.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/gitsetproxy/">git 代理配置方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code># 设置ss
+git config --global http.proxy &apos;socks5://127.0.0.1:1080&apos;
+git config --global https.proxy &apos;socks5://127.0.0.1:1080&apos;
+
+# 设置代理
+git config --global https.proxy http://127.0.0.1:1080
+git config --global https.proxy https://127.0.0.1:1080
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy</code></pre><h2 id="补充说明：socks5和socks5h的区别"><a href="#补充说明：socks5和socks5h的区别" class="headerlink" title="补充说明：socks5和socks5h的区别"></a>补充说明：socks5和socks5h的区别</h2><p>socks5：适合本地能够解析目标主机域名(比如github.com)但是访问速度慢,来提高下载速度</p>
+<p>socks5h：用与本地不能解析目标主机域名(比如google),由代理服务器解析目标主机域名</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/gitsetproxy/" data-id="cluii14mu0022ecux8hnc7mk1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-proxy/" rel="tag">git proxy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jvm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/jvm/" class="article-date">
+  <time datetime="2019-11-08T09:08:15.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/08/jvm/">jvm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#heap dump</span></span><br><span class="line">jmap -dump:live,format=b,file=d:/dump.hprof  &lt;PID&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#把线程导出</span></span><br><span class="line">jstack -F &lt;PID&gt; &gt; D:\soft\threads.txt</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/jvm/" data-id="cluii14mv0024ecux9wuf7zg8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-proxy/" rel="tag">git proxy</a></li></ul>
 
     </footer>
   </div>
@@ -806,7 +770,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 </section>
@@ -839,7 +803,7 @@ UMask=0007</code></pre><p>设置自动启动</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
     </div>
   </div>
 
@@ -852,23 +816,23 @@ UMask=0007</code></pre><p>设置自动启动</p>
       <ul>
         
           <li>
-            <a href="/2024/04/02/hl/hl_privacy_zht/">FMS Mobile隱私政策</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/02/hl/hl_terms_zht/">FMS Mobile使用條款</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/02/hl/hl_Terms/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/04/02/hl/hl_Privacy/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2023/11/22/hexo/Hexo_upgrade/">Hexo升级指南</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/22/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/">Hexo博客文章加密</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/17/centos_install_acme/">centOS 安装 nginx</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/21/centos_install_mssql/">centOS 安装 mssql</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/26/centos_install_wildfly/">centOS 安装 nginx</a>
           </li>
         
       </ul>
