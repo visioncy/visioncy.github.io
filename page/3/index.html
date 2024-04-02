@@ -116,7 +116,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/01/ubuntu_install_squid/" data-id="cluihdrj3002glsux918rhsq7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/01/ubuntu_install_squid/" data-id="cluihk070002ho0ux5naj7r4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-squid/" rel="tag">ubuntu squid</a></li></ul>
@@ -157,7 +157,7 @@ lsmod |grep ip_vs   #查看IPVS加载到内核没有</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/11/centos_install_keepalived_lvs/" data-id="cluihdrig000llsux8zgx3hp9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/05/11/centos_install_keepalived_lvs/" data-id="cluihk06c000jo0ux1sgl8c1y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs-keepalived/" rel="tag">lvs keepalived</a></li></ul>
@@ -222,7 +222,7 @@ curl --location --request  POST -g \
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/action_curl/" data-id="cluihdrhy0001lsux098mffdl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/action_curl/" data-id="cluihk05w0001o0ux6r5n2vwy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -270,7 +270,7 @@ curl --location --request  POST -g \
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_esxi/" data-id="cluihdrib0009lsux02i9gpiq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_esxi/" data-id="cluihk0680009o0ux6xjo7qj0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -347,7 +347,54 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_rabbitmq/" data-id="cluihdrio0018lsux0e5n7v5s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_rabbitmq/" data-id="cluihk06m0016o0ux6nl3axiw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos_install_ssr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/24/centos_install_ssr/" class="article-date">
+  <time datetime="2020-03-24T01:08:28.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/centos_install_ssr/">centOS 安装配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 安装常用包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname hkvpn</span><br><span class="line">bash</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>2. 防火墙</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -s 192.168.80.0/24 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line">-A INPUT -m iprange --src-range 192.168.80.109-192.168.80.121 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line"></span><br><span class="line">sudo systemctl restart iptables.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 安装SSR</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocksR.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/</span><br><span class="line">sudo <span class="built_in">rm</span> /etc/shadowsocks.json</span><br><span class="line">rz</span><br><span class="line"></span><br><span class="line">yum install python2</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/python2.7 /usr/bin/python</span><br><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_ssr/" data-id="cluihk06r001io0ux8r6w903g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -487,54 +534,7 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_tools/" data-id="cluihdriv001mlsux2qipcnxj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_ssr" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/24/centos_install_ssr/" class="article-date">
-  <time datetime="2020-03-24T01:08:28.000Z" itemprop="datePublished">2020-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/centos_install_ssr/">centOS 安装配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 安装常用包</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname hkvpn</span><br><span class="line">bash</span><br><span class="line">sudo yum -y install vim</span><br><span class="line">sudo yum -y install lrzsz</span><br><span class="line">sudo yum -y install net-tools</span><br><span class="line">sudo yum -y install git</span><br><span class="line">sudo yum -y install wget</span><br><span class="line">sudo yum -y install bash-completion</span><br><span class="line"></span><br><span class="line">sudo systemctl stop firewalld.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"></span><br><span class="line">sudo yum -y install  iptables-services</span><br><span class="line">sudo systemctl status iptables.service</span><br><span class="line">sudo systemctl start iptables.service</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>2. 防火墙</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -s 172.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 10.0.0.0/8 -j ACCEPT</span><br><span class="line">-A INPUT -s 192.168.0.0/16 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -s 192.168.80.0/24 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line">-A INPUT -m iprange --src-range 192.168.80.109-192.168.80.121 -p tcp -m multiport --dports 443,8081,8082,8083,8084,8085 -j ACCEPT</span><br><span class="line"></span><br><span class="line">sudo systemctl restart iptables.service</span><br></pre></td></tr></table></figure>
-
-<p><strong>3. 安装SSR</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocksR.sh</span><br><span class="line">./shadowsocksR.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocksR.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/</span><br><span class="line">sudo <span class="built_in">rm</span> /etc/shadowsocks.json</span><br><span class="line">rz</span><br><span class="line"></span><br><span class="line">yum install python2</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/bin/python2.7 /usr/bin/python</span><br><span class="line">/etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_ssr/" data-id="cluihdriw001rlsux7pk03zr1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_tools/" data-id="cluihk06s001no0ux6vb7apnf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -662,7 +662,7 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/ubuntu_install_ss/" data-id="cluihdrj4002llsuxd83n6qzr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/ubuntu_install_ss/" data-id="cluihk071002jo0uxbq83cc8j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-tools/" rel="tag">ubuntu tools</a></li></ul>
@@ -711,7 +711,7 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/windows_cmd/" data-id="cluihdrj5002nlsuxf32cbdbq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/windows_cmd/" data-id="cluihk071002lo0uxgig3gcly" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -755,7 +755,7 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/" data-id="cluihdrj7002wlsuxas6gdxu9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/" data-id="cluihk074002wo0ux1rth0j4u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -817,11 +817,11 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       <ul>
         
           <li>
-            <a href="/2024/04/02/hl/hl_terms_zht/">(no title)</a>
+            <a href="/2024/04/02/hl/hl_privacy_zht/">FMS Mobile隱私政策</a>
           </li>
         
           <li>
-            <a href="/2024/04/02/hl/hl_privacy_zht/">(no title)</a>
+            <a href="/2024/04/02/hl/hl_terms_zht/">FMS Mobile使用條款</a>
           </li>
         
           <li>
