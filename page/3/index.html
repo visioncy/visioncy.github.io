@@ -64,6 +64,224 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ubuntu_install_squid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/01/ubuntu_install_squid/" class="article-date">
+  <time datetime="2020-06-01T12:10:03.000Z" itemprop="datePublished">2020-06-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/ubuntu_install_squid/">ubuntu 安装 squid</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line"><span class="built_in">chmod</span> +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | <span class="built_in">tee</span> shadowsocks-all.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/shadowsocks-r/config.json</span><br><span class="line"></span><br><span class="line">systemctl restart shadowsocks-r.service</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;server&quot;</span>:<span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line"><span class="string">&quot;server_ipv6&quot;</span>:<span class="string">&quot;::&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_address&quot;</span>:<span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line"><span class="string">&quot;local_port&quot;</span>:1080,</span><br><span class="line"><span class="string">&quot;port_password&quot;</span>:&#123;</span><br><span class="line"><span class="string">&quot;18001&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18002&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18003&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18004&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;18005&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span>,</span><br><span class="line"><span class="string">&quot;444&quot;</span>:<span class="string">&quot;fEs6OEp4gXzlYcrd&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;timeout&quot;</span>:120,</span><br><span class="line"><span class="string">&quot;method&quot;</span>:<span class="string">&quot;aes-256-cfb&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol&quot;</span>:<span class="string">&quot;auth_aes128_md5&quot;</span>,</span><br><span class="line"><span class="string">&quot;protocol_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs&quot;</span>:<span class="string">&quot;tls1.2_ticket_fastauth&quot;</span>,</span><br><span class="line"><span class="string">&quot;obfs_param&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;redirect&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;dns_ipv6&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;fast_open&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;workers&quot;</span>:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; <span class="built_in">chmod</span> +x bbr.sh &amp;&amp; ./bbr.sh</span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装squid</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install squid</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成密码文件</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;xhusr:<span class="subst">$(openssl passwd -crypt &#x27;qS03v8Sw&#x27;)</span>\n&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/squid/htpasswd</span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sudo apt-get install apache2-utils</span><br><span class="line">htpasswd -c /etc/squid/htpasswd xhusr</span><br><span class="line"></span><br><span class="line">qS03v8Swstn2xU7e</span><br></pre></td></tr></table></figure>
+
+
+<p>​    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#备份配置</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/squid/squid.conf&#123;,.orginal&#125;</span><br><span class="line"><span class="comment">#编辑配置</span></span><br><span class="line">sudo nano /etc/squid/squid.conf</span><br><span class="line"><span class="comment">#or</span></span><br><span class="line">sudo vim /etc/squid/squid.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#加入验证配置文件（注：要放在文件前面，不然会提示密码错误）</span></span><br><span class="line">auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/htpasswd</span><br><span class="line">auth_param basic realm proxy</span><br><span class="line">acl authenticated proxy_auth REQUIRED</span><br><span class="line"><span class="comment">#http_access allow localnet</span></span><br><span class="line">http_access allow localhost</span><br><span class="line">http_access allow authenticated</span><br><span class="line"><span class="comment"># And finally deny all other access to this proxy</span></span><br><span class="line">http_access deny all</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启</span></span><br><span class="line">sudo systemctl restart squid</span><br></pre></td></tr></table></figure>
+
+
+
+<p>安装socks5</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/anonymous-test/p/13809348.html">https://www.cnblogs.com/anonymous-test/p/13809348.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dante-server</span><br><span class="line"></span><br><span class="line">#生成密码</span><br><span class="line">sudo useradd -s /sbin/nologin test -g proxy</span><br><span class="line">passwd test</span><br><span class="line"></span><br><span class="line">wHaQ8NRAUMEniIKZ</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#指定日志文件保存的绝对路径</span><br><span class="line">logoutput: /var/log/socks5.log</span><br><span class="line">#进口IP或网卡</span><br><span class="line">internal: eth0 port = 8888</span><br><span class="line">#进口网卡及端口</span><br><span class="line">internal: eth0 port = 9999</span><br><span class="line">#出口网卡</span><br><span class="line">external: eth0</span><br><span class="line">#设置代理方式（rfc931）</span><br><span class="line">socksmethod: username none</span><br><span class="line">#设置客户端规则</span><br><span class="line">clientmethod: none</span><br><span class="line">#设置用户权限</span><br><span class="line">user.privileged: root</span><br><span class="line">#非特权用户</span><br><span class="line">user.notprivileged: nobody</span><br><span class="line">#如果编译时支持 libwrap，使用的用户 ID（ libwrap：服务程序安全增强工具，对有状态连接的特定服务进行安全检测并实现访问控制）</span><br><span class="line">user.libwrap: nobody</span><br><span class="line">#设置访问规则</span><br><span class="line">client pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">#记录连接、断开、报错信息</span><br><span class="line">log: connect disconnect error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socks pass &#123;</span><br><span class="line">from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0</span><br><span class="line">protocol: tcp udp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/01/ubuntu_install_squid/" data-id="cluii2wbd002h4cux2d9hhmt9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-squid/" rel="tag">ubuntu squid</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos_install_keepalived_lvs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/11/centos_install_keepalived_lvs/" class="article-date">
+  <time datetime="2020-05-11T05:40:57.000Z" itemprop="datePublished">2020-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/centos_install_keepalived_lvs/">keepalived lvs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 命令配置（重启后失效）</strong></p>
+<pre><code>yum install ipvsadm -y
+ipvsadm   （执行ipvsadm（modprobe ip_vs）把ip_vs模块加载到内核）
+lsmod |grep ip_vs   #查看IPVS加载到内核没有</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/11/centos_install_keepalived_lvs/" data-id="cluii2wam000j4cuxhgk8ds7i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lvs-keepalived/" rel="tag">lvs keepalived</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-action_curl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/24/action_curl/" class="article-date">
+  <time datetime="2020-03-24T01:08:28.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/action_curl/">centOS 安装配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. 命令</strong> COD</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//上传文件     </span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://cod.xinhoo.com:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0a16a87ad9a4012a304ee30d7643f51&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP0&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2 -H &quot;Authorization:eXwdrXrvrjsHDs7F&quot; -H &quot;Content-Type:application/json;charset=UTF-8&quot; -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
+
+curl -L -X POST https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/updateservice/checkversion -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: eXwdrXrvrjsHDs7F&quot; --data-raw &quot;&#123;&apos;resource&apos;: &apos;ANDROID&apos;,&apos;appVersion&apos;: &apos;1.0.0&apos;&#125;&quot;  -w &quot;http_code:%&#123;http_code&#125; content_type:%&#123;content_type&#125;&quot;
+
+curl --location --request GET &quot;https://im.imangoim.com:9001/file/openfire/v1/download/a8c9e562b99847b0a7af0017c668c296?storeType=MESSAGE&quot; ^
+--header &quot;xh-user-token: 466826d3c1d144b482f38d8b440feab0&quot; ^
+--header &quot;xh-user-name: cod_60000001&quot; ^
+--header &quot;xh-user-resource: DESKTOP&quot; ^
+--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^
+--output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;
+
+curl --location --request  POST -g \
+       &quot;https://imapi.rezffb.com/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot; \
+        --header &apos;Authorization: eXwdrXrvrjsHDs7F&apos; \
+        --header &apos;Content-Type: application/json; charset=UTF-8&apos; \
+        -d &quot;&#123;&apos;targetname&apos;:&apos;codm_1080005491&apos;,&apos;text&apos;:&apos;Hi,\nIm test robot.&apos;,&apos;chatType&apos;:2,&apos;model&apos;:1&#125;&quot;</code></pre><p>​<br>    curl –location –request  POST -g <br>           “<a target="_blank" rel="noopener" href="https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;">https://im.imangoim.com:9091/plugins/xhcodrestapi/v1/apiservice/usercod_60005470:47c040fb62c24779b27061aff1ee6968/sendmessage_v2&quot;</a> <br>            –header ‘Authorization: eXwdrXrvrjsHDs7F’ <br>            –header ‘Content-Type: application/json; charset=UTF-8’ <br>            -d “{‘targetname’:’codm_1080005491’,’text’:’Hi,\nIm test robot.’,’chatType’:2,’model’:1}”</p>
+<p>​<br>​    </p>
+<p>​    </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//下载文件</span><br><span class="line">curl --location --request GET &quot;https://file.rezffb.com/file/openfire/v1/download/[fileid]?storeType=MESSAGE&quot; ^</span><br><span class="line">--header &quot;xh-user-token: 123123123123123123&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOmZlZDUyNjFlNmRjZmZjYWVjZDk2YzE5NTJiNTg4NWMy&quot; ^</span><br><span class="line">--output &quot;C:\Users\VisionYi\Desktop\downloadtest\test.jpg&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上传文件</span><br><span class="line">curl --ssl-no-revoke --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br><span class="line"></span><br><span class="line">curl --resolve im.flygram.im:443:35.247.162.93 --location --request POST &quot;https://im.flygram.im:9001/file/openfire/v1/uploadFile&quot; ^</span><br><span class="line">--header &quot;xh-user-token: c0b792f0a0ea4eaabd4e22d0fcfbf9cb&quot; ^</span><br><span class="line">--header &quot;xh-user-name: cod_60000001&quot; ^</span><br><span class="line">--header &quot;xh-user-resource: DESKTOP&quot; ^</span><br><span class="line">--header &quot;Authorization: Basic Y29kXzYwMDAwMDAxOjY2Yzc2YzNhZTFlYjNlZWRkODhiYmI3NmQwYWU4YWVk&quot; ^</span><br><span class="line">--form &quot;file=@\&quot;C:/Users/VisionYi/Desktop/downloadtest/test20200622.png\&quot;&quot; ^</span><br><span class="line">--form &quot;filetype=Image&quot; ^</span><br><span class="line">--form &quot;ishdimg=false&quot; ^</span><br><span class="line">--form &quot;receivername=cod_60000002&quot; ^</span><br><span class="line">--form &quot;type=Single&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/24/action_curl/" data-id="cluii2wab00014cuxcccl7lt3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos_install_esxi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/24/centos_install_esxi/" class="article-date">
+  <time datetime="2020-03-24T01:08:28.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/centos_install_esxi/">centOS 安装配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a><strong>1. 常用命令</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#扩展空间</span></span><br><span class="line">vmkfstools -X 25g /vmfs/volumes/xxxx/vmname/vmname.vmdk</span><br><span class="line"><span class="comment">#复制</span></span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_01/centos8disk1.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_02/centos8disk2.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line">vmkfstools -i <span class="string">&quot;/vmfs/volumes/datastore1/centosbase8/centosbase8.vmdk&quot;</span> <span class="string">&quot;/vmfs/volumes/datastore1/centos8_03/centos8disk3.vmdk&quot;</span> -d thin -a buslogic</span><br><span class="line"></span><br><span class="line">vmkfstools --server 10.21.49.14 -i <span class="string">&#x27;[Datastore] examplevm/examplevm.vmdk&#x27;</span> <span class="string">&#x27;[Datastore 2] newexamplevm/newexamplevm.vmdk&#x27;</span> -d thin -a buslogic</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看磁盘健康状态"><a href="#2-查看磁盘健康状态" class="headerlink" title="2.查看磁盘健康状态"></a>2.查看磁盘健康状态</h3><p>列出硬盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device list</span><br><span class="line">或</span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br></pre></td></tr></table></figure>
+
+<p>查看硬盘smart信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">esxcli storage core device smart get -d &lt;disk&gt; </span><br><span class="line"></span><br><span class="line">eg.</span><br><span class="line">esxcli storage core device smart get -d t10.ATA_____WDC_WD10EZEX2D08WN4A0_________________________WD2DWCC6Y4JZLP3E</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-挂载物理硬盘到虚拟机"><a href="#3-挂载物理硬盘到虚拟机" class="headerlink" title="3.挂载物理硬盘到虚拟机"></a>3.挂载物理硬盘到虚拟机</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示硬盘信息</span></span><br><span class="line"><span class="built_in">ls</span> /vmfs/devices/disks/</span><br><span class="line"><span class="comment">#影响硬盘到vmdk</span></span><br><span class="line">vmkfstools -z /vmfs/devices/disks/t10.ATA_____WDC_WD1003FBYX2D01Y7B1________________________WD2DWCAW35647184 /vmfs/volumes/datastore1_esxipc/WD1TB.vmdk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_esxi/" data-id="cluii2wai00094cuxahe28kci" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-centos_install_rabbitmq" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/24/centos_install_rabbitmq/" class="article-date">
@@ -129,7 +347,7 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_rabbitmq/" data-id="cluii14mj0016ecuxcj1s2r70" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_rabbitmq/" data-id="cluii2wau00164cux2o1q46ze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -176,7 +394,7 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_ssr/" data-id="cluii14mo001iecuxa05kg0a1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_ssr/" data-id="cluii2wb0001i4cux7qz86nt4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -316,7 +534,7 @@ sudo rabbitmq-plugins enable rabbitmq_delayed_message_exchange</code></pre><p>�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/centos_install_tools/" data-id="cluii14mp001necux5bli6qcf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/centos_install_tools/" data-id="cluii2wb1001n4cuxcc5r7fkg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -444,7 +662,7 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/ubuntu_install_ss/" data-id="cluii14n0002hecuxew4b1ueb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/ubuntu_install_ss/" data-id="cluii2wbe002j4cuxb4330ex8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu-tools/" rel="tag">ubuntu tools</a></li></ul>
@@ -493,7 +711,7 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/windows_cmd/" data-id="cluii14n1002lecux0s6l0ris" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/windows_cmd/" data-id="cluii2wbf002l4cux1nmzg0wy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
@@ -537,318 +755,10 @@ apt-get -y update //更新本地apt-get</code></pre><p>查看网卡流量<br>sud
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/" data-id="cluii14n3002tecux6vx19rjj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/24/%E5%8F%8C%E5%90%91%E9%AA%8C%E8%AF%81/" data-id="cluii2wbh002t4cux8kaa5jxg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-tools/" rel="tag">centos tools</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-openwrt_build_xiaomir3p" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/12/openwrt_build_xiaomir3p/" class="article-date">
-  <time datetime="2020-03-12T08:04:56.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/12/openwrt_build_xiaomir3p/">在centos 自行编译 R3P openwrt</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 安装组件</strong></p>
-<pre><code>yum -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler</code></pre><p><strong>2. 下载源码</strong></p>
-<pre><code>git clone https://github.com/coolsnowwolf/lede
-cd lede</code></pre><p><strong>可选：添加passwall安装源</strong></p>
-<pre><code>vim feeds.conf.default
-#passwall源
-src-git lienol https://github.com/Lienol/openwrt-package</code></pre><p><strong>3.build设定</strong></p>
-<pre><code>make menuconfig 
-
-#设置必要选项
-Target System (MediaTecRalink MIPS)
-Subtarget (MT7621based board)
-Target Profile (XiaomiMi Router 3 Pro)
-
-LuCI---&gt;  
-    1.Collections  ---&gt;
-        &lt;*&gt;luci................... LuCIinterface with Uhttpd as Webserver (default)
-LuCI ---&gt;
-    Modules---&gt;
-        Translations  ---&gt;
-            &lt;*&gt;Chinese (zh-cn)
-#其他部分配置选项，请选择：
-#添加luci应用
-LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-aria2……………………………… LuCI Support for aria2
-LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-ddns……………………… Dynamic DNS configuration module
-LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-samba……………….. Network Shares – Samba SMB/CIFSmodule
-LuCI -&gt;Applications  —&gt; &lt;*&gt; luci-app-transmission…………………. LuCI Support forTransmission
-#添加USB挂载
-Base system —&gt; &lt;*&gt;block-mount   
-
-#添加硬盘格式支持
-Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-ext4 (移动硬盘EXT4格式选择)
-Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-vfat(FAT16 / FAT32 格式 选择)
-Kernel modules —&gt; Filesystems —&gt; &lt;*&gt; kmod-fs-ntfs (NTFS 格式 选择)
-
-#添加USB相关支持
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-core.
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-ohci.
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-storage.
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb-storage-extras.
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb2.
-Kernel modules —&gt; USB Support —&gt; &lt;*&gt; kmod-usb3.
-
-#添加自动挂载工具
-Utilities —&gt; Filesystem —&gt; &lt;*&gt; badblocks</code></pre><p><strong>3.开始编译</strong></p>
-<pre><code>#先同步软件包(启动20个线程，加快下载，这样就不用等10个小时了，我用了50分钟下载完毕)：
-make download  V=s -j20  
-#开始编译(第一次编译，不启用多线程。二次编译时可以选-j4,这个考虑你的CPU支持的线程数)
-make -j1 V=s</code></pre><p>错误：</p>
-<pre><code>configure: error: you should not run configure as root (set FORCE_UNSAFE_CONFIGURE=1 in environment to bypass this check)</code></pre><p>解决方法A：</p>
-<pre><code>sudo make FORCE_UNSAFE_CONFIGURE=1 -j1 V=s</code></pre><p>解决方法B：</p>
-<pre><code>export FORCE_UNSAFE_CONFIGURE=1
-source /etc/profile
-然后：
-su –root  # 切换到root账号
-make V=99 # 编译</code></pre><p>错误：</p>
-<pre><code>tar: This does not look like a tar archive</code></pre><p>解决方法：（删除不能解压的包重新运行make）</p>
-<p><strong>4.刷机</strong></p>
-<pre><code>#编译后的目录
-/home/lede/bin/targets/ramips/mt7621</code></pre><h2 id="最终结果：变砖"><a href="#最终结果：变砖" class="headerlink" title="最终结果：变砖"></a><strong>最终结果：变砖</strong></h2><h1 id="ubuntu-build"><a href="#ubuntu-build" class="headerlink" title="ubuntu build"></a>ubuntu build</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils</span><br><span class="line"></span><br><span class="line"><span class="comment">#/usr/include/c++/7/utility:68: error: bits/c++config.h</span></span><br><span class="line">sudo apt-get install gcc-multilib g++ -multilib</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/12/openwrt_build_xiaomir3p/" data-id="cluii14my002cecux1yef187f" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openwrt-r3p-xiaomi/" rel="tag">openwrt r3p xiaomi</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-centos_install_mongodb" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/11/centos_install_mongodb/" class="article-date">
-  <time datetime="2020-03-11T06:18:40.000Z" itemprop="datePublished">2020-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/11/centos_install_mongodb/">centOS 安装 mongodb</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. 添加安装源</strong></p>
-<pre><code>sudo vim /etc/yum.repos.d/mongodb-org-4.2.repo
-
-[mongodb-org-4.2]
-name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
-gpgcheck=1
-enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc</code></pre><p>2.安装mongodb常用包</p>
-<pre><code>sudo yum install -y mongodb-org</code></pre><p>移动数据库</p>
-<pre><code>#复制数据库
-rsync -av /var/lib/mongo /data/database/mongodb/
-#备份旧数据库
-sudo mv /var/lib/mongo /var/lib/mongo.bak</code></pre><p>如果运行数据库是提示没权限，可以进行授权</p>
-<pre><code>#Change owner and group
-sudo chown -R mongod:mongod /data/mongodb/mongo
-#Change context
-sudo chcon -R -u system_u -t mongod_var_lib_t /data/mongodb/mongo/</code></pre><p>3.修改数据库保存路径<br>    vim /etc/mongod.conf</p>
-<pre><code>#启动安全验证
-security:
-    authorization: enabled</code></pre><p>初步化数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath /data/mongodb/master</span><br></pre></td></tr></table></figure>
-
-
-
-<p>添加超级管理员</p>
-<pre><code>mongo
-
-use admin
-db.createUser(
-  &#123;
-    user: &quot;xhadmin&quot;,
-    pwd: &quot;abc123&quot;,
-    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125;, &quot;readWriteAnyDatabase&quot; ]
-  &#125;
-)
-
-
-use admin
-db.createUser(
-  &#123;
-    user: &quot;xhadmin&quot;,
-    pwd: &quot;abc123&quot;,
-    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125;, &quot;readWriteAnyDatabase&quot; ]
-  &#125;
-)</code></pre><p>创建数据库用户</p>
-<pre><code>use test
-db.createUser(
-  &#123;
-    user: &quot;myTester&quot;,
-    pwd: &quot;xyz123&quot;,
-    roles: [ &#123; role: &quot;readWrite&quot;, db: &quot;test&quot; &#125;,
-             &#123; role: &quot;read&quot;, db: &quot;reporting&quot; &#125; ]
-  &#125;
-)</code></pre><p>集群</p>
-<pre><code>replication:
-  oplogSizeMB: 20000
-  replSetName: &quot;flygramway&quot;
-
-config = &#123;
-   &quot;_id&quot;:&quot;flygramway&quot;,
-  &quot;members&quot;:[
-    &#123;&quot;_id&quot;:0,&quot;host&quot;:&quot;10.148.0.51:27017&quot;, arbiterOnly:true&#125;,
-    &#123;&quot;_id&quot;:1,&quot;host&quot;:&quot;10.148.0.52:27017&quot;&#125;,
-    &#123;&quot;_id&quot;:2,&quot;host&quot;:&quot;10.148.0.53:27017&quot;&#125;
-  ]
-&#125;
-
-rs.initiate(config) //初始化
-rs.status()</code></pre><p>mongod增加keyFile</p>
-<pre><code>openssl rand -base64 756 &gt; /data/key_file
-chmod 400 /data/key_file</code></pre><p>key_file上传到其他mongod服务器上，修改mongod配置，一般是/etc/</p>
-<pre><code>mongodb.conf
-security:
-  authorization: enabled
-keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&quot;xhadmin&quot;,&quot;abc123&quot;);</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wiredTiger:</span><br><span class="line">  engineConfig:</span><br><span class="line">    configString : cache_size=1024M</span><br></pre></td></tr></table></figure>
-
-<p>安装步骤参考资料：</p>
-<p><a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/11/centos_install_mongodb/" data-id="cluii14md000necux6vhx9vre" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos-mongodb/" rel="tag">centos mongodb</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-openfireoptimization" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/19/openfireoptimization/" class="article-date">
-  <time datetime="2020-02-19T09:08:15.000Z" itemprop="datePublished">2020-02-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/19/openfireoptimization/">openfire 优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原来连接与登录共收发20条信息<br>修改后连接与登录共收发8条信息</p>
-<p>1.[Server Settings]-&gt;[Registration &amp; Login]-&gt;[SASL Mechanisms]只保留[SCRAM-SHA-1]（暂时测试不确认是否有优化）<br>并且xmpp.client.tls.policy改为:disabled</p>
-<ul>
-<li>required 必需</li>
-<li>optional 可选</li>
-<li>disabled 关闭</li>
-<li>legacyMode 一种要求连接立即加密的策略（与“必需”策略相反，它允许最初未加密的连接通过StartTLS加密。</li>
-</ul>
-<p>这样可以减少一次接收信息</p>
-<pre><code>16:19:20 RECV (0): &lt;stream:features&gt;&lt;starttls xmlns=&quot;urn:ietf:params:xml:ns:xmpp-tls&quot;&gt;&lt;/starttls&gt;&lt;mechanisms xmlns=&quot;urn:ietf:params:xml:ns:xmpp-sasl&quot;&gt;&lt;mechanism&gt;PLAIN&lt;/mechanism&gt;&lt;mechanism&gt;SCRAM-SHA-1&lt;/mechanism&gt;&lt;mechanism&gt;CRAM-MD5&lt;/mechanism&gt;&lt;mechanism&gt;DIGEST-MD5&lt;/mechanism&gt;&lt;/mechanisms&gt;&lt;compression xmlns=&quot;http://jabber.org/features/compress&quot;&gt;&lt;method&gt;zlib&lt;/method&gt;&lt;/compression&gt;&lt;ver xmlns=&quot;urn:xmpp:features:rosterver&quot;/&gt;&lt;register xmlns=&quot;http://jabber.org/features/iq-register&quot;/&gt;&lt;c xmlns=&quot;http://jabber.org/protocol/caps&quot; hash=&quot;sha-1&quot; node=&quot;https://www.igniterealtime.org/projects/openfire/&quot; ver=&quot;RoQdsUcljslH4bMYE/tqetK2DQU=&quot;/&gt;&lt;/stream:features&gt;</code></pre><p>2.文本已经加密，禁用TLS</p>
-<p>3.SaslMechanism使用”PLAIN”</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/19/openfireoptimization/" data-id="cluii14mx0029ecux74vxgzlh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openfire/" rel="tag">openfire</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-openfireerror" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/17/openfireerror/" class="article-date">
-  <time datetime="2020-01-17T09:08:15.000Z" itemprop="datePublished">2020-01-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/17/openfireerror/">openfire 常见错误</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>错误1:Closing session that seems to be stalled. Preventing OOM<br>作用：防止通道出现OOM<br>配置：session.stalled.cap 默认 5242880  改为 10485760</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/17/openfireerror/" data-id="cluii14mx0027ecux4qdhaj6p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-proxy/" rel="tag">git proxy</a></li></ul>
 
     </footer>
   </div>
@@ -861,7 +771,7 @@ keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -894,7 +804,7 @@ keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
     </div>
   </div>
 
@@ -907,23 +817,23 @@ keyFile: /data/key_file</code></pre><figure class="highlight plaintext"><table><
       <ul>
         
           <li>
+            <a href="/2024/04/02/hl/hl_privacy_zht/">FMS Mobile隱私政策</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/02/hl/hl_terms_zht/">FMS Mobile使用條款</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/02/hl/hl_terms/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/02/hl/hl_privacy/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2023/11/22/hexo/Hexo_upgrade/">Hexo升级指南</a>
-          </li>
-        
-          <li>
-            <a href="/2023/11/22/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/">Hexo博客文章加密</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/17/centos_install_acme/">centOS 安装 nginx</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/21/centos_install_mssql/">centOS 安装 mssql</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/26/centos_install_wildfly/">centOS 安装 nginx</a>
           </li>
         
       </ul>
